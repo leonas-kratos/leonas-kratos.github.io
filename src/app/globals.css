@@ -1,23 +1,34 @@
 @import "tailwindcss";
 
 :root {
-  --bg-black: #000000;
-  --bg-dark: #080808;
-  --bg-card: #0D0000;
+  --bg-primary: #0A0A0A;
+  --bg-secondary: #111111;
+  --bg-card: #141414;
   --red-primary: #CC0000;
-  --red-bright: #FF0000;
-  --red-dark: #660000;
-  --red-glow: rgba(255, 0, 0, 0.4);
+  --red-bright: #FF3333;
+  --red-glow: rgba(204, 0, 0, 0.4);
 }
 
 body {
-  background-color: #000000;
-  color: #f3f4f6;
-  font-family: var(--font-vt323), monospace;
+  background-color: #0A0A0A;
+  color: #CCCCCC;
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  line-height: 1.7;
   overflow-x: hidden;
 }
 
-/* Ensure ALL images display normally and sharp without ANY degradation or pixelation filter */
+/* Scroll Progress Bar at very top */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #CC0000, #FF3333);
+  z-index: 9999;
+  transition: width 0.1s ease-out;
+}
+
+/* Image styling */
 img {
   image-rendering: auto !important;
   filter: none !important;
@@ -25,236 +36,234 @@ img {
   display: block;
 }
 
-/* Subtle Hero Scanline Effect (on background pseudo-element only, not on images) */
-.hero-scanlines {
-  position: relative;
-}
-.hero-scanlines::after {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.4) 50%);
-  background-size: 100% 4px;
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Section Pixel Divider with repeating dash pattern */
-.pixel-divider {
-  height: 8px;
-  width: 100%;
-  background: repeating-linear-gradient(
-    90deg,
-    #CC0000 0px,
-    #CC0000 16px,
-    #000000 16px,
-    #000000 24px
-  );
-  border-top: 4px solid #CC0000;
-  border-bottom: 2px solid #660000;
-}
-
-/* Pixel Card Container */
-.pixel-card {
-  background-color: #0D0000;
+/* Hero Avatar Cards with Subtle Red Glow */
+.hero-avatar-box {
+  width: 220px;
+  height: 220px;
   border: 3px solid #CC0000;
-  border-radius: 0px !important;
-  box-shadow: 4px 4px 0px 0px #000000;
-  transition: none !important;
-}
-.pixel-card:hover {
-  border-color: #FF0000;
-  box-shadow: 0 0 16px #FF0000;
-  transform: translateY(-2px);
-}
-
-/* Pixel Buttons */
-.pixel-btn-red {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-press-start), monospace;
-  font-size: 10px;
-  text-transform: uppercase;
-  padding: 10px 18px;
-  background-color: #CC0000;
-  color: #ffffff;
-  border: 2px solid #FF0000;
-  border-radius: 0px !important;
-  box-shadow: 3px 3px 0px 0px #000000;
-  cursor: pointer;
-  transition: none !important;
-  text-decoration: none;
-}
-.pixel-btn-red:hover {
-  background-color: #FF0000;
-  color: #000000;
-  box-shadow: 0 0 12px #FF0000;
-  transform: translateY(-2px);
-}
-.pixel-btn-red:active {
-  transform: translate(2px, 2px);
-  box-shadow: none;
-}
-
-.pixel-btn-black {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-press-start), monospace;
-  font-size: 10px;
-  text-transform: uppercase;
-  padding: 10px 18px;
-  background-color: #120304;
-  color: #FF6666;
-  border: 2px solid #CC0000;
-  border-radius: 0px !important;
-  box-shadow: 3px 3px 0px 0px #000000;
-  cursor: pointer;
-  transition: none !important;
-  text-decoration: none;
-}
-.pixel-btn-black:hover {
-  background-color: #CC0000;
-  color: #ffffff;
-  border-color: #FF0000;
-  box-shadow: 0 0 12px #FF0000;
-  transform: translateY(-2px);
-}
-
-/* Navbar Links with hover ">" */
-.nav-link {
-  font-family: var(--font-press-start), monospace;
-  font-size: 10px;
-  color: #d1d5db;
+  border-radius: 8px;
+  overflow: hidden;
   position: relative;
-  transition: none !important;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
+  background: #000000;
+  box-shadow: 0 0 20px rgba(204, 0, 0, 0.4);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.nav-link::before {
-  content: ">";
-  color: #FF0000;
-  margin-right: 4px;
-  opacity: 0;
-  transform: translateX(-4px);
-  transition: none !important;
+.hero-avatar-box:hover {
+  box-shadow: 0 0 40px rgba(204, 0, 0, 0.8);
+  transform: translateY(-4px) scale(1.02);
+  border-color: #FF3333;
 }
-.nav-link:hover {
-  color: #FF0000;
-  text-shadow: 0 0 8px #FF0000;
-}
-.nav-link:hover::before {
-  opacity: 1;
-  transform: translateX(0);
-}
-.nav-link-active {
-  color: #FF0000 !important;
-  text-shadow: 0 0 8px #FF0000;
-}
-.nav-link-active::before {
-  opacity: 1 !important;
-  transform: translateX(0) !important;
+.hero-avatar-box img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center top !important;
 }
 
-/* ===================================================
-   STRICT IMAGE WRAPPERS (Fix stretching 100%)
-   =================================================== */
-
-/* Car / Vehicle images (VEDC_CAR.png, Car_V2.png) */
-.car-image-wrapper {
+/* Vehicle image card wrapper */
+.vehicle-card-wrapper {
   width: 100%;
   max-width: 640px;
-  height: 280px;
+  height: 260px;
   background: #000000;
-  border: 4px solid #CC0000;
+  border: 2px solid #1A1A1A;
+  border-radius: 8px;
   overflow: hidden;
   margin: 0 auto;
   position: relative;
-  transition: none !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.car-image-wrapper:hover {
-  box-shadow: 0 0 16px #FF0000;
-  transform: translateY(-2px);
+.vehicle-card-wrapper:hover {
+  border-color: #CC0000;
+  box-shadow: 0 0 20px rgba(204, 0, 0, 0.4);
 }
-.car-image-wrapper img {
+.vehicle-card-wrapper img {
   width: 100% !important;
   height: 100% !important;
   object-fit: contain !important;
   background: #000000 !important;
 }
 
-/* Person / Group photos (teammate, lab, conference, presentation) */
-.photo-wrapper {
+/* Group / person photo wrapper */
+.person-card-wrapper {
   width: 100%;
   max-width: 640px;
-  height: 360px;
-  border: 4px solid #CC0000;
+  height: 320px;
+  background: #000000;
+  border: 2px solid #1A1A1A;
+  border-radius: 8px;
   overflow: hidden;
   margin: 0 auto;
   position: relative;
-  background: #000000;
-  transition: none !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.photo-wrapper:hover {
-  box-shadow: 0 0 16px #FF0000;
-  transform: translateY(-2px);
+.person-card-wrapper:hover {
+  border-color: #CC0000;
+  box-shadow: 0 0 20px rgba(204, 0, 0, 0.4);
 }
-.photo-wrapper img {
+.person-card-wrapper img {
   width: 100% !important;
   height: 100% !important;
   object-fit: cover !important;
   object-position: center top !important;
 }
 
-/* Hero Avatar Cards (220x220px square side by side) */
-.hero-avatar-card {
-  width: 220px;
-  height: 220px;
-  border: 4px solid #CC0000;
-  overflow: hidden;
+/* Card hover overlay with gradient and appearing label */
+.card-hover-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(204, 0, 0, 0.75), transparent 60%);
+  opacity: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: 16px;
+  transition: opacity 0.3s ease;
+}
+.group:hover .card-hover-overlay,
+.vehicle-card-wrapper:hover .card-hover-overlay,
+.person-card-wrapper:hover .card-hover-overlay {
+  opacity: 1;
+}
+
+/* Premium publication card with subtle CSS shine effect */
+.pub-card {
+  background: linear-gradient(135deg, #0D0D0D, #1A0000);
+  border: 1px solid #222222;
+  border-left: 4px solid #CC0000;
+  border-radius: 8px;
   position: relative;
-  background: #000000;
-  flex-shrink: 0;
-  transition: none !important;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.hero-avatar-card:hover {
-  box-shadow: 0 0 16px #FF0000;
+.pub-card::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent,
+    rgba(255, 255, 255, 0.04),
+    transparent
+  );
+  transform: rotate(30deg) translateY(-100%);
+  transition: transform 0.6s ease;
+  pointer-events: none;
+}
+.pub-card:hover::after {
+  transform: rotate(30deg) translateY(100%);
+}
+.pub-card:hover {
+  border-color: #CC0000;
+  box-shadow: 0 0 25px rgba(204, 0, 0, 0.35);
+  transform: translateY(-3px);
+}
+
+/* Interactive Buttons */
+.btn-primary-red {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 10px 22px;
+  background: #CC0000;
+  color: #ffffff;
+  border-radius: 6px;
+  border: 1px solid #FF3333;
+  box-shadow: 0 0 15px rgba(204, 0, 0, 0.4);
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+.btn-primary-red:hover {
+  background: #E60000;
+  box-shadow: 0 0 25px rgba(204, 0, 0, 0.7);
   transform: translateY(-2px);
 }
-.hero-avatar-card img {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
-  object-position: center top !important;
-}
 
-/* Blinking coin / indicator animations */
-@keyframes coinBlink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.15; }
+.btn-secondary-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 10px 22px;
+  background: transparent;
+  color: #CC0000;
+  border-radius: 6px;
+  border: 1px solid #CC0000;
+  transition: all 0.25s ease;
+  text-decoration: none;
 }
-.blink-coin {
-  animation: coinBlink 1.8s infinite steps(2, start);
-}
-
-@keyframes greenBlink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
-}
-.blink-green {
-  animation: greenBlink 1.2s infinite steps(2, start);
-}
-
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
-}
-::-webkit-scrollbar-track {
-  background: #000000;
-}
-::-webkit-scrollbar-thumb {
+.btn-secondary-outline:hover {
   background: #CC0000;
-  border: 2px solid #000000;
+  color: #ffffff;
+  box-shadow: 0 0 20px rgba(204, 0, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Section Reveal Fade-Up */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Bouncing Arrow Animation */
+@keyframes bounceDown {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(8px);
+  }
+  60% {
+    transform: translateY(4px);
+  }
+}
+.bounce-arrow {
+  animation: bounceDown 2s infinite;
+}
+
+/* Gradient Underline animation */
+@keyframes gradientLine {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+.animated-underline {
+  position: relative;
+  display: inline-block;
+}
+.animated-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 3px;
+  background: linear-gradient(90deg, #CC0000, #FF3333, transparent);
+  animation: gradientLine 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }

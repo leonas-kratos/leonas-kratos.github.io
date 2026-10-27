@@ -1,24 +1,32 @@
 import Navbar from "@/components/Navbar";
+import ScrollProgressBar from "@/components/ScrollProgressBar";
 import HomeHero from "@/components/HomeHero";
+import StatsBar from "@/components/StatsBar";
 import GameMenu from "@/components/GameMenu";
 import ContactSection from "@/components/ContactSection";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#000000] text-[#f3f4f6]">
+    <div className="min-h-screen bg-[#0A0A0A] text-[#CCCCCC]">
+      {/* Scroll Progress Bar at very top */}
+      <ScrollProgressBar />
+
+      {/* Glassmorphic Navbar */}
       <Navbar />
+
       <main>
-        {/* Hero Section: short bio & avatars */}
+        {/* Cinematic Hero */}
         <HomeHero />
 
-        <div className="pixel-divider" />
+        {/* Stats Bar count-up */}
+        <div id="stats">
+          <StatsBar />
+        </div>
 
-        {/* 5 Navigation cards in grid (Level Select) */}
+        {/* Sector Navigation Grid */}
         <GameMenu />
 
-        <div className="pixel-divider" />
-
-        {/* Footer with contact info */}
+        {/* Contact & Footer */}
         <ContactSection />
       </main>
     </div>

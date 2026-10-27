@@ -11,87 +11,94 @@ export default function Navbar() {
   const pathname = usePathname();
 
   const navLinks = [
-    { label: "HOME", href: "/" },
+    { label: "Home", href: "/" },
     { label: "VEDC", href: "/vedc" },
-    { label: "CONFERENCE", href: "/conference" },
-    { label: "RESEARCH", href: "/research" },
-    { label: "LAB", href: "/lab" },
-    { label: "PUBLICATIONS", href: "/publications" },
+    { label: "Conference", href: "/conference" },
+    { label: "Research", href: "/research" },
+    { label: "Lab", href: "/lab" },
+    { label: "Publications", href: "/publications" },
   ];
 
   return (
-    <nav className="sticky top-0 left-0 right-0 z-50 bg-[#0A0000] border-b-[3px] border-[#CC0000]">
+    <nav className="sticky top-0 left-0 right-0 z-50 bg-[#000000]/70 backdrop-blur-md border-b border-[#CC0000]/30 transition-all">
       <div className="max-w-[1100px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         
         {/* Brand */}
         <Link href="/" className="flex items-center gap-3 group">
-          <div className="w-8 h-8 bg-[#CC0000] border-2 border-white flex items-center justify-center text-white font-black text-xs shadow-[2px_2px_0_0_#000000]">
+          <div className="w-8 h-8 rounded bg-[#CC0000] border border-[#FF3333] flex items-center justify-center text-white font-black text-xs shadow-[0_0_12px_rgba(204,0,0,0.5)] group-hover:scale-105 transition-transform">
             ⚡
           </div>
           <div className="flex flex-col">
-            <span style={{ fontFamily: "var(--font-press-start)" }} className="text-xs sm:text-sm font-bold text-white tracking-wider group-hover:text-[#FF0000]">
+            <span className="text-sm font-extrabold text-white tracking-tight group-hover:text-[#FF3333] transition-colors">
               {PERSONAL_INFO.name}
             </span>
-            <span style={{ fontFamily: "var(--font-vt323)" }} className="text-sm text-[#CC0000] tracking-widest uppercase">
-              AMR • ROBOTICS • UET
+            <span className="text-[10px] font-mono text-[#FF4444] tracking-wider uppercase">
+              UWB-IPS · VNU-UET
             </span>
           </div>
         </Link>
 
         {/* Desktop Links */}
-        <div className="hidden lg:flex items-center space-x-6">
+        <div className="hidden lg:flex items-center space-x-7 text-xs font-semibold">
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`nav-link ${isActive ? "nav-link-active" : ""}`}
+                className={`relative py-1 transition-colors duration-200 ${
+                  isActive ? "text-[#FF0000]" : "text-zinc-300 hover:text-[#FF3333]"
+                }`}
               >
-                {link.label}
+                <span>{link.label}</span>
+                {isActive && (
+                  <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-[#FF0000] shadow-[0_0_8px_#FF0000]" />
+                )}
               </Link>
             );
           })}
+
           <a
             href={PERSONAL_INFO.cvUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="pixel-btn-red text-[9px] py-2 px-3.5 flex items-center gap-1.5"
+            className="btn-primary-red py-1.5 px-3.5 text-xs flex items-center gap-1.5 rounded"
           >
-            <FileText className="w-3 h-3" />
-            CV_PDF
+            <FileText className="w-3.5 h-3.5" />
+            <span>CV PDF</span>
           </a>
         </div>
 
         {/* Mobile Toggle */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="lg:hidden text-white p-2 border-2 border-[#CC0000] bg-[#120304]"
+          className="lg:hidden text-white p-2 rounded border border-zinc-800 bg-[#121212]"
           aria-label="Toggle Menu"
         >
-          {mobileMenuOpen ? <X className="w-5 h-5 text-[#FF0000]" /> : <Menu className="w-5 h-5 text-[#FF0000]" />}
+          {mobileMenuOpen ? <X className="w-5 h-5 text-[#FF3333]" /> : <Menu className="w-5 h-5 text-[#FF3333]" />}
         </button>
       </div>
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-[#0A0000] border-b-4 border-[#CC0000] px-6 py-6 space-y-4">
+        <div className="lg:hidden bg-[#0A0A0A]/95 backdrop-blur-xl border-b border-[#CC0000]/40 px-6 py-6 space-y-4">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className={`block text-xs py-1 ${pathname === link.href ? "text-[#FF0000]" : "text-gray-200 hover:text-[#FF0000]"}`}
-              style={{ fontFamily: "var(--font-press-start)" }}
+              className={`block text-sm font-medium py-1.5 ${
+                pathname === link.href ? "text-[#FF0000] font-bold" : "text-zinc-300 hover:text-[#FF3333]"
+              }`}
             >
-              &gt; {link.label}
+              {link.label}
             </Link>
           ))}
           <a
             href={PERSONAL_INFO.cvUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="pixel-btn-red block text-center w-full mt-4"
+            className="btn-primary-red w-full text-center mt-4 text-xs py-2.5 rounded block"
           >
             DOWNLOAD CV
           </a>

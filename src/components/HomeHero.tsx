@@ -1,47 +1,60 @@
-import { FileText } from "lucide-react";
+import { FileText, ChevronDown, ArrowRight } from "lucide-react";
+import ParticleBackground from "@/components/ParticleBackground";
+import TypewriterTagline from "@/components/TypewriterTagline";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 
 export default function HomeHero() {
   return (
-    <section id="hero" className="relative py-16 px-4 sm:px-6 lg:px-8 hero-scanlines bg-[#000000]">
-      <div className="max-w-[1100px] mx-auto w-full z-10">
-        
-        {/* Blinking green pixel badge top-left */}
-        <div className="inline-flex items-center gap-2.5 px-3 py-1.5 bg-[#051405] border-2 border-[#16a34a] text-[#22c55e] text-xs mb-8 shadow-[3px_3px_0_0_#000000]">
-          <span className="w-2.5 h-2.5 bg-[#22c55e] blink-green" />
-          <span style={{ fontFamily: "var(--font-press-start)" }} className="text-[9px] tracking-wider">
-            PLAYER_1: ACTIVE // UET ROBOTICS LAB
+    <section
+      id="hero"
+      className="relative min-h-screen flex flex-col justify-between pt-24 pb-12 px-4 sm:px-6 lg:px-8 bg-[#0A0A0A] overflow-hidden"
+    >
+      {/* Animated Canvas Particle Field (80 particles, float upward, #CC0000 20% opacity) */}
+      <ParticleBackground />
+
+      <div className="relative max-w-[1100px] mx-auto w-full z-10 flex-1 flex flex-col justify-center">
+        {/* Status indicator */}
+        <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-[#1A0505] border border-[#CC0000]/60 text-[#FF4444] text-xs mb-8 w-fit shadow-[0_0_15px_rgba(204,0,0,0.3)]">
+          <span className="w-2 h-2 rounded-full bg-[#22c55e] animate-pulse" />
+          <span className="font-mono text-[11px] tracking-wider uppercase font-semibold">
+            RESEARCH ACTIVE // FET · VNU-UET
           </span>
         </div>
 
-        {/* 2-Column Grid Layout: left text info, right 2 avatar images */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        {/* 2-Column Grid: left text info, right 2 avatar cards */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           
           {/* Left Column (Info) */}
           <div className="lg:col-span-7 flex flex-col items-start text-left">
-            <h1
-              style={{ fontFamily: "var(--font-press-start)" }}
-              className="text-2xl sm:text-4xl lg:text-[40px] font-black text-white leading-tight mb-3 drop-shadow-[4px_4px_0_#660000]"
-            >
-              {PERSONAL_INFO.name}
+            <h1 className="text-3xl sm:text-5xl lg:text-[56px] font-extrabold text-white leading-[1.15] mb-4 tracking-tight">
+              <span className="animated-underline">{PERSONAL_INFO.name}</span>
             </h1>
 
-            {/* Glowing Red Tagline Bar Under Name */}
-            <div
-              style={{ fontFamily: "var(--font-press-start)" }}
-              className="w-full bg-[#CC0000] text-white text-[10px] sm:text-[11px] font-bold px-3 py-2 uppercase tracking-wider mb-3 border border-[#FF3333] shadow-[0_0_12px_#FF0000]"
-            >
-              {PERSONAL_INFO.title}
+            {/* Typewriter Tagline */}
+            <div className="mb-4">
+              <TypewriterTagline />
             </div>
 
-            <p style={{ fontFamily: "var(--font-vt323)" }} className="text-xl sm:text-2xl text-gray-300 mb-4">
+            <p className="text-sm sm:text-base font-medium text-zinc-400 mb-5">
               🏛️ {PERSONAL_INFO.affiliation}
             </p>
 
-            {/* Short Bio (2-3 lines max) */}
-            <p style={{ fontFamily: "var(--font-vt323)" }} className="text-[1.2rem] text-[#CCCCCC] leading-relaxed mb-6 border-l-4 border-[#CC0000] pl-3 py-1 bg-[#0A0203]">
-              R&amp;D Engineer specializing in Autonomous Mobile Robots (AMR), real-time embedded control (STM32, FreeRTOS), precision UWB state estimation, and ROS 2 Nav2 navigation.
+            {/* Subtitle / Bio */}
+            <p className="text-base sm:text-lg text-[#CCCCCC] leading-relaxed mb-8 border-l-2 border-[#CC0000] pl-4 py-1 bg-gradient-to-r from-[#1A0000]/40 to-transparent">
+              {PERSONAL_INFO.bio}
             </p>
+
+            {/* Skill highlights pills */}
+            <div className="flex flex-wrap gap-2 mb-8">
+              {["UWB Indoor Positioning", "EKF / UKF / PF", "STM32 & FreeRTOS", "DWM1001 Modules", "ROS 2 Nav2"].map((tech) => (
+                <span
+                  key={tech}
+                  className="px-2.5 py-1 rounded bg-[#161616] border border-zinc-800 text-xs font-mono text-zinc-300"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
 
             {/* Action Buttons */}
             <div className="flex flex-wrap items-center gap-4">
@@ -49,58 +62,60 @@ export default function HomeHero() {
                 href={PERSONAL_INFO.cvUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="pixel-btn-red text-xs py-3 px-6"
+                className="btn-primary-red"
               >
                 <FileText className="w-4 h-4 mr-2" />
                 DOWNLOAD CV
               </a>
-              <a href="#cv" className="pixel-btn-black text-xs py-3 px-5">
-                CONTACT DETAILS
+              <a href="#missions" className="btn-secondary-outline">
+                EXPLORE RESEARCH SECTORS
+                <ArrowRight className="w-4 h-4 ml-2" />
               </a>
             </div>
           </div>
 
-          {/* Right Column (2 avatar images side by side: 220x220px each) */}
-          <div className="lg:col-span-5 flex flex-row items-center justify-center sm:justify-start lg:justify-center gap-4 sm:gap-6">
+          {/* Right Column (2 avatar cards side by side: 220x220px, glowing red) */}
+          <div className="lg:col-span-5 flex flex-row items-center justify-center gap-5 sm:gap-6">
             
-            {/* Avatar 1: DangMinhDuc.png */}
+            {/* Card 1: DangMinhDuc.png */}
             <div className="flex flex-col items-center">
-              <div className="hero-avatar-card">
+              <div className="hero-avatar-box">
                 <img
                   src={PERSONAL_INFO.avatar}
                   alt={PERSONAL_INFO.name}
                   loading="eager"
                 />
               </div>
-              <div
-                style={{ fontFamily: "var(--font-press-start)" }}
-                className="mt-3 px-2.5 py-1 bg-[#120304] border-2 border-[#CC0000] text-white text-[9px] uppercase shadow-[2px_2px_0_0_#000000]"
-              >
-                Dang Minh Duc
+              <div className="mt-3 px-3 py-1 bg-[#141414] border border-[#CC0000]/50 rounded text-white text-xs font-semibold shadow-md">
+                Đặng Minh Đức
               </div>
             </div>
 
-            {/* Avatar 2: prize.png */}
+            {/* Card 2: prize.png */}
             <div className="flex flex-col items-center">
-              <div className="hero-avatar-card">
+              <div className="hero-avatar-box">
                 <img
                   src={PERSONAL_INFO.prizeImage}
-                  alt="NCKH Award"
+                  alt="NCKH Research Award"
                   loading="eager"
                 />
               </div>
-              <div
-                style={{ fontFamily: "var(--font-press-start)" }}
-                className="mt-3 px-2.5 py-1 bg-[#120304] border-2 border-[#CC0000] text-white text-[9px] uppercase shadow-[2px_2px_0_0_#000000]"
-              >
-                NCKH Award
+              <div className="mt-3 px-3 py-1 bg-[#141414] border border-[#CC0000]/50 rounded text-white text-xs font-semibold shadow-md">
+                NCKH Research Award
               </div>
             </div>
 
           </div>
 
         </div>
+      </div>
 
+      {/* Bouncing Scroll Down Indicator */}
+      <div className="relative z-10 w-full flex flex-col items-center justify-center pt-8 text-zinc-500">
+        <a href="#stats" className="flex flex-col items-center hover:text-[#FF3333] transition-colors">
+          <span className="text-xs font-mono tracking-widest uppercase mb-1">SCROLL DOWN</span>
+          <ChevronDown className="w-5 h-5 text-[#CC0000] bounce-arrow" />
+        </a>
       </div>
     </section>
   );

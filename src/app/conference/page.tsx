@@ -1,74 +1,70 @@
 import Navbar from "@/components/Navbar";
+import ScrollProgressBar from "@/components/ScrollProgressBar";
 import SubpageNav, { SubpageFooterNav } from "@/components/SubpageNav";
 import { CONFERENCE_DATA } from "@/data/portfolioData";
 
 export const metadata = {
-  title: "REV 2025 Conference | Dang Minh Duc",
-  description: "National Conference on Electronics, Communications and Information Technology presentation.",
+  title: "REV 2025 Conference Presentation | Dang Minh Duc",
+  description: "Oral presentation on state estimation filters (EKF, UKF, PF) for UWB robotic indoor localization at REV-ECIT 2025.",
 };
 
 export default function ConferencePage() {
   return (
-    <div className="min-h-screen bg-[#000000] text-[#f3f4f6]">
+    <div className="min-h-screen bg-[#0A0A0A] text-[#CCCCCC]">
+      <ScrollProgressBar />
       <Navbar />
 
       <main className="max-w-[1100px] mx-auto px-4 sm:px-6 py-12">
-        {/* Breadcrumb & Back */}
         <SubpageNav currentPath="/conference" currentPageName="CONFERENCE" />
 
-        {/* Page Title */}
+        {/* Section Header */}
         <div className="mb-12">
-          <h1
-            style={{ fontFamily: "var(--font-press-start)" }}
-            className="text-xl sm:text-3xl font-black text-[#FF0000] tracking-[2px] leading-relaxed mb-3 drop-shadow-[3px_3px_0_#660000]"
-          >
-            [ {CONFERENCE_DATA.title} ]
+          <div className="inline-block px-3 py-1 rounded-full bg-[#1A0000] border border-[#CC0000]/40 text-[#FF4444] text-xs font-mono font-semibold uppercase tracking-wider mb-3">
+            SECTOR 03 · NATIONAL SCIENTIFIC FORUM
+          </div>
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-3">
+            {CONFERENCE_DATA.title}
           </h1>
-          <p style={{ fontFamily: "var(--font-vt323)" }} className="text-[1.3rem] text-[#CCCCCC]">
+          <p className="text-sm sm:text-base text-zinc-400 max-w-2xl leading-relaxed">
             {CONFERENCE_DATA.subtitle}
           </p>
         </div>
 
         {/* Conference Card */}
-        <div className="pixel-card p-6 max-w-4xl mx-auto">
+        <div className="bg-[#141414] border border-[#222222] rounded-lg p-6 max-w-4xl mx-auto hover:border-[#CC0000] transition-colors">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             
-            <div className="photo-wrapper">
+            <div className="person-card-wrapper">
               <img
                 src={CONFERENCE_DATA.image}
                 alt={CONFERENCE_DATA.title}
-                loading="eager"
+                loading="lazy"
               />
-              <div
-                style={{ fontFamily: "var(--font-press-start)" }}
-                className="absolute top-2 left-2 px-2 py-1 bg-black text-[#FF0000] border-2 border-[#CC0000] text-[8px] uppercase z-10"
-              >
-                {CONFERENCE_DATA.badge}
+              <div className="card-hover-overlay">
+                <span className="text-white text-xs font-mono font-bold uppercase tracking-wider">
+                  {CONFERENCE_DATA.badge}
+                </span>
               </div>
             </div>
 
             <div className="flex flex-col justify-between h-full">
               <div>
-                <div style={{ fontFamily: "var(--font-press-start)" }} className="text-[9px] text-[#CC0000] mb-2 uppercase">
-                  &gt; ORAL PRESENTATION
+                <div className="text-xs font-mono font-bold text-[#FF4444] uppercase mb-2">
+                  &gt; ORAL PRESENTATION &amp; DEFENSE
                 </div>
-                <h3
-                  style={{ fontFamily: "var(--font-press-start)" }}
-                  className="text-[0.85rem] font-bold text-white leading-relaxed mb-3"
-                >
+                <h2 className="text-xl font-bold text-white mb-3">
                   {CONFERENCE_DATA.title}
-                </h3>
-                <p style={{ fontFamily: "var(--font-vt323)" }} className="text-[1.2rem] text-[#CCCCCC] leading-relaxed mb-6">
+                </h2>
+                <p className="text-sm text-zinc-300 leading-relaxed mb-6">
                   {CONFERENCE_DATA.description}
                 </p>
               </div>
 
-              <div className="flex flex-wrap gap-2 pt-4 border-t-2 border-[#660000]">
+              <div className="flex flex-wrap gap-2 pt-4 border-t border-zinc-800">
                 {CONFERENCE_DATA.tags.map((t) => (
                   <span
                     key={t}
-                    style={{ fontFamily: "var(--font-vt323)" }}
-                    className="text-base px-2 py-0.5 bg-[#1A0000] border border-[#660000] text-[#FF6666]"
+                    className="text-xs px-2.5 py-1 rounded bg-[#1A0000] border border-[#660000] text-[#FF6666] font-mono"
                   >
                     #{t}
                   </span>
@@ -79,7 +75,6 @@ export default function ConferencePage() {
           </div>
         </div>
 
-        {/* Bottom Level Navigator */}
         <SubpageFooterNav currentPath="/conference" />
       </main>
     </div>

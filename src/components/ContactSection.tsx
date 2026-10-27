@@ -1,117 +1,123 @@
-import { Mail, FolderGit2, MapPin, Download } from "lucide-react";
+import { Mail, FolderGit2, MapPin, Download, Heart } from "lucide-react";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 
 export default function ContactSection() {
   return (
-    <section id="cv" className="py-24 px-4 sm:px-6 lg:px-8 bg-[#000000]">
+    <section id="cv" className="py-24 px-4 sm:px-6 lg:px-8 bg-[#0D0D0D] border-t border-zinc-800">
       <div className="max-w-[1100px] mx-auto text-center">
         
         {/* Header */}
         <div className="mb-14">
-          <div style={{ fontFamily: "var(--font-press-start)" }} className="text-[1.2rem] text-[#FF0000] tracking-[2px] mb-2 uppercase">
-            [ DOWNLOAD CV &amp; CONTACT ]
+          <div className="inline-block px-3 py-1 rounded-full bg-[#1A0000] border border-[#CC0000]/40 text-[#FF4444] text-xs font-mono font-semibold uppercase tracking-wider mb-3">
+            GET IN TOUCH
           </div>
-          <p style={{ fontFamily: "var(--font-vt323)" }} className="text-[1.25rem] text-[#CCCCCC] max-w-xl mx-auto">
-            Download Curriculum Vitae (CV) or connect regarding AMR autonomous robotics, ROS 2, and embedded engineering opportunities.
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+            Curriculum Vitae &amp; Research Contact
+          </h2>
+          <p className="text-zinc-400 text-sm sm:text-base max-w-xl mx-auto mt-2">
+            Download my comprehensive CV or connect regarding research opportunities, state estimation collaboration, or embedded robotic systems engineering.
           </p>
         </div>
 
-        {/* Big Pixel Download CV Banner */}
-        <div className="pixel-card p-6 mb-12 max-w-lg mx-auto bg-[#0D0000] border-4 border-[#CC0000]">
-          <div style={{ fontFamily: "var(--font-press-start)" }} className="text-xs text-white mb-3">
-            CURRICULUM VITAE (PDF)
-          </div>
-          <p style={{ fontFamily: "var(--font-vt323)" }} className="text-[1.15rem] text-[#CCCCCC] mb-6">
-            Updated academic credentials, research publications, and engineering project milestones.
+        {/* Download CV Banner */}
+        <div className="bg-[#141414] border border-[#CC0000]/60 rounded-xl p-8 mb-12 max-w-xl mx-auto shadow-[0_0_30px_rgba(204,0,0,0.2)]">
+          <h3 className="text-lg font-bold text-white mb-2">
+            Curriculum Vitae (PDF)
+          </h3>
+          <p className="text-sm text-zinc-400 mb-6">
+            Detailed monograph of academic research at VNU-UET, published papers, conference defenses, and technical projects.
           </p>
           <a
             href={PERSONAL_INFO.cvUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="pixel-btn-red text-xs py-3.5 px-6 inline-flex items-center gap-2"
+            className="btn-primary-red py-3 px-6 text-sm inline-flex items-center gap-2 rounded-lg"
           >
             <Download className="w-4 h-4" />
-            DOWNLOAD MY CV (.PDF)
+            <span>DOWNLOAD CURRICULUM VITAE (.PDF)</span>
           </a>
         </div>
 
-        {/* Contact Links */}
-        <div className="pixel-card p-6 max-w-lg mx-auto text-left">
-          <div className="space-y-4">
-            
-            {/* Primary Email */}
-            <a
-              href={`mailto:${PERSONAL_INFO.email}`}
-              className="flex items-center gap-4 p-3 bg-[#000000] border-2 border-[#CC0000] hover:bg-[#200507] group"
-            >
-              <div className="w-10 h-10 bg-[#CC0000] text-white flex items-center justify-center font-bold text-sm shrink-0 shadow-[2px_2px_0_0_#000000]">
-                @
-              </div>
-              <div>
-                <span style={{ fontFamily: "var(--font-press-start)" }} className="block text-[8px] text-gray-400 uppercase">
-                  PRIMARY EMAIL
-                </span>
-                <span style={{ fontFamily: "var(--font-vt323)" }} className="text-xl text-white group-hover:text-[#FF3333]">
-                  {PERSONAL_INFO.email}
-                </span>
-              </div>
-            </a>
+        {/* Contact Links Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl mx-auto mb-16">
+          
+          {/* Primary Email */}
+          <a
+            href={`mailto:${PERSONAL_INFO.email}`}
+            className="p-4 rounded-lg bg-[#141414] border border-zinc-800 hover:border-[#CC0000] transition-all group flex flex-col items-center text-center"
+          >
+            <div className="w-9 h-9 rounded-full bg-[#1A0000] border border-[#CC0000]/60 flex items-center justify-center text-[#FF4444] mb-3 group-hover:scale-110 transition-transform">
+              <Mail className="w-4 h-4" />
+            </div>
+            <span className="text-[11px] font-mono text-zinc-500 uppercase tracking-wider">
+              Primary Email
+            </span>
+            <span className="text-xs font-semibold text-zinc-200 group-hover:text-[#FF3333] transition-colors mt-1">
+              {PERSONAL_INFO.email}
+            </span>
+          </a>
 
-            {/* University Email */}
-            <a
-              href={`mailto:${PERSONAL_INFO.eduEmail}`}
-              className="flex items-center gap-4 p-3 bg-[#000000] border-2 border-[#CC0000] hover:bg-[#200507] group"
-            >
-              <div className="w-10 h-10 bg-[#660000] text-white flex items-center justify-center font-bold text-sm shrink-0 border border-[#CC0000]">
-                UET
-              </div>
-              <div>
-                <span style={{ fontFamily: "var(--font-press-start)" }} className="block text-[8px] text-gray-400 uppercase">
-                  ACADEMIC EMAIL
-                </span>
-                <span style={{ fontFamily: "var(--font-vt323)" }} className="text-xl text-white group-hover:text-[#FF3333]">
-                  {PERSONAL_INFO.eduEmail}
-                </span>
-              </div>
-            </a>
+          {/* Academic Email */}
+          <a
+            href={`mailto:${PERSONAL_INFO.eduEmail}`}
+            className="p-4 rounded-lg bg-[#141414] border border-zinc-800 hover:border-[#CC0000] transition-all group flex flex-col items-center text-center"
+          >
+            <div className="w-9 h-9 rounded-full bg-[#1A0000] border border-[#CC0000]/60 flex items-center justify-center text-[#FF4444] mb-3 group-hover:scale-110 transition-transform">
+              <span className="font-mono text-xs font-bold">UET</span>
+            </div>
+            <span className="text-[11px] font-mono text-zinc-500 uppercase tracking-wider">
+              Academic Email
+            </span>
+            <span className="text-xs font-semibold text-zinc-200 group-hover:text-[#FF3333] transition-colors mt-1">
+              {PERSONAL_INFO.eduEmail}
+            </span>
+          </a>
 
-            {/* GitHub */}
-            <a
-              href={PERSONAL_INFO.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-4 p-3 bg-[#000000] border-2 border-[#CC0000] hover:bg-[#200507] group"
-            >
-              <div className="w-10 h-10 bg-[#120304] border border-white text-white flex items-center justify-center font-bold text-sm shrink-0">
-                GIT
-              </div>
-              <div>
-                <span style={{ fontFamily: "var(--font-press-start)" }} className="block text-[8px] text-gray-400 uppercase">
-                  GITHUB PROFILE
-                </span>
-                <span style={{ fontFamily: "var(--font-vt323)" }} className="text-xl text-white group-hover:text-[#FF3333]">
-                  github.com/leonas-kratos
-                </span>
-              </div>
-            </a>
+          {/* GitHub */}
+          <a
+            href={PERSONAL_INFO.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-4 rounded-lg bg-[#141414] border border-zinc-800 hover:border-[#CC0000] transition-all group flex flex-col items-center text-center"
+          >
+            <div className="w-9 h-9 rounded-full bg-[#1A0000] border border-[#CC0000]/60 flex items-center justify-center text-[#FF4444] mb-3 group-hover:scale-110 transition-transform">
+              <FolderGit2 className="w-4 h-4" />
+            </div>
+            <span className="text-[11px] font-mono text-zinc-500 uppercase tracking-wider">
+              GitHub Profile
+            </span>
+            <span className="text-xs font-semibold text-zinc-200 group-hover:text-[#FF3333] transition-colors mt-1">
+              leonas-kratos
+            </span>
+          </a>
 
-          </div>
-
-          <div style={{ fontFamily: "var(--font-vt323)" }} className="mt-6 pt-4 border-t-2 border-[#660000] text-lg text-gray-400 flex items-center justify-center gap-2">
-            <MapPin className="w-4 h-4 text-[#CC0000]" />
-            <span>{PERSONAL_INFO.location} • VNU University of Engineering &amp; Technology (UET)</span>
-          </div>
         </div>
 
-        {/* Footer */}
-        <div className="mt-20 pt-8 border-t-4 border-[#CC0000] flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p style={{ fontFamily: "var(--font-press-start)" }} className="text-[9px] text-gray-400 flex items-center gap-1.5">
-            <span className="text-[#FF0000]">♥</span> © {new Date().getFullYear()} {PERSONAL_INFO.name}. ALL RIGHTS RESERVED.
-          </p>
-          <p style={{ fontFamily: "var(--font-press-start)" }} className="text-[9px] text-[#FF0000] blink-coin">
-            INSERT COIN TO RESTART [8-BIT]
-          </p>
+        {/* Location Note */}
+        <div className="text-xs text-zinc-500 flex items-center justify-center gap-2 mb-16 font-mono">
+          <MapPin className="w-3.5 h-3.5 text-[#CC0000]" />
+          <span>{PERSONAL_INFO.location} · {PERSONAL_INFO.affiliation}</span>
         </div>
+
+        {/* Footer Minimal */}
+        <footer className="pt-8 border-t border-[#CC0000]/30 flex flex-col sm:flex-row items-center justify-between text-xs text-zinc-500 gap-4">
+          <div className="flex items-center gap-1.5">
+            <Heart className="w-3.5 h-3.5 text-[#CC0000] fill-[#CC0000]" />
+            <span>© {new Date().getFullYear()} {PERSONAL_INFO.name}. All rights reserved.</span>
+          </div>
+
+          <div className="flex items-center gap-6">
+            <a href={PERSONAL_INFO.github} target="_blank" rel="noopener noreferrer" className="hover:text-[#FF3333] transition-colors">
+              GitHub
+            </a>
+            <a href={`mailto:${PERSONAL_INFO.email}`} className="hover:text-[#FF3333] transition-colors">
+              Contact
+            </a>
+            <a href={PERSONAL_INFO.cvUrl} target="_blank" rel="noopener noreferrer" className="hover:text-[#FF3333] transition-colors">
+              CV
+            </a>
+          </div>
+        </footer>
 
       </div>
     </section>

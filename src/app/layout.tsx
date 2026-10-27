@@ -1,23 +1,17 @@
 import type { Metadata } from "next";
-import { Press_Start_2P, VT323 } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
-const pressStart = Press_Start_2P({
-  weight: "400",
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-press-start",
-});
-
-const vt323 = VT323({
-  weight: "400",
-  subsets: ["latin", "vietnamese"],
-  variable: "--font-vt323",
+  variable: "--font-inter",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "ĐẶNG MINH ĐỨC | PIXEL PORTFOLIO [AMR • ROBOTICS • AI]",
+  title: "Dang Minh Duc | AMR Robotics & Embedded AI Engineer",
   description:
-    "Pixel Red-Black Portfolio of Dang Minh Duc - AMR Robotics Engineer, State Estimation Researcher, UET - VNU.",
+    "Portfolio of Dang Minh Duc - Autonomous Mobile Robots (AMR), State Estimation, ROS 2, and Embedded AI Researcher at VNU-UET.",
 };
 
 export default function RootLayout({
@@ -26,9 +20,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi" className="scroll-smooth dark">
+    <html lang="en" className="scroll-smooth">
       <body
-        className={`${pressStart.variable} ${vt323.variable} antialiased bg-[#000000] text-[#f3f4f6] selection:bg-[#CC0000] selection:text-white min-h-screen`}
+        className={`${inter.variable} antialiased bg-[#0A0A0A] text-[#CCCCCC] selection:bg-[#CC0000] selection:text-white min-h-screen`}
       >
         {children}
       </body>

@@ -15,27 +15,22 @@ const SECTIONS = [
 ];
 
 export default function SubpageNav({ currentPath, currentPageName }: SubpageNavProps) {
-  const currentIndex = SECTIONS.findIndex((s) => s.path === currentPath);
-  const prevSection = currentIndex > 0 ? SECTIONS[currentIndex - 1] : SECTIONS[SECTIONS.length - 1];
-  const nextSection = currentIndex < SECTIONS.length - 1 ? SECTIONS[currentIndex + 1] : SECTIONS[0];
-
   return (
     <div className="w-full mb-10">
-      {/* Top Breadcrumb & Back */}
-      <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b-2 border-[#330000]">
+      <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-zinc-800">
         <Link
           href="/"
-          className="pixel-btn-black text-[9px] py-2 px-3 inline-flex items-center gap-1.5"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-[#141414] border border-zinc-800 hover:border-[#CC0000] text-xs font-semibold text-zinc-300 hover:text-white transition-colors"
         >
-          <ChevronLeft className="w-3.5 h-3.5 text-[#FF0000]" />
-          &lt; BACK TO MENU
+          <ChevronLeft className="w-3.5 h-3.5 text-[#FF3333]" />
+          <span>BACK TO HOME</span>
         </Link>
 
-        {/* Breadcrumb: HOME > PAGE_NAME */}
-        <div style={{ fontFamily: "var(--font-press-start)" }} className="text-[10px] text-gray-400">
-          <Link href="/" className="hover:text-[#FF0000] text-gray-400">HOME</Link>
-          <span className="text-[#CC0000] mx-2">&gt;</span>
-          <span className="text-[#FF0000]">{currentPageName}</span>
+        {/* Breadcrumb */}
+        <div className="text-xs font-mono text-zinc-500">
+          <Link href="/" className="hover:text-white text-zinc-400">HOME</Link>
+          <span className="text-[#CC0000] mx-2">/</span>
+          <span className="text-[#FF4444] font-semibold">{currentPageName}</span>
         </div>
       </div>
     </div>
@@ -48,32 +43,31 @@ export function SubpageFooterNav({ currentPath }: { currentPath: string }) {
   const nextSection = currentIndex < SECTIONS.length - 1 ? SECTIONS[currentIndex + 1] : SECTIONS[0];
 
   return (
-    <div className="mt-20 pt-8 border-t-4 border-[#CC0000]">
+    <div className="mt-20 pt-8 border-t border-zinc-800">
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-        {/* Prev link */}
+        {/* Prev */}
         <Link
           href={prevSection.path}
-          className="pixel-btn-black text-[9px] py-2.5 px-4 inline-flex items-center gap-2 w-full sm:w-auto justify-center"
+          className="inline-flex items-center gap-2 px-4 py-2.5 rounded bg-[#141414] border border-zinc-800 hover:border-[#CC0000] text-xs font-semibold text-zinc-300 hover:text-white transition-all w-full sm:w-auto justify-center"
         >
-          <ChevronLeft className="w-3.5 h-3.5 text-[#FF0000]" />
-          &lt; PREV: [{prevSection.name}]
+          <ChevronLeft className="w-4 h-4 text-[#FF3333]" />
+          <span>PREV: {prevSection.name}</span>
         </Link>
 
         <Link
           href="/"
-          style={{ fontFamily: "var(--font-press-start)" }}
-          className="text-[9px] text-gray-400 hover:text-[#FF0000]"
+          className="text-xs font-mono text-zinc-400 hover:text-[#FF3333] transition-colors"
         >
-          [ MAIN MENU ]
+          [ MAIN OVERVIEW ]
         </Link>
 
-        {/* Next link */}
+        {/* Next */}
         <Link
           href={nextSection.path}
-          className="pixel-btn-red text-[9px] py-2.5 px-4 inline-flex items-center gap-2 w-full sm:w-auto justify-center"
+          className="btn-primary-red py-2 px-4 text-xs inline-flex items-center gap-2 w-full sm:w-auto justify-center"
         >
-          NEXT: [{nextSection.name}] &gt;
-          <ChevronRight className="w-3.5 h-3.5" />
+          <span>NEXT: {nextSection.name}</span>
+          <ChevronRight className="w-4 h-4" />
         </Link>
       </div>
     </div>
