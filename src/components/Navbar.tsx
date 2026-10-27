@@ -1,48 +1,30 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X, FileText } from "lucide-react";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("hero");
+  const pathname = usePathname();
 
   const navLinks = [
-    { label: "Home", href: "#hero", id: "hero" },
-    { label: "VEDC", href: "#vedc", id: "vedc" },
-    { label: "Conference", href: "#conference", id: "conference" },
-    { label: "Research", href: "#research", id: "research" },
-    { label: "Lab", href: "#lab", id: "lab" },
-    { label: "Publications", href: "#publications", id: "publications" },
-    { label: "CV", href: "#cv", id: "cv" },
+    { label: "HOME", href: "/" },
+    { label: "VEDC", href: "/vedc" },
+    { label: "CONFERENCE", href: "/conference" },
+    { label: "RESEARCH", href: "/research" },
+    { label: "LAB", href: "/lab" },
+    { label: "PUBLICATIONS", href: "/publications" },
   ];
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPos = window.scrollY + 120;
-      for (const link of navLinks) {
-        const el = document.getElementById(link.id);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPos >= top && scrollPos < top + height) {
-            setActiveSection(link.id);
-            break;
-          }
-        }
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   return (
     <nav className="sticky top-0 left-0 right-0 z-50 bg-[#0A0000] border-b-[3px] border-[#CC0000]">
       <div className="max-w-[1100px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         
         {/* Brand */}
-        <a href="#hero" className="flex items-center gap-3 group">
+        <Link href="/" className="flex items-center gap-3 group">
           <div className="w-8 h-8 bg-[#CC0000] border-2 border-white flex items-center justify-center text-white font-black text-xs shadow-[2px_2px_0_0_#000000]">
             ⚡
           </div>
@@ -54,19 +36,22 @@ export default function Navbar() {
               AMR • ROBOTICS • UET
             </span>
           </div>
-        </a>
+        </Link>
 
         {/* Desktop Links */}
         <div className="hidden lg:flex items-center space-x-6">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className={`nav-link ${activeSection === link.id ? "nav-link-active" : ""}`}
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`nav-link ${isActive ? "nav-link-active" : ""}`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
           <a
             href={PERSONAL_INFO.cvUrl}
             target="_blank"
@@ -92,15 +77,15 @@ export default function Navbar() {
       {mobileMenuOpen && (
         <div className="lg:hidden bg-[#0A0000] border-b-4 border-[#CC0000] px-6 py-6 space-y-4">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="block text-gray-200 hover:text-[#FF0000] py-1 text-xs"
+              className={`block text-xs py-1 ${pathname === link.href ? "text-[#FF0000]" : "text-gray-200 hover:text-[#FF0000]"}`}
               style={{ fontFamily: "var(--font-press-start)" }}
             >
               &gt; {link.label}
-            </a>
+            </Link>
           ))}
           <a
             href={PERSONAL_INFO.cvUrl}

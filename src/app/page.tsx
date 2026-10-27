@@ -1,10 +1,6 @@
 import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import VEDCSection from "@/components/VEDCSection";
-import ConferenceSection from "@/components/ConferenceSection";
-import ResearchSection from "@/components/ResearchSection";
-import LabSection from "@/components/LabSection";
-import PublicationsSection from "@/components/PublicationsSection";
+import HomeHero from "@/components/HomeHero";
+import GameMenu from "@/components/GameMenu";
 import ContactSection from "@/components/ContactSection";
 
 export default function Home() {
@@ -12,18 +8,17 @@ export default function Home() {
     <div className="min-h-screen bg-[#000000] text-[#f3f4f6]">
       <Navbar />
       <main>
-        <Hero />
+        {/* Hero Section: short bio & avatars */}
+        <HomeHero />
+
         <div className="pixel-divider" />
-        <VEDCSection />
+
+        {/* 5 Navigation cards in grid (Level Select) */}
+        <GameMenu />
+
         <div className="pixel-divider" />
-        <ConferenceSection />
-        <div className="pixel-divider" />
-        <ResearchSection />
-        <div className="pixel-divider" />
-        <LabSection />
-        <div className="pixel-divider" />
-        <PublicationsSection />
-        <div className="pixel-divider" />
+
+        {/* Footer with contact info */}
         <ContactSection />
       </main>
     </div>
