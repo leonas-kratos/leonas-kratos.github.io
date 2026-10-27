@@ -1,4 +1,5 @@
-import { Mail, FolderGit2, MapPin, Download, Heart } from "lucide-react";
+import { Download, Heart } from "lucide-react";
+import { EmailIcon, GitHubIcon, LocationIcon, UniversityIcon } from "@/components/CleanIcons";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 
 export default function ContactSection() {
@@ -34,7 +35,7 @@ export default function ContactSection() {
           </a>
         </div>
 
-        {/* Contact Links Grid */}
+        {/* Contact Links Grid with Clean SVG Icons */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl mx-auto mb-16 text-center">
           
           {/* Primary Email */}
@@ -43,7 +44,7 @@ export default function ContactSection() {
             className="reveal reveal-delay-1 p-5 rounded bg-[#111] border border-zinc-800 hover:border-[#CC0000] transition-all group flex flex-col items-center"
           >
             <div className="w-10 h-10 rounded-full bg-[#1A0000] border border-[#CC0000]/60 flex items-center justify-center text-[#FF4444] mb-3 group-hover:scale-110 transition-transform">
-              <Mail className="w-4 h-4" />
+              <EmailIcon className="w-4 h-4" />
             </div>
             <span className="text-[11px] font-mono text-zinc-500 uppercase tracking-wider">
               Primary Email
@@ -59,7 +60,7 @@ export default function ContactSection() {
             className="reveal reveal-delay-2 p-5 rounded bg-[#111] border border-zinc-800 hover:border-[#CC0000] transition-all group flex flex-col items-center"
           >
             <div className="w-10 h-10 rounded-full bg-[#1A0000] border border-[#CC0000]/60 flex items-center justify-center text-[#FF4444] mb-3 group-hover:scale-110 transition-transform">
-              <span className="font-mono text-xs font-bold">UET</span>
+              <UniversityIcon className="w-4 h-4" />
             </div>
             <span className="text-[11px] font-mono text-zinc-500 uppercase tracking-wider">
               Academic Email
@@ -77,7 +78,7 @@ export default function ContactSection() {
             className="reveal reveal-delay-3 p-5 rounded bg-[#111] border border-zinc-800 hover:border-[#CC0000] transition-all group flex flex-col items-center"
           >
             <div className="w-10 h-10 rounded-full bg-[#1A0000] border border-[#CC0000]/60 flex items-center justify-center text-[#FF4444] mb-3 group-hover:scale-110 transition-transform">
-              <FolderGit2 className="w-4 h-4" />
+              <GitHubIcon className="w-4 h-4" />
             </div>
             <span className="text-[11px] font-mono text-zinc-500 uppercase tracking-wider">
               GitHub Profile
@@ -89,9 +90,9 @@ export default function ContactSection() {
 
         </div>
 
-        {/* Location Note */}
+        {/* Location Note with LocationIcon */}
         <div className="reveal text-xs text-zinc-500 flex items-center justify-center gap-2 mb-16 font-mono">
-          <MapPin className="w-3.5 h-3.5 text-[#CC0000]" />
+          <LocationIcon className="w-4 h-4 text-[#CC0000]" />
           <span>{PERSONAL_INFO.location} · {PERSONAL_INFO.affiliation}</span>
         </div>
 

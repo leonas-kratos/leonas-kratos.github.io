@@ -12,10 +12,12 @@ export default function ScrollObserver() {
         entries.forEach((e) => {
           if (e.isIntersecting) {
             e.target.classList.add("visible");
+          } else {
+            e.target.classList.remove("visible"); // Replay every time element enters viewport
           }
         });
       },
-      { threshold: 0.12 }
+      { threshold: 0.1 }
     );
 
     const elements = document.querySelectorAll(".reveal");

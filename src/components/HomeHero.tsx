@@ -1,6 +1,7 @@
 import { FileText, ChevronDown, ArrowRight } from "lucide-react";
 import ParticleBackground from "@/components/ParticleBackground";
 import TypewriterTagline from "@/components/TypewriterTagline";
+import { UniversityIcon } from "@/components/CleanIcons";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 
 export default function HomeHero() {
@@ -31,8 +32,9 @@ export default function HomeHero() {
         </div>
 
         {/* Affiliation */}
-        <p className="text-sm sm:text-base font-medium text-zinc-400 mb-6 max-w-2xl">
-          🏛️ {PERSONAL_INFO.affiliation}
+        <p className="text-sm sm:text-base font-medium text-zinc-400 mb-6 max-w-2xl flex items-center justify-center gap-2">
+          <UniversityIcon className="w-4 h-4 text-[#CC0000] shrink-0" />
+          <span>{PERSONAL_INFO.affiliation}</span>
         </p>
 
         {/* Subtitle / Bio */}
@@ -42,7 +44,7 @@ export default function HomeHero() {
 
         {/* Two Avatar Cards Side by Side (220x220px each) */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-8">
-          {/* Card 1 */}
+          {/* Card 1: DangMinhDuc.png */}
           <div className="flex flex-col items-center">
             <div className="hero-avatar-box">
               <img
@@ -56,7 +58,7 @@ export default function HomeHero() {
             </div>
           </div>
 
-          {/* Card 2 */}
+          {/* Card 2: prize.png */}
           <div className="flex flex-col items-center">
             <div className="hero-avatar-box">
               <img
