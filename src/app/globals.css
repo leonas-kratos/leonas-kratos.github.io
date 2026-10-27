@@ -2,11 +2,12 @@
 
 :root {
   --bg-black: #000000;
-  --bg-card: #0a0405;
+  --bg-dark: #080808;
+  --bg-card: #0D0000;
   --red-primary: #CC0000;
   --red-bright: #FF0000;
   --red-dark: #660000;
-  --red-border: #990000;
+  --red-glow: rgba(255, 0, 0, 0.4);
 }
 
 body {
@@ -21,38 +22,53 @@ img {
   image-rendering: auto !important;
   filter: none !important;
   -webkit-filter: none !important;
-  backface-visibility: hidden;
+  display: block;
 }
 
-/* Retro Pixel Background Grid (Applies only to background, never affecting images) */
-.pixel-bg-grid {
-  background-image: 
-    linear-gradient(to right, rgba(204, 0, 0, 0.08) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(204, 0, 0, 0.08) 1px, transparent 1px);
-  background-size: 24px 24px;
+/* Subtle Hero Scanline Effect (on background pseudo-element only, not on images) */
+.hero-scanlines {
+  position: relative;
+}
+.hero-scanlines::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.4) 50%);
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 1;
 }
 
-/* Pixel Card Containers with 4px Red Border (NO border-radius, pure sharp corners) */
+/* Section Pixel Divider with repeating dash pattern */
+.pixel-divider {
+  height: 8px;
+  width: 100%;
+  background: repeating-linear-gradient(
+    90deg,
+    #CC0000 0px,
+    #CC0000 16px,
+    #000000 16px,
+    #000000 24px
+  );
+  border-top: 4px solid #CC0000;
+  border-bottom: 2px solid #660000;
+}
+
+/* Pixel Card Container */
 .pixel-card {
-  background-color: #0a0405;
-  border: 4px solid #CC0000;
+  background-color: #0D0000;
+  border: 3px solid #CC0000;
   border-radius: 0px !important;
-  box-shadow: 
-    inset -3px -3px 0px 0px #660000,
-    inset 3px 3px 0px 0px #FF3333,
-    5px 5px 0px 0px #000000;
-  transition: none !important; /* Instant color snap, no smoothing */
+  box-shadow: 4px 4px 0px 0px #000000;
+  transition: none !important;
 }
-
 .pixel-card:hover {
   border-color: #FF0000;
-  box-shadow: 
-    inset -3px -3px 0px 0px #880000,
-    inset 3px 3px 0px 0px #FF6666,
-    6px 6px 0px 0px #CC0000;
+  box-shadow: 0 0 16px #FF0000;
+  transform: translateY(-2px);
 }
 
-/* Pixel Buttons (Instant hover snap, blocky shape, 4px shadow) */
+/* Pixel Buttons */
 .pixel-btn-red {
   display: inline-flex;
   align-items: center;
@@ -63,32 +79,22 @@ img {
   padding: 10px 18px;
   background-color: #CC0000;
   color: #ffffff;
-  border: 3px solid #ffffff;
+  border: 2px solid #FF0000;
   border-radius: 0px !important;
-  box-shadow: 
-    inset -3px -3px 0px 0px #660000,
-    inset 3px 3px 0px 0px #FF6666,
-    4px 4px 0px 0px #000000;
+  box-shadow: 3px 3px 0px 0px #000000;
   cursor: pointer;
-  transition: none !important; /* Instant snap */
+  transition: none !important;
   text-decoration: none;
 }
-
 .pixel-btn-red:hover {
   background-color: #FF0000;
-  transform: translate(-2px, -2px);
-  box-shadow: 
-    inset -3px -3px 0px 0px #990000,
-    inset 3px 3px 0px 0px #FFAAAA,
-    6px 6px 0px 0px #000000;
+  color: #000000;
+  box-shadow: 0 0 12px #FF0000;
+  transform: translateY(-2px);
 }
-
 .pixel-btn-red:active {
   transform: translate(2px, 2px);
-  box-shadow: 
-    inset 3px 3px 0px 0px #660000,
-    inset -3px -3px 0px 0px #FF6666,
-    2px 2px 0px 0px #000000;
+  box-shadow: none;
 }
 
 .pixel-btn-black {
@@ -100,50 +106,145 @@ img {
   text-transform: uppercase;
   padding: 10px 18px;
   background-color: #120304;
-  color: #FF4444;
-  border: 3px solid #CC0000;
+  color: #FF6666;
+  border: 2px solid #CC0000;
   border-radius: 0px !important;
-  box-shadow: 
-    inset -3px -3px 0px 0px #000000,
-    inset 3px 3px 0px 0px #440000,
-    4px 4px 0px 0px #000000;
+  box-shadow: 3px 3px 0px 0px #000000;
   cursor: pointer;
-  transition: none !important; /* Instant snap */
+  transition: none !important;
   text-decoration: none;
 }
-
 .pixel-btn-black:hover {
-  background-color: #260508;
+  background-color: #CC0000;
   color: #ffffff;
   border-color: #FF0000;
-  transform: translate(-2px, -2px);
-  box-shadow: 
-    inset -3px -3px 0px 0px #110000,
-    inset 3px 3px 0px 0px #660000,
-    6px 6px 0px 0px #000000;
+  box-shadow: 0 0 12px #FF0000;
+  transform: translateY(-2px);
 }
 
-/* Section Header Underline Decoration */
-.pixel-header-line {
-  height: 4px;
-  background-color: #CC0000;
-  box-shadow: 0 2px 0 0 #660000;
+/* Navbar Links with hover ">" */
+.nav-link {
+  font-family: var(--font-press-start), monospace;
+  font-size: 10px;
+  color: #d1d5db;
   position: relative;
+  transition: none !important;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
 }
-.pixel-header-line::after {
-  content: "";
-  position: absolute;
-  right: -8px;
-  top: -2px;
-  width: 8px;
-  height: 8px;
-  background-color: #FF0000;
+.nav-link::before {
+  content: ">";
+  color: #FF0000;
+  margin-right: 4px;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: none !important;
+}
+.nav-link:hover {
+  color: #FF0000;
+  text-shadow: 0 0 8px #FF0000;
+}
+.nav-link:hover::before {
+  opacity: 1;
+  transform: translateX(0);
+}
+.nav-link-active {
+  color: #FF0000 !important;
+  text-shadow: 0 0 8px #FF0000;
+}
+.nav-link-active::before {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
 }
 
-/* Section Divider */
-.pixel-section-divider {
-  border-top: 4px solid #CC0000;
-  box-shadow: 0 -2px 0 0 #660000, 0 4px 0 0 #000000;
+/* ===================================================
+   STRICT IMAGE WRAPPERS (Fix stretching 100%)
+   =================================================== */
+
+/* Car / Vehicle images (VEDC_CAR.png, Car_V2.png) */
+.car-image-wrapper {
+  width: 100%;
+  max-width: 640px;
+  height: 280px;
+  background: #000000;
+  border: 4px solid #CC0000;
+  overflow: hidden;
+  margin: 0 auto;
+  position: relative;
+  transition: none !important;
+}
+.car-image-wrapper:hover {
+  box-shadow: 0 0 16px #FF0000;
+  transform: translateY(-2px);
+}
+.car-image-wrapper img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  background: #000000 !important;
+}
+
+/* Person / Group photos (teammate, lab, conference, presentation) */
+.photo-wrapper {
+  width: 100%;
+  max-width: 640px;
+  height: 360px;
+  border: 4px solid #CC0000;
+  overflow: hidden;
+  margin: 0 auto;
+  position: relative;
+  background: #000000;
+  transition: none !important;
+}
+.photo-wrapper:hover {
+  box-shadow: 0 0 16px #FF0000;
+  transform: translateY(-2px);
+}
+.photo-wrapper img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center top !important;
+}
+
+/* Hero Avatar Cards (220x220px square side by side) */
+.hero-avatar-card {
+  width: 220px;
+  height: 220px;
+  border: 4px solid #CC0000;
+  overflow: hidden;
+  position: relative;
+  background: #000000;
+  flex-shrink: 0;
+  transition: none !important;
+}
+.hero-avatar-card:hover {
+  box-shadow: 0 0 16px #FF0000;
+  transform: translateY(-2px);
+}
+.hero-avatar-card img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center top !important;
+}
+
+/* Blinking coin / indicator animations */
+@keyframes coinBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.15; }
+}
+.blink-coin {
+  animation: coinBlink 1.8s infinite steps(2, start);
+}
+
+@keyframes greenBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+.blink-green {
+  animation: greenBlink 1.2s infinite steps(2, start);
 }
 
 /* Scrollbar */
@@ -156,75 +257,4 @@ img {
 ::-webkit-scrollbar-thumb {
   background: #CC0000;
   border: 2px solid #000000;
-}
-
-/* ===================================================
-   STRICT IMAGE WRAPPER CLASSES (NO DEGRADATION / NO FILTER)
-   =================================================== */
-
-/* Car / Vehicle images (CAR, CAR V2) */
-.car-image-wrapper {
-  width: 100%;
-  max-width: 600px;
-  height: 300px;
-  background: #000000;
-  border: 4px solid #CC0000;
-  border-radius: 0px !important;
-  overflow: hidden;
-  margin: 0 auto;
-  position: relative;
-}
-.car-image-wrapper img {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: contain !important;
-  display: block !important;
-  image-rendering: auto !important;
-  filter: none !important;
-  transition: none !important;
-}
-
-/* Person / Group photos (teammate, lab, conference, presentation) */
-.photo-wrapper {
-  width: 100%;
-  max-width: 500px;
-  height: 350px;
-  border: 4px solid #CC0000;
-  border-radius: 0px !important;
-  overflow: hidden;
-  margin: 0 auto;
-  position: relative;
-  background: #000000;
-}
-.photo-wrapper img {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
-  object-position: center top !important;
-  display: block !important;
-  image-rendering: auto !important;
-  filter: none !important;
-  transition: none !important;
-}
-
-/* Hero avatars (DangMinhDuc.png, prize.png) */
-.avatar-wrapper {
-  width: 280px;
-  height: 280px;
-  border: 4px solid #CC0000;
-  border-radius: 0px !important;
-  overflow: hidden;
-  flex-shrink: 0;
-  position: relative;
-  background: #000000;
-}
-.avatar-wrapper img {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
-  object-position: center top !important;
-  display: block !important;
-  image-rendering: auto !important;
-  filter: none !important;
-  transition: none !important;
 }

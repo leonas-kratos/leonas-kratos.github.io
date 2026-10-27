@@ -2,28 +2,24 @@ import { CONFERENCE_DATA } from "@/data/portfolioData";
 
 export default function ConferenceSection() {
   return (
-    <section id="conference" className="py-20 relative pixel-section-divider bg-[#000000]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="conference" className="py-24 px-4 sm:px-6 lg:px-8 bg-[#000000]">
+      <div className="max-w-[1100px] mx-auto">
         
         {/* Header */}
         <div className="mb-14">
-          <div style={{ fontFamily: "var(--font-press-start)" }} className="text-xs text-[#CC0000] mb-2">
-            [ SCIENTIFIC FORUMS &amp; CONFERENCES ]
+          <div style={{ fontFamily: "var(--font-press-start)" }} className="text-[1.2rem] text-[#FF0000] tracking-[2px] mb-2 uppercase">
+            [ {CONFERENCE_DATA.title} ]
           </div>
-          <h2 style={{ fontFamily: "var(--font-press-start)" }} className="text-xl sm:text-3xl font-black text-white drop-shadow-[3px_3px_0_#660000]">
-            {CONFERENCE_DATA.title}
-          </h2>
-          <div className="pixel-header-line w-48 my-3" />
-          <p style={{ fontFamily: "var(--font-vt323)" }} className="text-xl text-gray-300">
+          <p style={{ fontFamily: "var(--font-vt323)" }} className="text-[1.25rem] text-[#CCCCCC]">
             {CONFERENCE_DATA.subtitle}
           </p>
         </div>
 
-        {/* Conference Card */}
+        {/* Conference Card: Uses .photo-wrapper (max-width: 640px, height: 360px) */}
         <div className="pixel-card p-6 max-w-4xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             
-            <div className="photo-wrapper shadow-[4px_4px_0_0_#000000]">
+            <div className="photo-wrapper">
               <img
                 src={CONFERENCE_DATA.image}
                 alt={CONFERENCE_DATA.title}
@@ -40,16 +36,16 @@ export default function ConferenceSection() {
             {/* Content */}
             <div className="flex flex-col justify-between h-full">
               <div>
-                <div style={{ fontFamily: "var(--font-press-start)" }} className="text-[10px] text-[#CC0000] mb-2">
+                <div style={{ fontFamily: "var(--font-press-start)" }} className="text-[9px] text-[#CC0000] mb-2 uppercase">
                   &gt; ORAL PRESENTATION
                 </div>
                 <h3
                   style={{ fontFamily: "var(--font-press-start)" }}
-                  className="text-xs sm:text-sm font-bold text-white leading-relaxed mb-3"
+                  className="text-[0.85rem] font-bold text-white leading-relaxed mb-3"
                 >
                   {CONFERENCE_DATA.title}
                 </h3>
-                <p style={{ fontFamily: "var(--font-vt323)" }} className="text-xl text-gray-300 leading-relaxed mb-6">
+                <p style={{ fontFamily: "var(--font-vt323)" }} className="text-[1.15rem] text-[#CCCCCC] leading-relaxed mb-6">
                   {CONFERENCE_DATA.description}
                 </p>
               </div>
@@ -58,8 +54,8 @@ export default function ConferenceSection() {
                 {CONFERENCE_DATA.tags.map((t) => (
                   <span
                     key={t}
-                    style={{ fontFamily: "var(--font-press-start)" }}
-                    className="text-[8px] px-2 py-1 bg-[#120304] border border-[#CC0000] text-gray-200"
+                    style={{ fontFamily: "var(--font-vt323)" }}
+                    className="text-base px-2 py-0.5 bg-[#1A0000] border border-[#660000] text-[#FF6666]"
                   >
                     #{t}
                   </span>

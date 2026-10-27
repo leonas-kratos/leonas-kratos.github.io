@@ -13,11 +13,17 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
+        <div className="pixel-divider" />
         <VEDCSection />
+        <div className="pixel-divider" />
         <ConferenceSection />
+        <div className="pixel-divider" />
         <ResearchSection />
+        <div className="pixel-divider" />
         <LabSection />
+        <div className="pixel-divider" />
         <PublicationsSection />
+        <div className="pixel-divider" />
         <ContactSection />
       </main>
     </div>
