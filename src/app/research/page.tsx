@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import ScrollProgressBar from "@/components/ScrollProgressBar";
+import ScrollObserver from "@/components/ScrollObserver";
 import SubpageNav, { SubpageFooterNav } from "@/components/SubpageNav";
 import { RESEARCH_PRESENTATION_DATA } from "@/data/portfolioData";
 
@@ -10,45 +11,36 @@ export const metadata = {
 
 export default function ResearchPage() {
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-[#CCCCCC]">
+    <div className="min-h-screen bg-[#0a0a0a] text-[#aaa]">
       <ScrollProgressBar />
+      <ScrollObserver />
       <Navbar />
 
-      <main className="max-w-[1100px] mx-auto px-4 sm:px-6 py-12">
+      <main className="page-container py-12">
         <SubpageNav currentPath="/research" currentPageName="RESEARCH" />
 
         {/* Section Header */}
-        <div className="mb-12">
-          <div className="inline-block px-3 py-1 rounded-full bg-[#1A0000] border border-[#CC0000]/40 text-[#FF4444] text-xs font-mono font-semibold uppercase tracking-wider mb-3">
-            SECTOR 02 · SCIENTIFIC RESEARCH
-          </div>
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-3">
-            Student Scientific Research (NCKH)
-          </h1>
-          <p className="text-sm sm:text-base text-zinc-400 max-w-2xl leading-relaxed">
-            Student Scientific Research — UWB-based indoor positioning with state estimation filters for GPS-denied environments applied to autonomous mobile robots.
-          </p>
+        <div className="reveal section-title mb-4">
+          Student Scientific Research (NCKH)
         </div>
+        <p className="reveal text-sm sm:text-base text-[#aaa] max-w-2xl mb-12">
+          Student Scientific Research — UWB-based indoor positioning with state estimation filters for GPS-denied environments applied to autonomous mobile robots.
+        </p>
 
-        {/* 2-Column Responsive Grid on Desktop, 1 on Mobile, Gap 24px */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {RESEARCH_PRESENTATION_DATA.map((item) => (
+        {/* 2-Column Responsive Card Grid */}
+        <div className="card-grid">
+          {RESEARCH_PRESENTATION_DATA.map((item, idx) => (
             <div
               key={item.id}
-              className="bg-[#141414] border border-[#222222] rounded-lg p-5 flex flex-col justify-between hover:border-[#CC0000] transition-colors"
+              className={`reveal reveal-delay-${idx + 1} img-card p-5 flex flex-col justify-between`}
             >
               <div>
-                <div className="person-card-wrapper">
+                <div className="person-img-wrapper rounded">
                   <img
                     src={item.image}
                     alt={item.title}
                     loading="lazy"
                   />
-                  <div className="card-hover-overlay">
-                    <span className="text-white text-xs font-mono font-bold uppercase tracking-wider">
-                      {item.badge}
-                    </span>
-                  </div>
                 </div>
 
                 <div className="mt-5">
@@ -58,7 +50,7 @@ export default function ResearchPage() {
                   <h2 className="text-lg font-bold text-white mb-2">
                     {item.title}
                   </h2>
-                  <p className="text-sm text-zinc-400 leading-relaxed">
+                  <p className="text-sm text-[#aaa] leading-relaxed">
                     {item.description}
                   </p>
                 </div>

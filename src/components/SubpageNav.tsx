@@ -20,9 +20,9 @@ export default function SubpageNav({ currentPath, currentPageName }: SubpageNavP
       <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-zinc-800">
         <Link
           href="/"
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-[#141414] border border-zinc-800 hover:border-[#CC0000] text-xs font-semibold text-zinc-300 hover:text-white transition-colors"
+          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded bg-[#111] border border-zinc-800 hover:border-[#CC0000] text-xs font-semibold text-zinc-300 hover:text-white transition-colors"
         >
-          <ChevronLeft className="w-3.5 h-3.5 text-[#FF3333]" />
+          <ChevronLeft className="w-4 h-4 text-[#FF3333]" />
           <span>BACK TO HOME</span>
         </Link>
 
@@ -45,10 +45,9 @@ export function SubpageFooterNav({ currentPath }: { currentPath: string }) {
   return (
     <div className="mt-20 pt-8 border-t border-zinc-800">
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-        {/* Prev */}
         <Link
           href={prevSection.path}
-          className="inline-flex items-center gap-2 px-4 py-2.5 rounded bg-[#141414] border border-zinc-800 hover:border-[#CC0000] text-xs font-semibold text-zinc-300 hover:text-white transition-all w-full sm:w-auto justify-center"
+          className="inline-flex items-center gap-2 px-4 py-2.5 rounded bg-[#111] border border-zinc-800 hover:border-[#CC0000] text-xs font-semibold text-zinc-300 hover:text-white transition-all w-full sm:w-auto justify-center"
         >
           <ChevronLeft className="w-4 h-4 text-[#FF3333]" />
           <span>PREV: {prevSection.name}</span>
@@ -61,10 +60,9 @@ export function SubpageFooterNav({ currentPath }: { currentPath: string }) {
           [ MAIN OVERVIEW ]
         </Link>
 
-        {/* Next */}
         <Link
           href={nextSection.path}
-          className="btn-primary-red py-2 px-4 text-xs inline-flex items-center gap-2 w-full sm:w-auto justify-center"
+          className="btn-primary-red !py-2 !px-4 !text-xs inline-flex items-center gap-2 w-full sm:w-auto justify-center"
         >
           <span>NEXT: {nextSection.name}</span>
           <ChevronRight className="w-4 h-4" />

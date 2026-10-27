@@ -20,8 +20,8 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="sticky top-0 left-0 right-0 z-50 bg-[#000000]/70 backdrop-blur-md border-b border-[#CC0000]/30 transition-all">
-      <div className="max-w-[1100px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+    <nav className="site-navbar">
+      <div className="page-container h-16 flex items-center justify-between">
         
         {/* Brand */}
         <Link href="/" className="flex items-center gap-3 group">
@@ -62,7 +62,7 @@ export default function Navbar() {
             href={PERSONAL_INFO.cvUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary-red py-1.5 px-3.5 text-xs flex items-center gap-1.5 rounded"
+            className="btn-primary-red !py-1.5 !px-3.5 !text-xs flex items-center gap-1.5 rounded"
           >
             <FileText className="w-3.5 h-3.5" />
             <span>CV PDF</span>

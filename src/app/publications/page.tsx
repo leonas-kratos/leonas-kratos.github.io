@@ -1,6 +1,7 @@
 import { FileText, ExternalLink } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import ScrollProgressBar from "@/components/ScrollProgressBar";
+import ScrollObserver from "@/components/ScrollObserver";
 import SubpageNav, { SubpageFooterNav } from "@/components/SubpageNav";
 import { PUBLICATIONS } from "@/data/portfolioData";
 
@@ -18,32 +19,28 @@ export default function PublicationsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-[#CCCCCC]">
+    <div className="min-h-screen bg-[#0a0a0a] text-[#aaa]">
       <ScrollProgressBar />
+      <ScrollObserver />
       <Navbar />
 
-      <main className="max-w-[1100px] mx-auto px-4 sm:px-6 py-12">
+      <main className="page-container py-12">
         <SubpageNav currentPath="/publications" currentPageName="PUBLICATIONS" />
 
-        {/* Section Title */}
-        <div className="mb-12">
-          <div className="inline-block px-3 py-1 rounded-full bg-[#1A0000] border border-[#CC0000]/40 text-[#FF4444] text-xs font-mono font-semibold uppercase tracking-wider mb-3">
-            ACADEMIC CONTRIBUTIONS
-          </div>
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-3">
-            Publications &amp; Scientific Works
-          </h1>
-          <p className="text-sm sm:text-base text-zinc-400 max-w-2xl">
-            Peer-reviewed papers on UWB indoor positioning, state estimation filters (EKF, UKF, PF), and sensor fusion applied to autonomous mobile robots.
-          </p>
+        {/* Section Header */}
+        <div className="reveal section-title mb-4">
+          Publications &amp; Scientific Works
         </div>
+        <p className="reveal text-sm sm:text-base text-[#aaa] max-w-2xl mb-12">
+          Peer-reviewed papers on UWB indoor positioning, state estimation filters (EKF, UKF, PF), and sensor fusion applied to autonomous mobile robots.
+        </p>
 
-        {/* Premium Publications Cards */}
+        {/* Publications Cards */}
         <div className="space-y-6">
-          {PUBLICATIONS.map((pub) => (
+          {PUBLICATIONS.map((pub, idx) => (
             <div
               key={pub.id}
-              className="pub-card p-6 sm:p-7 flex flex-col md:flex-row md:items-start justify-between gap-6"
+              className={`reveal reveal-delay-${(idx % 4) + 1} pub-card p-6 sm:p-7 flex flex-col md:flex-row md:items-start justify-between gap-6`}
             >
               <div className="flex-1">
                 {/* Header Badge & Year */}
@@ -62,8 +59,8 @@ export default function PublicationsPage() {
                 </h2>
 
                 {/* Authors */}
-                <p className="text-xs sm:text-sm text-zinc-400 mb-2">
-                  <strong className="text-zinc-300">Authors:</strong> {pub.authors}
+                <p className="text-xs sm:text-sm text-[#aaa] mb-2">
+                  <strong className="text-zinc-200">Authors:</strong> {pub.authors}
                 </p>
 
                 {/* Venue / Conference Name */}
@@ -72,7 +69,7 @@ export default function PublicationsPage() {
                 </p>
 
                 {/* Tags */}
-                <div className="flex flex-wrap gap-1.5 pt-3 border-t border-zinc-800/80">
+                <div className="flex flex-wrap gap-1.5 pt-3 border-t border-zinc-800">
                   {pub.tags.map((tag) => (
                     <span
                       key={tag}
@@ -90,7 +87,7 @@ export default function PublicationsPage() {
                   href={pub.pdfUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-secondary-outline py-2.5 px-4 text-xs inline-flex items-center gap-2 rounded"
+                  className="btn-secondary-outline !py-2.5 !px-4 !text-xs inline-flex items-center gap-2 rounded"
                 >
                   <FileText className="w-4 h-4" />
                   <span>READ PDF</span>

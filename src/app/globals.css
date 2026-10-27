@@ -1,177 +1,202 @@
 @import "tailwindcss";
 
 :root {
-  --bg-primary: #0A0A0A;
-  --bg-secondary: #111111;
-  --bg-card: #141414;
+  --bg-primary: #0a0a0a;
+  --bg-card: #111111;
   --red-primary: #CC0000;
   --red-bright: #FF3333;
-  --red-glow: rgba(204, 0, 0, 0.4);
 }
 
 body {
-  background-color: #0A0A0A;
-  color: #CCCCCC;
-  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
-  line-height: 1.7;
+  background: #0a0a0a;
+  color: #aaa;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.75;
   overflow-x: hidden;
 }
 
-/* Scroll Progress Bar at very top */
-#scroll-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #CC0000, #FF3333);
-  z-index: 9999;
-  transition: width 0.1s ease-out;
+/* ===================================================
+   PROBLEM 1: GLOBAL CONTAINER & CENTERING
+   =================================================== */
+
+.page-container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 4vw, 48px);
 }
 
-/* Image styling */
-img {
-  image-rendering: auto !important;
-  filter: none !important;
-  -webkit-filter: none !important;
-  display: block;
+section {
+  padding: 80px 0;
+  width: 100%;
 }
 
-/* Hero Avatar Cards with Subtle Red Glow */
+/* Typography Hierarchy */
+h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: clamp(1.3rem, 3vw, 2rem);
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+p, li {
+  font-size: 0.95rem;
+  color: #aaa;
+  line-height: 1.75;
+}
+
+/* Section Title Style: Red left border */
+.section-title {
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  font-weight: 700;
+  color: #fff;
+  border-left: 4px solid #CC0000;
+  padding-left: 16px;
+  margin-bottom: 40px;
+}
+
+/* Card Grid Layout */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  width: 100%;
+}
+
+/* Image Cards */
+.img-card {
+  background: #111;
+  border: 1px solid #222;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.img-card:hover {
+  border-color: #CC0000;
+  box-shadow: 0 0 20px rgba(204, 0, 0, 0.25);
+}
+
+/* Vehicle image inside wrapper */
+.vehicle-img-wrapper {
+  width: 100%;
+  height: 260px;
+  background: #000;
+  overflow: hidden;
+  position: relative;
+}
+.vehicle-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+}
+
+/* Person / Group photo inside wrapper */
+.person-img-wrapper {
+  width: 100%;
+  height: 320px;
+  background: #000;
+  overflow: hidden;
+  position: relative;
+}
+.person-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* Hero Avatar Box */
 .hero-avatar-box {
   width: 220px;
   height: 220px;
   border: 3px solid #CC0000;
-  border-radius: 8px;
+  border-radius: 4px;
   overflow: hidden;
   position: relative;
-  background: #000000;
+  background: #000;
   box-shadow: 0 0 20px rgba(204, 0, 0, 0.4);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.3s ease;
 }
 .hero-avatar-box:hover {
   box-shadow: 0 0 40px rgba(204, 0, 0, 0.8);
-  transform: translateY(-4px) scale(1.02);
   border-color: #FF3333;
 }
 .hero-avatar-box img {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
-  object-position: center top !important;
-}
-
-/* Vehicle image card wrapper */
-.vehicle-card-wrapper {
   width: 100%;
-  max-width: 640px;
-  height: 260px;
-  background: #000000;
-  border: 2px solid #1A1A1A;
-  border-radius: 8px;
-  overflow: hidden;
-  margin: 0 auto;
-  position: relative;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.vehicle-card-wrapper:hover {
-  border-color: #CC0000;
-  box-shadow: 0 0 20px rgba(204, 0, 0, 0.4);
-}
-.vehicle-card-wrapper img {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: contain !important;
-  background: #000000 !important;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
 }
 
-/* Group / person photo wrapper */
-.person-card-wrapper {
+/* Navbar */
+.site-navbar {
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(204, 0, 0, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 100;
   width: 100%;
-  max-width: 640px;
-  height: 320px;
-  background: #000000;
-  border: 2px solid #1A1A1A;
-  border-radius: 8px;
-  overflow: hidden;
-  margin: 0 auto;
-  position: relative;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.person-card-wrapper:hover {
-  border-color: #CC0000;
-  box-shadow: 0 0 20px rgba(204, 0, 0, 0.4);
-}
-.person-card-wrapper img {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
-  object-position: center top !important;
 }
 
-/* Card hover overlay with gradient and appearing label */
-.card-hover-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(204, 0, 0, 0.75), transparent 60%);
+/* Scroll Progress Bar at very top */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: #CC0000;
+  z-index: 999;
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+/* ===================================================
+   PROBLEM 2: SCROLL ANIMATIONS (Intersection Observer)
+   =================================================== */
+
+.reveal {
   opacity: 0;
-  display: flex;
-  align-items: flex-end;
-  padding: 16px;
-  transition: opacity 0.3s ease;
+  transform: translateY(36px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
 }
-.group:hover .card-hover-overlay,
-.vehicle-card-wrapper:hover .card-hover-overlay,
-.person-card-wrapper:hover .card-hover-overlay {
+
+.reveal.visible {
   opacity: 1;
+  transform: translateY(0);
 }
 
-/* Premium publication card with subtle CSS shine effect */
-.pub-card {
-  background: linear-gradient(135deg, #0D0D0D, #1A0000);
-  border: 1px solid #222222;
-  border-left: 4px solid #CC0000;
-  border-radius: 8px;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.pub-card::after {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    60deg,
-    transparent,
-    rgba(255, 255, 255, 0.04),
-    transparent
-  );
-  transform: rotate(30deg) translateY(-100%);
-  transition: transform 0.6s ease;
-  pointer-events: none;
-}
-.pub-card:hover::after {
-  transform: rotate(30deg) translateY(100%);
-}
-.pub-card:hover {
-  border-color: #CC0000;
-  box-shadow: 0 0 25px rgba(204, 0, 0, 0.35);
-  transform: translateY(-3px);
-}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
 
-/* Interactive Buttons */
+/* Buttons */
 .btn-primary-red {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-weight: 600;
-  font-size: 0.85rem;
-  padding: 10px 22px;
+  font-size: 0.9rem;
+  padding: 12px 24px;
   background: #CC0000;
-  color: #ffffff;
-  border-radius: 6px;
+  color: #fff;
+  border-radius: 4px;
   border: 1px solid #FF3333;
   box-shadow: 0 0 15px rgba(204, 0, 0, 0.4);
   transition: all 0.25s ease;
@@ -181,6 +206,7 @@ img {
   background: #E60000;
   box-shadow: 0 0 25px rgba(204, 0, 0, 0.7);
   transform: translateY(-2px);
+  color: #fff;
 }
 
 .btn-secondary-outline {
@@ -188,31 +214,36 @@ img {
   align-items: center;
   justify-content: center;
   font-weight: 600;
-  font-size: 0.85rem;
-  padding: 10px 22px;
+  font-size: 0.9rem;
+  padding: 12px 24px;
   background: transparent;
   color: #CC0000;
-  border-radius: 6px;
+  border-radius: 4px;
   border: 1px solid #CC0000;
   transition: all 0.25s ease;
   text-decoration: none;
 }
 .btn-secondary-outline:hover {
   background: #CC0000;
-  color: #ffffff;
+  color: #fff;
   box-shadow: 0 0 20px rgba(204, 0, 0, 0.5);
   transform: translateY(-2px);
 }
 
-/* Section Reveal Fade-Up */
-.reveal-on-scroll {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+/* Premium Publication Card */
+.pub-card {
+  background: linear-gradient(135deg, #111111, #1A0505);
+  border: 1px solid #222222;
+  border-left: 4px solid #CC0000;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
 }
-.reveal-on-scroll.is-visible {
-  opacity: 1;
-  transform: translateY(0);
+.pub-card:hover {
+  border-color: #CC0000;
+  box-shadow: 0 0 25px rgba(204, 0, 0, 0.35);
+  transform: translateY(-3px);
 }
 
 /* Respect prefers-reduced-motion */
@@ -223,47 +254,8 @@ img {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  .reveal-on-scroll {
+  .reveal {
     opacity: 1 !important;
     transform: none !important;
   }
-}
-
-/* Bouncing Arrow Animation */
-@keyframes bounceDown {
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(8px);
-  }
-  60% {
-    transform: translateY(4px);
-  }
-}
-.bounce-arrow {
-  animation: bounceDown 2s infinite;
-}
-
-/* Gradient Underline animation */
-@keyframes gradientLine {
-  0% {
-    width: 0%;
-  }
-  100% {
-    width: 100%;
-  }
-}
-.animated-underline {
-  position: relative;
-  display: inline-block;
-}
-.animated-underline::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -4px;
-  height: 3px;
-  background: linear-gradient(90deg, #CC0000, #FF3333, transparent);
-  animation: gradientLine 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }

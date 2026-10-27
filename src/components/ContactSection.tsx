@@ -3,35 +3,31 @@ import { PERSONAL_INFO } from "@/data/portfolioData";
 
 export default function ContactSection() {
   return (
-    <section id="cv" className="py-24 px-4 sm:px-6 lg:px-8 bg-[#0D0D0D] border-t border-zinc-800">
-      <div className="max-w-[1100px] mx-auto text-center">
+    <section id="cv" className="reveal bg-[#0d0d0d] border-t border-zinc-800">
+      <div className="page-container text-center">
         
         {/* Header */}
-        <div className="mb-14">
-          <div className="inline-block px-3 py-1 rounded-full bg-[#1A0000] border border-[#CC0000]/40 text-[#FF4444] text-xs font-mono font-semibold uppercase tracking-wider mb-3">
-            GET IN TOUCH
-          </div>
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Curriculum Vitae &amp; Research Contact
-          </h2>
-          <p className="text-zinc-400 text-sm sm:text-base max-w-xl mx-auto mt-2">
-            Download my comprehensive CV or connect regarding research opportunities, state estimation collaboration, or embedded robotic systems engineering.
-          </p>
+        <div className="reveal section-title text-left inline-block">
+          Curriculum Vitae &amp; Research Contact
         </div>
+        
+        <p className="reveal text-sm sm:text-base text-[#aaa] max-w-xl mx-auto mb-10 text-center">
+          Download my comprehensive CV or connect regarding research opportunities, state estimation collaboration, or embedded robotic systems engineering.
+        </p>
 
         {/* Download CV Banner */}
-        <div className="bg-[#141414] border border-[#CC0000]/60 rounded-xl p-8 mb-12 max-w-xl mx-auto shadow-[0_0_30px_rgba(204,0,0,0.2)]">
-          <h3 className="text-lg font-bold text-white mb-2">
+        <div className="reveal img-card p-8 mb-12 max-w-xl mx-auto shadow-[0_0_30px_rgba(204,0,0,0.15)] text-center">
+          <h3 className="text-xl font-bold text-white mb-2">
             Curriculum Vitae (PDF)
           </h3>
-          <p className="text-sm text-zinc-400 mb-6">
+          <p className="text-sm text-[#aaa] mb-6">
             Detailed monograph of academic research at VNU-UET, published papers, conference defenses, and technical projects.
           </p>
           <a
             href={PERSONAL_INFO.cvUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary-red py-3 px-6 text-sm inline-flex items-center gap-2 rounded-lg"
+            className="btn-primary-red inline-flex items-center gap-2"
           >
             <Download className="w-4 h-4" />
             <span>DOWNLOAD CURRICULUM VITAE (.PDF)</span>
@@ -39,14 +35,14 @@ export default function ContactSection() {
         </div>
 
         {/* Contact Links Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl mx-auto mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl mx-auto mb-16 text-center">
           
           {/* Primary Email */}
           <a
             href={`mailto:${PERSONAL_INFO.email}`}
-            className="p-4 rounded-lg bg-[#141414] border border-zinc-800 hover:border-[#CC0000] transition-all group flex flex-col items-center text-center"
+            className="reveal reveal-delay-1 p-5 rounded bg-[#111] border border-zinc-800 hover:border-[#CC0000] transition-all group flex flex-col items-center"
           >
-            <div className="w-9 h-9 rounded-full bg-[#1A0000] border border-[#CC0000]/60 flex items-center justify-center text-[#FF4444] mb-3 group-hover:scale-110 transition-transform">
+            <div className="w-10 h-10 rounded-full bg-[#1A0000] border border-[#CC0000]/60 flex items-center justify-center text-[#FF4444] mb-3 group-hover:scale-110 transition-transform">
               <Mail className="w-4 h-4" />
             </div>
             <span className="text-[11px] font-mono text-zinc-500 uppercase tracking-wider">
@@ -60,9 +56,9 @@ export default function ContactSection() {
           {/* Academic Email */}
           <a
             href={`mailto:${PERSONAL_INFO.eduEmail}`}
-            className="p-4 rounded-lg bg-[#141414] border border-zinc-800 hover:border-[#CC0000] transition-all group flex flex-col items-center text-center"
+            className="reveal reveal-delay-2 p-5 rounded bg-[#111] border border-zinc-800 hover:border-[#CC0000] transition-all group flex flex-col items-center"
           >
-            <div className="w-9 h-9 rounded-full bg-[#1A0000] border border-[#CC0000]/60 flex items-center justify-center text-[#FF4444] mb-3 group-hover:scale-110 transition-transform">
+            <div className="w-10 h-10 rounded-full bg-[#1A0000] border border-[#CC0000]/60 flex items-center justify-center text-[#FF4444] mb-3 group-hover:scale-110 transition-transform">
               <span className="font-mono text-xs font-bold">UET</span>
             </div>
             <span className="text-[11px] font-mono text-zinc-500 uppercase tracking-wider">
@@ -78,9 +74,9 @@ export default function ContactSection() {
             href={PERSONAL_INFO.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-4 rounded-lg bg-[#141414] border border-zinc-800 hover:border-[#CC0000] transition-all group flex flex-col items-center text-center"
+            className="reveal reveal-delay-3 p-5 rounded bg-[#111] border border-zinc-800 hover:border-[#CC0000] transition-all group flex flex-col items-center"
           >
-            <div className="w-9 h-9 rounded-full bg-[#1A0000] border border-[#CC0000]/60 flex items-center justify-center text-[#FF4444] mb-3 group-hover:scale-110 transition-transform">
+            <div className="w-10 h-10 rounded-full bg-[#1A0000] border border-[#CC0000]/60 flex items-center justify-center text-[#FF4444] mb-3 group-hover:scale-110 transition-transform">
               <FolderGit2 className="w-4 h-4" />
             </div>
             <span className="text-[11px] font-mono text-zinc-500 uppercase tracking-wider">
@@ -94,7 +90,7 @@ export default function ContactSection() {
         </div>
 
         {/* Location Note */}
-        <div className="text-xs text-zinc-500 flex items-center justify-center gap-2 mb-16 font-mono">
+        <div className="reveal text-xs text-zinc-500 flex items-center justify-center gap-2 mb-16 font-mono">
           <MapPin className="w-3.5 h-3.5 text-[#CC0000]" />
           <span>{PERSONAL_INFO.location} · {PERSONAL_INFO.affiliation}</span>
         </div>

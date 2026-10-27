@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import ScrollProgressBar from "@/components/ScrollProgressBar";
+import ScrollObserver from "@/components/ScrollObserver";
 import SubpageNav, { SubpageFooterNav } from "@/components/SubpageNav";
 import { CONFERENCE_DATA } from "@/data/portfolioData";
 
@@ -10,41 +11,32 @@ export const metadata = {
 
 export default function ConferencePage() {
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-[#CCCCCC]">
+    <div className="min-h-screen bg-[#0a0a0a] text-[#aaa]">
       <ScrollProgressBar />
+      <ScrollObserver />
       <Navbar />
 
-      <main className="max-w-[1100px] mx-auto px-4 sm:px-6 py-12">
+      <main className="page-container py-12">
         <SubpageNav currentPath="/conference" currentPageName="CONFERENCE" />
 
         {/* Section Header */}
-        <div className="mb-12">
-          <div className="inline-block px-3 py-1 rounded-full bg-[#1A0000] border border-[#CC0000]/40 text-[#FF4444] text-xs font-mono font-semibold uppercase tracking-wider mb-3">
-            SECTOR 03 · NATIONAL SCIENTIFIC FORUM
-          </div>
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-3">
-            {CONFERENCE_DATA.title}
-          </h1>
-          <p className="text-sm sm:text-base text-zinc-400 max-w-2xl leading-relaxed">
-            {CONFERENCE_DATA.subtitle}
-          </p>
+        <div className="reveal section-title mb-4">
+          {CONFERENCE_DATA.title}
         </div>
+        <p className="reveal text-sm sm:text-base text-[#aaa] max-w-2xl mb-12">
+          {CONFERENCE_DATA.subtitle}
+        </p>
 
         {/* Conference Card */}
-        <div className="bg-[#141414] border border-[#222222] rounded-lg p-6 max-w-4xl mx-auto hover:border-[#CC0000] transition-colors">
+        <div className="reveal img-card p-6 max-w-4xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             
-            <div className="person-card-wrapper">
+            <div className="person-img-wrapper rounded">
               <img
                 src={CONFERENCE_DATA.image}
                 alt={CONFERENCE_DATA.title}
                 loading="lazy"
               />
-              <div className="card-hover-overlay">
-                <span className="text-white text-xs font-mono font-bold uppercase tracking-wider">
-                  {CONFERENCE_DATA.badge}
-                </span>
-              </div>
             </div>
 
             <div className="flex flex-col justify-between h-full">
@@ -55,7 +47,7 @@ export default function ConferencePage() {
                 <h2 className="text-xl font-bold text-white mb-3">
                   {CONFERENCE_DATA.title}
                 </h2>
-                <p className="text-sm text-zinc-300 leading-relaxed mb-6">
+                <p className="text-sm text-[#aaa] leading-relaxed mb-6">
                   {CONFERENCE_DATA.description}
                 </p>
               </div>

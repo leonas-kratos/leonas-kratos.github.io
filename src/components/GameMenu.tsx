@@ -45,35 +45,27 @@ export const MENU_CARDS = [
 ];
 
 export default function GameMenu() {
+  const delays = ["reveal-delay-1", "reveal-delay-2", "reveal-delay-3", "reveal-delay-4", "reveal-delay-1"];
+
   return (
-    <section id="missions" className="py-24 px-4 sm:px-6 lg:px-8 bg-[#0D0D0D]">
-      <div className="max-w-[1100px] mx-auto">
-        
+    <section id="missions" className="reveal bg-[#0a0a0a]">
+      <div className="page-container">
         {/* Section Header */}
-        <div className="mb-14 text-center">
-          <div className="inline-block px-3 py-1 rounded-full bg-[#1A0000] border border-[#CC0000]/40 text-[#FF4444] text-xs font-mono font-semibold uppercase tracking-wider mb-3">
-            SECTOR NAVIGATION
-          </div>
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Research &amp; Engineering Sectors
-          </h2>
-          <p className="text-zinc-400 text-sm sm:text-base max-w-xl mx-auto mt-2">
-            Explore dedicated sectors detailing UWB indoor positioning, state estimation algorithms, hardware development, and scientific papers.
-          </p>
+        <div className="reveal section-title">
+          Research &amp; Engineering Sectors
         </div>
 
-        {/* 5 Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Card Grid Layout */}
+        <div className="card-grid">
           {MENU_CARDS.map((card, idx) => (
             <Link
               key={card.title}
               href={card.href}
-              className={`group bg-[#141414] border border-[#222222] hover:border-[#CC0000] rounded-lg p-6 flex flex-col justify-between transition-all duration-300 hover:shadow-[0_0_25px_rgba(204,0,0,0.35)] hover:-translate-y-1 ${
+              className={`reveal ${delays[idx]} img-card p-6 flex flex-col justify-between group ${
                 idx === 4 ? "md:col-span-2 lg:col-span-1" : ""
               }`}
             >
               <div>
-                {/* Header */}
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-[#220000] text-[#FF4444] border border-[#CC0000]/40 uppercase tracking-wider">
                     {card.badge}
@@ -83,22 +75,19 @@ export default function GameMenu() {
                   </span>
                 </div>
 
-                {/* Title */}
                 <h3 className="text-lg font-bold text-white group-hover:text-[#FF3333] transition-colors mb-1">
                   {card.title}
                 </h3>
 
-                <p className="text-xs text-[#FF4444]/90 font-medium mb-3">
+                <p className="text-xs text-[#FF4444] font-medium mb-3">
                   {card.subtitle}
                 </p>
 
-                {/* Description */}
-                <p className="text-sm text-zinc-400 leading-relaxed mb-6">
+                <p className="text-sm text-[#aaa] leading-relaxed mb-6">
                   {card.description}
                 </p>
               </div>
 
-              {/* Action */}
               <div className="pt-4 border-t border-zinc-800 flex items-center justify-between text-xs font-semibold text-zinc-300 group-hover:text-[#FF3333] transition-colors">
                 <span>EXPLORE SECTOR</span>
                 <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
@@ -106,7 +95,6 @@ export default function GameMenu() {
             </Link>
           ))}
         </div>
-
       </div>
     </section>
   );
