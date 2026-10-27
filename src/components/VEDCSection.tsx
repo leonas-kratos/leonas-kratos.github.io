@@ -1,5 +1,3 @@
-import Image from "next/image";
-import { Cpu, Trophy, Sparkles } from "lucide-react";
 import { VEDC_DATA } from "@/data/portfolioData";
 
 export default function VEDCSection() {
@@ -21,28 +19,17 @@ export default function VEDCSection() {
           </p>
         </div>
 
-        {/* 3 Columns Desktop, 2 Columns Tablet, 1 Column Mobile */}
+        {/* 3 Columns Desktop, 2 Tablet, 1 Mobile */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           
-          {/* Card 1: VEDC Autonomous Car (CAR: object-fit contain, bg black, fixed height 250px) */}
+          {/* Card 1: VEDC Autonomous Car (.car-image-wrapper: contain, bg black, 300px height) */}
           <div className="pixel-card p-4 flex flex-col justify-between">
             <div>
-              <div
-                className="w-full bg-[#000000] overflow-hidden relative shadow-[4px_4px_0_0_#000000]"
-                style={{
-                  height: "250px",
-                  border: "4px solid #CC0000",
-                  borderRadius: "0px",
-                  position: "relative",
-                  backgroundColor: "#000000",
-                }}
-              >
-                <Image
+              <div className="car-image-wrapper shadow-[4px_4px_0_0_#000000]">
+                <img
                   src={VEDC_DATA.car.image}
                   alt={VEDC_DATA.car.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-contain p-2 hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
                 />
                 <div
                   style={{ fontFamily: "var(--font-press-start)" }}
@@ -78,24 +65,14 @@ export default function VEDCSection() {
             </div>
           </div>
 
-          {/* Card 2: VEDC Teammate (Person: object-fit cover, fixed height 300px) */}
+          {/* Card 2: VEDC Teammate (.photo-wrapper: cover, max-width 500px, 350px height) */}
           <div className="pixel-card p-4 flex flex-col justify-between">
             <div>
-              <div
-                className="w-full bg-[#000000] overflow-hidden relative shadow-[4px_4px_0_0_#000000]"
-                style={{
-                  height: "300px",
-                  border: "4px solid #CC0000",
-                  borderRadius: "0px",
-                  position: "relative",
-                }}
-              >
-                <Image
+              <div className="photo-wrapper shadow-[4px_4px_0_0_#000000]">
+                <img
                   src={VEDC_DATA.teammates.image}
                   alt={VEDC_DATA.teammates.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover object-center hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
                 />
                 <div
                   style={{ fontFamily: "var(--font-press-start)" }}
@@ -131,25 +108,14 @@ export default function VEDCSection() {
             </div>
           </div>
 
-          {/* Card 3: CAR V2 (Current Research Vehicle: object-fit contain, bg black, fixed height 250px) */}
+          {/* Card 3: CAR V2 (.car-image-wrapper: contain, bg black, 300px height) */}
           <div className="pixel-card p-4 flex flex-col justify-between">
             <div>
-              <div
-                className="w-full bg-[#000000] overflow-hidden relative shadow-[4px_4px_0_0_#000000]"
-                style={{
-                  height: "250px",
-                  border: "4px solid #CC0000",
-                  borderRadius: "0px",
-                  position: "relative",
-                  backgroundColor: "#000000",
-                }}
-              >
-                <Image
+              <div className="car-image-wrapper shadow-[4px_4px_0_0_#000000]">
+                <img
                   src={VEDC_DATA.currentResearchCar.image}
                   alt={VEDC_DATA.currentResearchCar.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-contain p-2 hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
                 />
                 <div
                   style={{ fontFamily: "var(--font-press-start)" }}

@@ -159,3 +159,60 @@ body {
   background: #CC0000;
   border: 2px solid #000000;
 }
+
+/* ===================================================
+   STRICT IMAGE WRAPPER CLASSES (Fix stretching)
+   =================================================== */
+
+/* Car / Vehicle images (CAR, CAR V2) */
+.car-image-wrapper {
+  width: 100%;
+  max-width: 600px;
+  height: 300px;
+  background: #000000;
+  border: 4px solid #CC0000;
+  overflow: hidden;
+  margin: 0 auto;
+  position: relative;
+}
+.car-image-wrapper img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;  /* contain = no crop, shows full car */
+  display: block !important;
+}
+
+/* Person / Group photos (teammate, lab, conference, presentation) */
+.photo-wrapper {
+  width: 100%;
+  max-width: 500px;
+  height: 350px;
+  border: 4px solid #CC0000;
+  overflow: hidden;
+  margin: 0 auto;
+  position: relative;
+}
+.photo-wrapper img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center top !important;
+  display: block !important;
+}
+
+/* Hero avatars (DangMinhDuc.png, prize.png) */
+.avatar-wrapper {
+  width: 280px;
+  height: 280px;
+  border: 4px solid #CC0000;
+  overflow: hidden;
+  flex-shrink: 0;
+  position: relative;
+}
+.avatar-wrapper img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center top !important;
+  display: block !important;
+}

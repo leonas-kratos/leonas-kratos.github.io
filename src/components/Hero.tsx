@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { FileText, BookOpen, Cpu, Terminal } from "lucide-react";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 
@@ -38,31 +37,18 @@ export default function Hero() {
           </p>
         </div>
 
-        {/* 2 Equal Portrait Cards Side by Side (300x300px, 4px solid #CC0000, object-fit: cover, NO ROUNDING) */}
+        {/* Hero avatars: 280x280px wrapper with .avatar-wrapper */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-8 mb-10">
           
           {/* Card 1: DangMinhDuc.png */}
           <div className="flex flex-col items-center">
-            <div
-              className="bg-black relative overflow-hidden shadow-[6px_6px_0_0_#000000]"
-              style={{
-                width: "300px",
-                height: "300px",
-                border: "4px solid #CC0000",
-                borderRadius: "0px",
-                position: "relative",
-              }}
-            >
-              <Image
+            <div className="avatar-wrapper shadow-[6px_6px_0_0_#000000]">
+              <img
                 src={PERSONAL_INFO.avatar}
                 alt={PERSONAL_INFO.name}
-                fill
-                priority
-                sizes="300px"
-                className="object-cover object-top hover:scale-105 transition-transform duration-300"
+                loading="eager"
               />
             </div>
-            {/* Label below */}
             <div
               style={{ fontFamily: "var(--font-press-start)" }}
               className="mt-3 px-3 py-1.5 bg-[#120304] border-2 border-[#CC0000] text-white text-[10px] uppercase shadow-[3px_3px_0_0_#000000]"
@@ -73,26 +59,13 @@ export default function Hero() {
 
           {/* Card 2: prize.png */}
           <div className="flex flex-col items-center">
-            <div
-              className="bg-black relative overflow-hidden shadow-[6px_6px_0_0_#000000]"
-              style={{
-                width: "300px",
-                height: "300px",
-                border: "4px solid #CC0000",
-                borderRadius: "0px",
-                position: "relative",
-              }}
-            >
-              <Image
+            <div className="avatar-wrapper shadow-[6px_6px_0_0_#000000]">
+              <img
                 src={PERSONAL_INFO.prizeImage}
                 alt="NCKH Award"
-                fill
-                priority
-                sizes="300px"
-                className="object-cover object-center hover:scale-105 transition-transform duration-300"
+                loading="eager"
               />
             </div>
-            {/* Label below */}
             <div
               style={{ fontFamily: "var(--font-press-start)" }}
               className="mt-3 px-3 py-1.5 bg-[#120304] border-2 border-[#CC0000] text-white text-[10px] uppercase shadow-[3px_3px_0_0_#000000]"
@@ -103,7 +76,7 @@ export default function Hero() {
 
         </div>
 
-        {/* CTA Buttons - DOWNLOAD CV below both images */}
+        {/* CTA Buttons */}
         <div className="flex flex-wrap items-center justify-center gap-4">
           <a
             href={PERSONAL_INFO.cvUrl}

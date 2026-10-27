@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { CONFERENCE_DATA } from "@/data/portfolioData";
 
 export default function ConferenceSection() {
@@ -20,26 +19,15 @@ export default function ConferenceSection() {
           </p>
         </div>
 
-        {/* 1 Column Focus Card: fixed height 300px, object-fit: cover, 4px solid #CC0000 */}
+        {/* Conference Card: Uses .photo-wrapper (max-width: 500px, height: 350px) */}
         <div className="pixel-card p-6 max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             
-            {/* Image Container: 300px fixed height, object-fit cover, border-radius 0 */}
-            <div
-              className="w-full bg-[#000000] overflow-hidden relative shadow-[4px_4px_0_0_#000000]"
-              style={{
-                height: "300px",
-                border: "4px solid #CC0000",
-                borderRadius: "0px",
-                position: "relative",
-              }}
-            >
-              <Image
+            <div className="photo-wrapper shadow-[4px_4px_0_0_#000000]">
+              <img
                 src={CONFERENCE_DATA.image}
                 alt={CONFERENCE_DATA.title}
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover object-center hover:scale-105 transition-transform duration-300"
+                loading="lazy"
               />
               <div
                 style={{ fontFamily: "var(--font-press-start)" }}
@@ -57,7 +45,7 @@ export default function ConferenceSection() {
                 </div>
                 <h3
                   style={{ fontFamily: "var(--font-press-start)" }}
-                  className="text-sm font-bold text-white leading-relaxed mb-3"
+                  className="text-xs sm:text-sm font-bold text-white leading-relaxed mb-3"
                 >
                   {CONFERENCE_DATA.title}
                 </h3>

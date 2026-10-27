@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { RESEARCH_PRESENTATION_DATA } from "@/data/portfolioData";
 
 export default function ResearchSection() {
@@ -20,26 +19,16 @@ export default function ResearchSection() {
           </p>
         </div>
 
-        {/* 2 Columns Tablet/Desktop, 1 Column Mobile: 300px fixed height, object-fit cover, 4px border */}
+        {/* 2 Columns: Uses .photo-wrapper (max-width: 500px, height: 350px) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {RESEARCH_PRESENTATION_DATA.map((item) => (
             <div key={item.id} className="pixel-card p-5 flex flex-col justify-between">
               <div>
-                <div
-                  className="w-full bg-[#000000] overflow-hidden relative shadow-[4px_4px_0_0_#000000]"
-                  style={{
-                    height: "300px",
-                    border: "4px solid #CC0000",
-                    borderRadius: "0px",
-                    position: "relative",
-                  }}
-                >
-                  <Image
+                <div className="photo-wrapper shadow-[4px_4px_0_0_#000000]">
+                  <img
                     src={item.image}
                     alt={item.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover object-center hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
                   />
                   <div
                     style={{ fontFamily: "var(--font-press-start)" }}
