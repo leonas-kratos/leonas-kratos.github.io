@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Award, ArrowRight, BookOpen, Flame, Cpu, Terminal, ShieldAlert } from "lucide-react";
+import { Award, ArrowRight, BookOpen, Flame, Cpu, Terminal, FileText, Download } from "lucide-react";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 
 export default function Hero() {
@@ -69,7 +69,16 @@ export default function Hero() {
 
             {/* Buttons */}
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4">
-              <a href="#publications" className="pixel-btn">
+              <a
+                href={PERSONAL_INFO.cvUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="pixel-btn"
+              >
+                <FileText className="w-3.5 h-3.5 mr-2" />
+                DOWNLOAD CV
+              </a>
+              <a href="#publications" className="pixel-btn pixel-btn-dark">
                 <BookOpen className="w-3.5 h-3.5 mr-2" />
                 READ PAPERS
               </a>
@@ -86,14 +95,17 @@ export default function Hero() {
               
               {/* Main Avatar Frame */}
               <div className="pixel-box p-2 relative bg-[#1c080c]">
-                <div className="relative w-64 h-64 sm:w-80 sm:h-80 overflow-hidden bg-black border-2 border-[#881337]">
+                <div
+                  className="overflow-hidden bg-black border-2 border-[#881337] flex items-center justify-center"
+                  style={{ width: "280px", height: "350px", position: "relative" }}
+                >
                   <Image
                     src={PERSONAL_INFO.avatar}
                     alt={PERSONAL_INFO.name}
-                    fill
+                    width={280}
+                    height={350}
                     priority
-                    sizes="(max-width: 768px) 256px, 320px"
-                    className="object-cover object-top hover:scale-105 transition-transform duration-300"
+                    className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-300"
                   />
                 </div>
                 
@@ -105,13 +117,16 @@ export default function Hero() {
 
               {/* Prize Badge in Pixel Frame (Floating bottom-right) */}
               <div className="absolute -bottom-6 -right-4 sm:-right-8 bg-[#170508] border-3 border-amber-500 shadow-[4px_4px_0_0_#000000] p-2 flex items-center gap-3 z-20">
-                <div className="relative w-12 h-12 sm:w-14 sm:h-14 border-2 border-amber-400 bg-black shrink-0 overflow-hidden">
+                <div
+                  className="border-2 border-amber-400 bg-black shrink-0 overflow-hidden flex items-center justify-center"
+                  style={{ width: "56px", height: "56px", position: "relative" }}
+                >
                   <Image
                     src={PERSONAL_INFO.prizeBadge}
                     alt="Prize / Award"
-                    fill
-                    sizes="56px"
-                    className="object-cover"
+                    width={56}
+                    height={56}
+                    className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="pr-2">

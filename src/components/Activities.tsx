@@ -67,9 +67,10 @@ export default function Activities() {
               key={item.id}
               className="pixel-box-subtle p-3 hover:border-[#ff2a4b] transition-all flex flex-col justify-between group"
             >
-              {/* Image Frame */}
+              {/* Image Frame with fixed height and relative container */}
               <div
-                className="relative aspect-[4/3] w-full bg-black border-2 border-[#ff2a4b] overflow-hidden cursor-pointer shadow-[3px_3px_0_0_#000000]"
+                className="w-full h-64 bg-black border-2 border-[#ff2a4b] overflow-hidden cursor-pointer shadow-[3px_3px_0_0_#000000] relative"
+                style={{ position: "relative", height: "260px" }}
                 onClick={() => setSelectedImage(item.image)}
               >
                 <Image
@@ -83,13 +84,13 @@ export default function Activities() {
                 {/* Badge Category */}
                 <div
                   style={{ fontFamily: "var(--font-press-start)" }}
-                  className="absolute top-2 left-2 px-2 py-1 bg-black/90 text-[#ff4d6d] border border-[#ff2a4b] text-[8px] uppercase"
+                  className="absolute top-2 left-2 px-2 py-1 bg-black/90 text-[#ff4d6d] border border-[#ff2a4b] text-[8px] uppercase z-10"
                 >
                   {item.category}
                 </div>
 
                 {/* Click hover overlay */}
-                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white">
+                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white z-10">
                   <Maximize2 className="w-5 h-5 text-[#ff2a4b]" />
                   <span style={{ fontFamily: "var(--font-press-start)" }} className="text-[9px]">
                     ZOOM
@@ -146,7 +147,10 @@ export default function Activities() {
           className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4"
           onClick={() => setSelectedImage(null)}
         >
-          <div className="relative max-w-5xl max-h-[90vh] w-full h-[80vh] border-4 border-[#ff2a4b] bg-black p-2 shadow-[8px_8px_0_0_#ff2a4b]">
+          <div
+            className="w-full max-w-5xl h-[80vh] border-4 border-[#ff2a4b] bg-black p-2 shadow-[8px_8px_0_0_#ff2a4b] relative"
+            style={{ position: "relative" }}
+          >
             <Image
               src={selectedImage}
               alt="Enlarged"

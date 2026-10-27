@@ -32,6 +32,7 @@ export const PERSONAL_INFO = {
   email: "manzak.work@gmail.com",
   eduEmail: "23021798@vnu.edu.vn",
   github: "https://github.com/leonas-kratos",
+  cvUrl: "/images/My_CV.pdf",
   avatar: "/images/DangMinhDuc.png",
   prizeBadge: "/images/prize.png",
 };
