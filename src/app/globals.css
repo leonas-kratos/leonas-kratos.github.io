@@ -1,153 +1,207 @@
 @import "tailwindcss";
 
 :root {
-  --bg-primary: #0a0a0a;
-  --bg-card: #111111;
+  --bg-primary: #08080a;
+  --bg-secondary: #0f0f13;
+  --bg-card: #121216;
   --red-primary: #CC0000;
   --red-bright: #FF3333;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: #0a0a0a;
-  color: #aaa;
+  background: radial-gradient(circle at 50% 0%, #1a0505 0%, #08080a 45%, #060608 100%);
+  background-attachment: fixed;
+  color: #b4b4be;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  line-height: 1.75;
+  line-height: 1.7;
   overflow-x: hidden;
+  min-height: 100vh;
 }
 
 /* ===================================================
-   PROBLEM 1: GLOBAL CONTAINER & CENTERING
+   GLOBAL CONTAINER & RESPONSIVE SPACING
    =================================================== */
 
 .page-container {
   width: 100%;
-  max-width: 1100px;
+  max-width: 1180px;
   margin: 0 auto;
-  padding: 0 clamp(16px, 4vw, 48px);
+  padding: 0 clamp(16px, 4vw, 40px);
 }
 
 section {
-  padding: 80px 0;
+  padding: clamp(36px, 5vw, 64px) 0;
   width: 100%;
 }
 
 /* Typography Hierarchy */
 h1 {
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: clamp(1.85rem, 4.2vw, 3.25rem);
   font-weight: 800;
-  color: #fff;
-  line-height: 1.1;
+  color: #ffffff;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
 }
 
 h2 {
-  font-size: clamp(1.3rem, 3vw, 2rem);
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
   font-weight: 700;
-  color: #fff;
+  color: #ffffff;
   margin-bottom: 8px;
+  letter-spacing: -0.01em;
 }
 
 h3 {
-  font-size: 1rem;
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
   font-weight: 600;
-  color: #fff;
+  color: #ffffff;
 }
 
 p, li {
-  font-size: 0.95rem;
-  color: #aaa;
-  line-height: 1.75;
+  font-size: clamp(0.875rem, 1.2vw, 0.95rem);
+  color: #b0b0ba;
+  line-height: 1.7;
 }
 
-/* Section Title Style: Red left border */
+/* Section Title Style: Modern Red Accent */
 .section-title {
-  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-  font-weight: 700;
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-weight: 800;
   color: #fff;
   border-left: 4px solid #CC0000;
-  padding-left: 16px;
-  margin-bottom: 40px;
+  padding-left: 14px;
+  margin-bottom: 24px;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-/* Card Grid Layout */
+/* Responsive Card Grid Layout */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 310px), 1fr));
+  gap: clamp(16px, 2.5vw, 24px);
   width: 100%;
 }
 
-/* Image Cards */
+/* Upgraded Sleek Glassmorphic Box / Image Card */
 .img-card {
-  background: #111;
-  border: 1px solid #222;
-  border-radius: 4px;
+  background: linear-gradient(160deg, rgba(22, 22, 28, 0.92) 0%, rgba(12, 12, 16, 0.96) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
   overflow: hidden;
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
-.img-card:hover {
-  border-color: #CC0000;
-  box-shadow: 0 0 20px rgba(204, 0, 0, 0.25);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
 }
 
-/* Vehicle image inside wrapper */
+.img-card:hover {
+  border-color: rgba(204, 0, 0, 0.7);
+  box-shadow: 0 12px 32px rgba(204, 0, 0, 0.22), 0 0 1px rgba(255, 51, 51, 0.5);
+  transform: translateY(-4px);
+}
+
+/* ===================================================
+   ERROR-FREE RESPONSIVE IMAGE WRAPPERS (PHONE & LAPTOP)
+   =================================================== */
+
+/* Vehicle / Hardware Image Wrapper:
+   Uses ambient blurred backdrop + crisp object-contain so portrait/square car images
+   never stretch, never crop, and scale cleanly on mobile & laptop */
 .vehicle-img-wrapper {
   width: 100%;
-  height: 260px;
-  background: #000;
+  aspect-ratio: 16 / 10;
+  min-height: 210px;
+  max-height: 300px;
+  background: radial-gradient(circle at center, #1a0808 0%, #08080a 100%);
   overflow: hidden;
   position: relative;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .vehicle-img-wrapper img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  background: #000;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Person / Group photo inside wrapper */
+.img-card:hover .vehicle-img-wrapper img {
+  transform: scale(1.04);
+}
+
+/* Person / Group Photo Wrapper:
+   Landscape ~16:10 ratio matching actual group photos (1428x960, 1329x950, 762x476, 755x485)
+   so teammates on left/right edges are never cut off on mobile or laptop */
 .person-img-wrapper {
   width: 100%;
-  height: 320px;
-  background: #000;
+  aspect-ratio: 16 / 10;
+  min-height: 200px;
+  max-height: 320px;
+  background: #09090c;
   overflow: hidden;
   position: relative;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
+
 .person-img-wrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
+  object-position: center 20%;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Hero Avatar Box */
-.hero-avatar-box {
-  width: 220px;
-  height: 220px;
-  border: 3px solid #CC0000;
-  border-radius: 4px;
+.img-card:hover .person-img-wrapper img {
+  transform: scale(1.03);
+}
+
+/* Single Hero Slideshow Frame (DangMinhDuc.png + prize.png every 5s) */
+.hero-slideshow-frame {
+  width: 100%;
+  max-width: 310px;
+  aspect-ratio: 4 / 4.7;
+  border-radius: 16px;
+  border: 2px solid rgba(204, 0, 0, 0.75);
+  background: radial-gradient(circle at 50% 30%, #240606 0%, #0a0a0d 100%);
+  box-shadow: 0 14px 40px rgba(204, 0, 0, 0.28), inset 0 0 24px rgba(204, 0, 0, 0.15);
   overflow: hidden;
   position: relative;
-  background: #000;
-  box-shadow: 0 0 20px rgba(204, 0, 0, 0.4);
-  transition: all 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
-.hero-avatar-box:hover {
-  box-shadow: 0 0 40px rgba(204, 0, 0, 0.8);
+
+@media (min-width: 640px) {
+  .hero-slideshow-frame {
+    max-width: 340px;
+  }
+}
+
+.hero-slideshow-frame:hover {
   border-color: #FF3333;
-}
-.hero-avatar-box img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
+  box-shadow: 0 18px 48px rgba(204, 0, 0, 0.45), inset 0 0 30px rgba(204, 0, 0, 0.2);
 }
 
 /* Navbar */
 .site-navbar {
-  background: rgba(10, 10, 10, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(204, 0, 0, 0.2);
+  background: rgba(8, 8, 10, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(204, 0, 0, 0.25);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -160,20 +214,22 @@ p, li {
   top: 0;
   left: 0;
   height: 3px;
-  background: #CC0000;
+  background: linear-gradient(90deg, #CC0000, #FF4444);
   z-index: 999;
   width: 0%;
   transition: width 0.1s linear;
 }
 
 /* ===================================================
-   PROBLEM 2: SCROLL ANIMATIONS (Intersection Observer)
+   SCROLL ANIMATIONS (Smooth, Non-Blocking)
    =================================================== */
 
 .reveal {
   opacity: 0;
-  transform: translateY(36px);
-  transition: opacity 0.55s ease, transform 0.55s ease;
+  transform: translateY(20px);
+  transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
 }
 
 .reveal.visible {
@@ -181,10 +237,10 @@ p, li {
   transform: translateY(0);
 }
 
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
-.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-1 { transition-delay: 0.06s; }
+.reveal-delay-2 { transition-delay: 0.12s; }
+.reveal-delay-3 { transition-delay: 0.18s; }
+.reveal-delay-4 { transition-delay: 0.24s; }
 
 /* Buttons */
 .btn-primary-red {
@@ -192,19 +248,20 @@ p, li {
   align-items: center;
   justify-content: center;
   font-weight: 600;
-  font-size: 0.9rem;
-  padding: 12px 24px;
-  background: #CC0000;
+  font-size: 0.875rem;
+  padding: 11px 22px;
+  background: linear-gradient(135deg, #CC0000 0%, #990000 100%);
   color: #fff;
-  border-radius: 4px;
+  border-radius: 8px;
   border: 1px solid #FF3333;
-  box-shadow: 0 0 15px rgba(204, 0, 0, 0.4);
+  box-shadow: 0 4px 16px rgba(204, 0, 0, 0.35);
   transition: all 0.25s ease;
   text-decoration: none;
 }
+
 .btn-primary-red:hover {
-  background: #E60000;
-  box-shadow: 0 0 25px rgba(204, 0, 0, 0.7);
+  background: linear-gradient(135deg, #E60000 0%, #B30000 100%);
+  box-shadow: 0 6px 24px rgba(204, 0, 0, 0.6);
   transform: translateY(-2px);
   color: #fff;
 }
@@ -214,36 +271,50 @@ p, li {
   align-items: center;
   justify-content: center;
   font-weight: 600;
-  font-size: 0.9rem;
-  padding: 12px 24px;
-  background: transparent;
-  color: #CC0000;
-  border-radius: 4px;
-  border: 1px solid #CC0000;
+  font-size: 0.875rem;
+  padding: 11px 22px;
+  background: rgba(204, 0, 0, 0.08);
+  color: #FF4444;
+  border-radius: 8px;
+  border: 1px solid rgba(204, 0, 0, 0.6);
   transition: all 0.25s ease;
   text-decoration: none;
 }
+
 .btn-secondary-outline:hover {
   background: #CC0000;
   color: #fff;
-  box-shadow: 0 0 20px rgba(204, 0, 0, 0.5);
+  border-color: #FF3333;
+  box-shadow: 0 6px 20px rgba(204, 0, 0, 0.45);
   transform: translateY(-2px);
 }
 
 /* Premium Publication Card */
 .pub-card {
-  background: linear-gradient(135deg, #111111, #1A0505);
-  border: 1px solid #222222;
+  background: linear-gradient(145deg, rgba(20, 20, 26, 0.95) 0%, rgba(24, 8, 8, 0.9) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-left: 4px solid #CC0000;
-  border-radius: 4px;
+  border-radius: 12px;
   position: relative;
   overflow: hidden;
   transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
+
 .pub-card:hover {
-  border-color: #CC0000;
-  box-shadow: 0 0 25px rgba(204, 0, 0, 0.35);
+  border-color: rgba(204, 0, 0, 0.75);
+  box-shadow: 0 10px 28px rgba(204, 0, 0, 0.28);
   transform: translateY(-3px);
+}
+
+/* Progress bar animation for 5s slideshow */
+@keyframes slideProgress {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+.animate-slide-progress {
+  animation: slideProgress 5s linear infinite;
 }
 
 /* Respect prefers-reduced-motion */

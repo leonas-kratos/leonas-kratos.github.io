@@ -5,7 +5,7 @@ import { STATS_DATA } from "@/data/portfolioData";
 
 export default function StatsBar() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [counts, setCounts] = useState<number[]>([0, 0, 0, 0]);
+  const [counts, setCounts] = useState<number[]>(STATS_DATA.map((s) => s.value));
   const [hasAnimated, setHasAnimated] = useState(false);
 
   const delayClasses = ["reveal-delay-1", "reveal-delay-2", "reveal-delay-3", "reveal-delay-4"];
@@ -19,8 +19,8 @@ export default function StatsBar() {
 
           STATS_DATA.forEach((stat, index) => {
             const target = stat.value;
-            const duration = 1200;
-            const steps = 30;
+            const duration = 900;
+            const steps = 20;
             const stepDuration = duration / steps;
             let current = 0;
 
@@ -39,7 +39,7 @@ export default function StatsBar() {
           });
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.1 }
     );
 
     if (containerRef.current) {
@@ -50,19 +50,19 @@ export default function StatsBar() {
   }, [hasAnimated]);
 
   return (
-    <section ref={containerRef} className="reveal !py-12 bg-[#0d0d0d] border-t border-b border-[#CC0000]/30">
+    <section ref={containerRef} className="!py-6 sm:!py-8 bg-[#0b0b0f]/90 border-b border-[#CC0000]/25">
       <div className="page-container">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-y md:divide-y-0 md:divide-x divide-zinc-800">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           {STATS_DATA.map((item, index) => (
             <div
               key={item.label}
-              className={`reveal ${delayClasses[index]} pt-4 md:pt-0 px-3 flex flex-col items-center`}
+              className={`reveal ${delayClasses[index]} rounded-xl bg-gradient-to-br from-[#15151b] to-[#0d0d11] border border-white/10 hover:border-[#CC0000]/60 p-4 sm:p-5 flex flex-col items-center text-center transition-all shadow-md`}
             >
-              <div className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#FF3333] tracking-tight drop-shadow-[0_0_12px_rgba(204,0,0,0.4)]">
+              <div className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#FF3333] tracking-tight drop-shadow-[0_0_12px_rgba(204,0,0,0.35)]">
                 {counts[index]}
                 {item.suffix}
               </div>
-              <div className="text-xs sm:text-sm font-medium text-zinc-400 mt-2 uppercase tracking-wider">
+              <div className="text-[11px] sm:text-xs font-semibold text-zinc-300 mt-1.5 uppercase tracking-wider">
                 {item.label}
               </div>
             </div>

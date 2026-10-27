@@ -13,15 +13,21 @@ export default function ScrollObserver() {
           if (e.isIntersecting) {
             e.target.classList.add("visible");
           } else {
-            e.target.classList.remove("visible"); // Replay every time element enters viewport
+            e.target.classList.remove("visible");
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.05, rootMargin: "20px 0px -10px 0px" }
     );
 
     const elements = document.querySelectorAll(".reveal");
-    elements.forEach((el) => observer.observe(el));
+    elements.forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        el.classList.add("visible");
+      }
+      observer.observe(el);
+    });
 
     return () => observer.disconnect();
   }, [pathname]);
