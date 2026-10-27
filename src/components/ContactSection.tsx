@@ -1,4 +1,4 @@
-import { Mail, FolderGit2, MapPin, FileText, Send, Download } from "lucide-react";
+import { Mail, FolderGit2, MapPin, Download } from "lucide-react";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 
 export default function ContactSection() {
@@ -14,7 +14,7 @@ export default function ContactSection() {
         </h2>
         <div className="pixel-header-line w-48 mx-auto my-3" />
         <p style={{ fontFamily: "var(--font-vt323)" }} className="text-xl text-gray-300 max-w-xl mx-auto mb-10">
-          Tải hồ sơ năng lực (CV) hoặc kết nối trao đổi về nghiên cứu xe tự hành AMR, ROS 2, Embedded Systems.
+          Download Curriculum Vitae (CV) or connect regarding AMR autonomous robotics, ROS 2, and embedded engineering opportunities.
         </p>
 
         {/* Big Pixel Download CV Banner */}
@@ -23,7 +23,7 @@ export default function ContactSection() {
             CURRICULUM VITAE (PDF)
           </div>
           <p style={{ fontFamily: "var(--font-vt323)" }} className="text-lg text-gray-300 mb-5">
-            Cập nhật chi tiết quá trình học tập, nghiên cứu khoa học, công bố quốc tế và kinh nghiệm dự án kỹ thuật.
+            Updated academic credentials, research publications, and engineering project milestones.
           </p>
           <a
             href={PERSONAL_INFO.cvUrl}
@@ -88,7 +88,7 @@ export default function ContactSection() {
               </div>
               <div>
                 <span style={{ fontFamily: "var(--font-press-start)" }} className="block text-[8px] text-gray-400 uppercase">
-                  GITHUB ACCOUNT
+                  GITHUB PROFILE
                 </span>
                 <span style={{ fontFamily: "var(--font-vt323)" }} className="text-xl text-white group-hover:text-[#FF3333]">
                   github.com/leonas-kratos

@@ -1,4 +1,4 @@
-import { FileText, Download } from "lucide-react";
+import { FileText } from "lucide-react";
 import { PUBLICATIONS } from "@/data/portfolioData";
 
 export default function PublicationsSection() {
@@ -17,14 +17,14 @@ export default function PublicationsSection() {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-14">
           <div>
             <div style={{ fontFamily: "var(--font-press-start)" }} className="text-xs text-[#CC0000] mb-2">
-              [ SCIENTIFIC QUESTS COMPLETED ]
+              [ SCIENTIFIC PUBLICATIONS &amp; VENUES ]
             </div>
             <h2 style={{ fontFamily: "var(--font-press-start)" }} className="text-xl sm:text-3xl font-black text-white drop-shadow-[3px_3px_0_#660000]">
-              PUBLICATIONS &amp; RESEARCH
+              PUBLICATIONS &amp; VENUES
             </h2>
             <div className="pixel-header-line w-48 my-3" />
             <p style={{ fontFamily: "var(--font-vt323)" }} className="text-xl text-gray-300">
-              Công trình nghiên cứu khoa học xuất bản: 2 Hội nghị Quốc tế, 1 Tạp chí Quốc gia, 1 Hội nghị Quốc gia &amp; 1 Báo cáo NCKH toàn văn
+              Published scientific research: 2 International Conferences, 1 National Journal, 1 National Conference &amp; 1 Full Research Report
             </p>
           </div>
 
@@ -35,84 +35,61 @@ export default function PublicationsSection() {
           </div>
         </div>
 
-        {/* Papers List in Pixel Cards */}
-        <div className="space-y-6 max-w-5xl mx-auto">
+        {/* Papers List - Displays Conference/Journal Venue Name ONLY */}
+        <div className="space-y-5 max-w-4xl mx-auto">
           {PUBLICATIONS.map((pub) => (
             <div
               key={pub.id}
-              className="pixel-card p-6 relative group hover:border-[#FF0000] transition-all"
+              className="pixel-card p-5 relative group hover:border-[#FF0000] transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4"
             >
-              <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-4 mb-3">
-                <div className="flex-1">
-                  
-                  {/* Type Badge & Year */}
-                  <div className="flex flex-wrap items-center gap-2 mb-3">
-                    <span
-                      style={{ fontFamily: "var(--font-press-start)" }}
-                      className={`px-2.5 py-1 text-[8px] uppercase shadow-[2px_2px_0_0_#000000] ${
-                        badgeStyle[pub.type] || "bg-black text-white border border-[#CC0000]"
-                      }`}
-                    >
-                      {pub.type}
-                    </span>
-                    <span style={{ fontFamily: "var(--font-press-start)" }} className="text-[9px] text-gray-400">
-                      // {pub.year}
-                    </span>
-                  </div>
-
-                  {/* Title */}
-                  <h3
-                    style={{ fontFamily: "var(--font-press-start)" }}
-                    className="text-xs sm:text-sm font-bold text-white group-hover:text-[#FF3333] leading-relaxed transition-colors mb-2"
-                  >
-                    {pub.title}
-                  </h3>
-                </div>
-
-                {/* Download PDF button */}
-                <a
-                  href={pub.pdfUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="pixel-btn-red self-start shrink-0 text-[9px] py-2 px-3 flex items-center gap-1.5"
-                >
-                  <FileText className="w-3.5 h-3.5" />
-                  READ PDF
-                </a>
-              </div>
-
-              {/* Authors & Venue */}
-              <div style={{ fontFamily: "var(--font-vt323)" }} className="text-xl mb-4 bg-[#120304] border-l-4 border-[#CC0000] pl-3 py-1.5">
-                <div className="text-gray-300">
-                  <span className="text-[#CC0000] font-bold">AUTHORS:</span> {pub.authors}
-                </div>
-                <div className="text-gray-300">
-                  <span className="text-[#CC0000] font-bold">VENUE:</span> {pub.venue}
-                </div>
-              </div>
-
-              {/* Abstract */}
-              <div className="p-3 bg-[#000000] border-2 border-[#440000] mb-4">
-                <span style={{ fontFamily: "var(--font-press-start)" }} className="text-[8px] text-[#CC0000] uppercase block mb-1">
-                  ABSTRACT_SNIPPET:
-                </span>
-                <p style={{ fontFamily: "var(--font-vt323)" }} className="text-lg text-gray-300 leading-snug">
-                  {pub.abstract}
-                </p>
-              </div>
-
-              {/* Tags */}
-              <div className="flex flex-wrap gap-2">
-                {pub.tags.map((tag) => (
+              <div className="flex-1">
+                {/* Type Badge & Year */}
+                <div className="flex flex-wrap items-center gap-2 mb-2">
                   <span
-                    key={tag}
                     style={{ fontFamily: "var(--font-press-start)" }}
-                    className="text-[7px] px-2 py-0.5 bg-[#120304] border border-[#CC0000] text-gray-300"
+                    className={`px-2.5 py-1 text-[8px] uppercase shadow-[2px_2px_0_0_#000000] ${
+                      badgeStyle[pub.type] || "bg-black text-white border border-[#CC0000]"
+                    }`}
                   >
-                    #{tag}
+                    {pub.type}
                   </span>
-                ))}
+                  <span style={{ fontFamily: "var(--font-press-start)" }} className="text-[9px] text-gray-400">
+                    // {pub.year}
+                  </span>
+                </div>
+
+                {/* Venue / Conference / Journal Name */}
+                <h3
+                  style={{ fontFamily: "var(--font-press-start)" }}
+                  className="text-xs sm:text-sm font-bold text-white group-hover:text-[#FF3333] leading-relaxed transition-colors mb-3"
+                >
+                  {pub.venue}
+                </h3>
+
+                {/* Tags */}
+                <div className="flex flex-wrap gap-2">
+                  {pub.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      style={{ fontFamily: "var(--font-press-start)" }}
+                      className="text-[7px] px-2 py-0.5 bg-[#120304] border border-[#CC0000] text-gray-300"
+                    >
+                      #{tag}
+                    </span>
+                  ))}
+                </div>
               </div>
+
+              {/* Download PDF button */}
+              <a
+                href={pub.pdfUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="pixel-btn-red shrink-0 text-[9px] py-2.5 px-4 flex items-center gap-2 self-start sm:self-center"
+              >
+                <FileText className="w-3.5 h-3.5" />
+                READ PDF
+              </a>
             </div>
           ))}
         </div>

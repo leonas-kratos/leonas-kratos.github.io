@@ -20,14 +20,14 @@ export default function Hero() {
         </h1>
         
         <p style={{ fontFamily: "var(--font-press-start)" }} className="text-xs sm:text-sm text-[#CC0000] mb-2 uppercase">
-          [{PERSONAL_INFO.englishName}] • {PERSONAL_INFO.title}
+          {PERSONAL_INFO.title}
         </p>
 
         <p style={{ fontFamily: "var(--font-vt323)" }} className="text-xl sm:text-2xl text-gray-300 max-w-3xl mx-auto mb-8">
           🏛️ {PERSONAL_INFO.affiliation}
         </p>
 
-        {/* Bio Box */}
+        {/* Mission Box */}
         <div className="pixel-card p-5 max-w-3xl mx-auto mb-10 text-left">
           <div style={{ fontFamily: "var(--font-press-start)" }} className="text-[9px] text-[#CC0000] mb-2 uppercase flex items-center gap-2">
             <Terminal className="w-3.5 h-3.5" /> SYSTEM_MISSION.LOG
@@ -37,7 +37,7 @@ export default function Hero() {
           </p>
         </div>
 
-        {/* Hero avatars: 280x280px wrapper with .avatar-wrapper */}
+        {/* Hero avatars: 280x280px wrapper */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-8 mb-10">
           
           {/* Card 1: DangMinhDuc.png */}
@@ -53,7 +53,7 @@ export default function Hero() {
               style={{ fontFamily: "var(--font-press-start)" }}
               className="mt-3 px-3 py-1.5 bg-[#120304] border-2 border-[#CC0000] text-white text-[10px] uppercase shadow-[3px_3px_0_0_#000000]"
             >
-              Đặng Minh Đức
+              Dang Minh Duc
             </div>
           </div>
 

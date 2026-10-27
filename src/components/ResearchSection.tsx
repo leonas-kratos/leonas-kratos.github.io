@@ -15,11 +15,11 @@ export default function ResearchSection() {
           </h2>
           <div className="pixel-header-line w-48 my-3" />
           <p style={{ fontFamily: "var(--font-vt323)" }} className="text-xl text-gray-300">
-            Hình ảnh thuyết trình báo cáo khoa học &amp; đội ngũ thành viên thực hiện đề tài NCKH Sinh viên
+            Student scientific research defense presentation &amp; dedicated research team members
           </p>
         </div>
 
-        {/* 2 Columns: Uses .photo-wrapper (max-width: 500px, height: 350px) */}
+        {/* 2 Columns: Uses .photo-wrapper */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {RESEARCH_PRESENTATION_DATA.map((item) => (
             <div key={item.id} className="pixel-card p-5 flex flex-col justify-between">

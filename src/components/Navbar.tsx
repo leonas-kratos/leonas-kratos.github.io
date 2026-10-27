@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Menu, X, FileText, FolderGit2 } from "lucide-react";
+import { Menu, X, FileText } from "lucide-react";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 
 export default function Navbar() {

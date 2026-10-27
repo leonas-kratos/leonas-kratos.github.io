@@ -22,7 +22,7 @@ export default function VEDCSection() {
         {/* 3 Columns Desktop, 2 Tablet, 1 Mobile */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           
-          {/* Card 1: VEDC Autonomous Car (.car-image-wrapper: contain, bg black, 300px height) */}
+          {/* Card 1: VEDC Autonomous Car */}
           <div className="pixel-card p-4 flex flex-col justify-between">
             <div>
               <div className="car-image-wrapper shadow-[4px_4px_0_0_#000000]">
@@ -65,7 +65,7 @@ export default function VEDCSection() {
             </div>
           </div>
 
-          {/* Card 2: VEDC Teammate (.photo-wrapper: cover, max-width 500px, 350px height) */}
+          {/* Card 2: VEDC Teammate */}
           <div className="pixel-card p-4 flex flex-col justify-between">
             <div>
               <div className="photo-wrapper shadow-[4px_4px_0_0_#000000]">
@@ -108,7 +108,7 @@ export default function VEDCSection() {
             </div>
           </div>
 
-          {/* Card 3: CAR V2 (.car-image-wrapper: contain, bg black, 300px height) */}
+          {/* Card 3: CAR V2 */}
           <div className="pixel-card p-4 flex flex-col justify-between">
             <div>
               <div className="car-image-wrapper shadow-[4px_4px_0_0_#000000]">
