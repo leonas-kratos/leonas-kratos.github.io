@@ -16,7 +16,15 @@ body {
   overflow-x: hidden;
 }
 
-/* Retro Pixel Background Grid */
+/* Ensure ALL images display normally and sharp without ANY degradation or pixelation filter */
+img {
+  image-rendering: auto !important;
+  filter: none !important;
+  -webkit-filter: none !important;
+  backface-visibility: hidden;
+}
+
+/* Retro Pixel Background Grid (Applies only to background, never affecting images) */
 .pixel-bg-grid {
   background-image: 
     linear-gradient(to right, rgba(204, 0, 0, 0.08) 1px, transparent 1px),
@@ -24,28 +32,16 @@ body {
   background-size: 24px 24px;
 }
 
-/* CRT Scanline Effect */
-.scanlines {
-  position: relative;
-}
-.scanlines::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.35) 50%);
-  background-size: 100% 4px;
-  z-index: 30;
-  pointer-events: none;
-}
-
-/* Pixel Card Containers with 4px Red Border */
+/* Pixel Card Containers with 4px Red Border (NO border-radius, pure sharp corners) */
 .pixel-card {
   background-color: #0a0405;
   border: 4px solid #CC0000;
+  border-radius: 0px !important;
   box-shadow: 
     inset -3px -3px 0px 0px #660000,
     inset 3px 3px 0px 0px #FF3333,
     5px 5px 0px 0px #000000;
+  transition: none !important; /* Instant color snap, no smoothing */
 }
 
 .pixel-card:hover {
@@ -56,7 +52,7 @@ body {
     6px 6px 0px 0px #CC0000;
 }
 
-/* Pixel Buttons */
+/* Pixel Buttons (Instant hover snap, blocky shape, 4px shadow) */
 .pixel-btn-red {
   display: inline-flex;
   align-items: center;
@@ -68,12 +64,13 @@ body {
   background-color: #CC0000;
   color: #ffffff;
   border: 3px solid #ffffff;
+  border-radius: 0px !important;
   box-shadow: 
     inset -3px -3px 0px 0px #660000,
     inset 3px 3px 0px 0px #FF6666,
     4px 4px 0px 0px #000000;
   cursor: pointer;
-  transition: all 0.1s ease;
+  transition: none !important; /* Instant snap */
   text-decoration: none;
 }
 
@@ -105,12 +102,13 @@ body {
   background-color: #120304;
   color: #FF4444;
   border: 3px solid #CC0000;
+  border-radius: 0px !important;
   box-shadow: 
     inset -3px -3px 0px 0px #000000,
     inset 3px 3px 0px 0px #440000,
     4px 4px 0px 0px #000000;
   cursor: pointer;
-  transition: all 0.1s ease;
+  transition: none !important; /* Instant snap */
   text-decoration: none;
 }
 
@@ -161,7 +159,7 @@ body {
 }
 
 /* ===================================================
-   STRICT IMAGE WRAPPER CLASSES (Fix stretching)
+   STRICT IMAGE WRAPPER CLASSES (NO DEGRADATION / NO FILTER)
    =================================================== */
 
 /* Car / Vehicle images (CAR, CAR V2) */
@@ -171,6 +169,7 @@ body {
   height: 300px;
   background: #000000;
   border: 4px solid #CC0000;
+  border-radius: 0px !important;
   overflow: hidden;
   margin: 0 auto;
   position: relative;
@@ -178,8 +177,11 @@ body {
 .car-image-wrapper img {
   width: 100% !important;
   height: 100% !important;
-  object-fit: contain !important;  /* contain = no crop, shows full car */
+  object-fit: contain !important;
   display: block !important;
+  image-rendering: auto !important;
+  filter: none !important;
+  transition: none !important;
 }
 
 /* Person / Group photos (teammate, lab, conference, presentation) */
@@ -188,9 +190,11 @@ body {
   max-width: 500px;
   height: 350px;
   border: 4px solid #CC0000;
+  border-radius: 0px !important;
   overflow: hidden;
   margin: 0 auto;
   position: relative;
+  background: #000000;
 }
 .photo-wrapper img {
   width: 100% !important;
@@ -198,6 +202,9 @@ body {
   object-fit: cover !important;
   object-position: center top !important;
   display: block !important;
+  image-rendering: auto !important;
+  filter: none !important;
+  transition: none !important;
 }
 
 /* Hero avatars (DangMinhDuc.png, prize.png) */
@@ -205,9 +212,11 @@ body {
   width: 280px;
   height: 280px;
   border: 4px solid #CC0000;
+  border-radius: 0px !important;
   overflow: hidden;
   flex-shrink: 0;
   position: relative;
+  background: #000000;
 }
 .avatar-wrapper img {
   width: 100% !important;
@@ -215,4 +224,7 @@ body {
   object-fit: cover !important;
   object-position: center top !important;
   display: block !important;
+  image-rendering: auto !important;
+  filter: none !important;
+  transition: none !important;
 }

@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="vi" className="scroll-smooth dark">
       <body
-        className={`${pressStart.variable} ${vt323.variable} antialiased bg-[#080305] text-[#f3f4f6] selection:bg-[#ff2a4b] selection:text-black scanlines min-h-screen`}
+        className={`${pressStart.variable} ${vt323.variable} antialiased bg-[#000000] text-[#f3f4f6] selection:bg-[#CC0000] selection:text-white min-h-screen`}
       >
         {children}
       </body>
