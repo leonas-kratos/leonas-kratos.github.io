@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Dang Minh Duc - Robotics & AI Portfolio
 
-## Getting Started
+> **Pixel Art Red-Black Portfolio** of Dang Minh Duc — AMR Robotics & Embedded AI Engineer.  
+> Faculty of Electronics and Telecommunications, VNU University of Engineering and Technology (VNU-UET).
 
-First, run the development server:
+🌐 **Live Website:** [https://leonas-kratos.github.io](https://leonas-kratos.github.io)
+
+---
+
+## ⚡ Overview
+
+A personalized retro 8-bit / pixel art personal portfolio showcasing:
+- **Autonomous Mobile Robots (AMR)**: ROS 2 Nav2, SLAM, sensor fusion, obstacle avoidance.
+- **Competitions & Vehicles**: VEDC 2025 Autonomous Car, AMR Car V2 current research.
+- **State Estimation Research**: UWB positioning, Extended/Unscented Kalman Filters (EKF/UKF/MCC-UKF), Neural Network-aided Filters.
+- **Academic Contributions**: 4 published papers (2 International Conferences, 1 National Journal, 1 National Conference) & Full Student Research Monograph.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework:** [Next.js](https://nextjs.org/) (App Router, Static HTML Export)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **Theme:** Pixel Art UI, Red (`#CC0000`, `#FF0000`) & Black (`#000000`) Color Scheme
+- **Typography:** [Press Start 2P](https://fonts.google.com/specimen/Press+Start+2P) & [VT323](https://fonts.google.com/specimen/VT323)
+- **Deployment:** GitHub Pages via GitHub Actions
+
+---
+
+## 🚀 Getting Started Locally
 
 ```bash
+# Clone the repository
+git clone git@github.com:leonas-kratos/leonas-kratos.github.io.git
+cd leonas-kratos.github.io
+
+# Install dependencies
+npm install
+
+# Start development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to view the portfolio.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📦 Build & Deploy
 
-## Learn More
+This portfolio is statically exported and automatically deployed to GitHub Pages via `.github/workflows/deploy.yml` whenever changes are pushed to the `main` branch.
 
-To learn more about Next.js, take a look at the following resources:
+To trigger a manual local export:
+```bash
+npm run build
+```
+Static files will be generated in the `./out` directory.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📬 Contact & Connect
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Email:** [manzak.work@gmail.com](mailto:manzak.work@gmail.com)
+- **Academic Email:** [23021798@vnu.edu.vn](mailto:23021798@vnu.edu.vn)
+- **GitHub:** [@leonas-kratos](https://github.com/leonas-kratos)
