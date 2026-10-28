@@ -20,8 +20,10 @@ export default function TypewriterTagline() {
     if (!isDeleting && currentText === fullWord) {
       timer = setTimeout(() => setIsDeleting(true), 2000);
     } else if (isDeleting && currentText === "") {
-      setIsDeleting(false);
-      setCurrentWordIndex((prev) => (prev + 1) % WORDS.length);
+      timer = setTimeout(() => {
+        setIsDeleting(false);
+        setCurrentWordIndex((prev) => (prev + 1) % WORDS.length);
+      }, 500);
     } else {
       const speed = isDeleting ? 30 : 65;
       timer = setTimeout(() => {

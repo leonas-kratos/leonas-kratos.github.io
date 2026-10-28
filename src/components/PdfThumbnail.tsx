@@ -1,10 +1,37 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { FileText } from "lucide-react";
+
+interface PdfPageViewport {
+  width: number;
+  height: number;
+}
+
+interface PdfPage {
+  getViewport: (options: { scale: number }) => PdfPageViewport;
+  render: (options: {
+    canvasContext: CanvasRenderingContext2D;
+    viewport: PdfPageViewport;
+  }) => { promise: Promise<void> };
+}
+
+interface PdfDocument {
+  getPage: (pageNumber: number) => Promise<PdfPage>;
+}
+
+interface PdfJsLib {
+  GlobalWorkerOptions: {
+    workerSrc: string;
+  };
+  getDocument: (url: string) => {
+    promise: Promise<PdfDocument>;
+  };
+}
 
 declare global {
   interface Window {
-    pdfjsLib?: any;
+    pdfjsLib?: PdfJsLib;
   }
 }
 
@@ -15,6 +42,7 @@ interface PdfThumbnailProps {
 
 export default function PdfThumbnail({ pdfUrl, title }: PdfThumbnailProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [isRendered, setIsRendered] = useState(false);
 
   useEffect(() => {
     let isCancelled = false;
@@ -30,11 +58,10 @@ export default function PdfThumbnail({ pdfUrl, title }: PdfThumbnailProps) {
 
       window.pdfjsLib
         .getDocument(pdfUrl)
-        .promise.then((pdf: any) => {
+        .promise.then((pdf: PdfDocument) => {
           if (isCancelled) return;
-          return pdf.getPage(1).then((page: any) => {
+          return pdf.getPage(1).then((page: PdfPage) => {
             if (isCancelled) return;
-            // Target thumbnail roughly 120px width
             const unscaledViewport = page.getViewport({ scale: 1 });
             const scale = 120 / unscaledViewport.width;
             const viewport = page.getViewport({ scale });
@@ -46,19 +73,21 @@ export default function PdfThumbnail({ pdfUrl, title }: PdfThumbnailProps) {
               canvasContext: ctx,
               viewport: viewport,
             };
-            return page.render(renderContext).promise;
+            return page.render(renderContext).promise.then(() => {
+              if (!isCancelled) {
+                setIsRendered(true);
+              }
+            });
           });
         })
-        .catch((err: any) => {
+        .catch((err: unknown) => {
           console.warn("PDF render fallback:", err);
         });
     };
 
-    // If pdfjsLib already loaded, render immediately
     if (window.pdfjsLib) {
       renderPage();
     } else {
-      // Check every 100ms until pdfjs is ready
       const interval = setInterval(() => {
         if (window.pdfjsLib) {
           clearInterval(interval);
@@ -77,10 +106,26 @@ export default function PdfThumbnail({ pdfUrl, title }: PdfThumbnailProps) {
   }, [pdfUrl]);
 
   return (
-    <div className="w-[120px] h-[160px] bg-[#000] border border-zinc-800 rounded overflow-hidden flex items-center justify-center shrink-0 shadow-md">
+    <div className="relative w-[120px] h-[160px] bg-[#0d0d12] border border-zinc-800 rounded overflow-hidden flex items-center justify-center shrink-0 shadow-md group">
+      {/* Fallback & Loading Placeholder */}
+      <div
+        className={`absolute inset-0 flex flex-col items-center justify-center p-3 text-center transition-opacity duration-300 ${
+          isRendered ? "opacity-0 pointer-events-none" : "opacity-100"
+        }`}
+      >
+        <div className="w-10 h-10 rounded-lg bg-[#1A0505] border border-[#CC0000]/50 flex items-center justify-center text-[#FF4444] mb-2">
+          <FileText className="w-5 h-5" />
+        </div>
+        <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider line-clamp-2">
+          PDF COVER
+        </span>
+      </div>
+
       <canvas
         ref={canvasRef}
-        className="w-full h-full object-cover"
+        className={`w-full h-full object-cover relative z-10 transition-opacity duration-300 ${
+          isRendered ? "opacity-100" : "opacity-0"
+        }`}
         title={title}
       />
     </div>

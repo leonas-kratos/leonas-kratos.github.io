@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import ScrollProgressBar from "@/components/ScrollProgressBar";
 import ScrollObserver from "@/components/ScrollObserver";
 import SubpageNav, { SubpageFooterNav } from "@/components/SubpageNav";
+import ScrollToTop from "@/components/ScrollToTop";
 import { CONFERENCE_DATA } from "@/data/portfolioData";
 
 export const metadata = {
@@ -69,6 +70,7 @@ export default function ConferencePage() {
 
         <SubpageFooterNav currentPath="/conference" />
       </main>
+      <ScrollToTop />
     </div>
   );
 }

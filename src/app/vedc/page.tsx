@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import ScrollProgressBar from "@/components/ScrollProgressBar";
 import ScrollObserver from "@/components/ScrollObserver";
 import SubpageNav, { SubpageFooterNav } from "@/components/SubpageNav";
+import ScrollToTop from "@/components/ScrollToTop";
 import { VEDC_DATA } from "@/data/portfolioData";
 
 export const metadata = {
@@ -156,6 +157,7 @@ export default function VEDCPage() {
 
         <SubpageFooterNav currentPath="/vedc" />
       </main>
+      <ScrollToTop />
     </div>
   );
 }

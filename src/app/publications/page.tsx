@@ -5,6 +5,7 @@ import ScrollProgressBar from "@/components/ScrollProgressBar";
 import ScrollObserver from "@/components/ScrollObserver";
 import SubpageNav, { SubpageFooterNav } from "@/components/SubpageNav";
 import PdfThumbnail from "@/components/PdfThumbnail";
+import ScrollToTop from "@/components/ScrollToTop";
 import { PUBLICATIONS } from "@/data/portfolioData";
 
 export const metadata = {
@@ -113,6 +114,7 @@ export default function PublicationsPage() {
 
         <SubpageFooterNav currentPath="/publications" />
       </main>
+      <ScrollToTop />
     </div>
   );
 }

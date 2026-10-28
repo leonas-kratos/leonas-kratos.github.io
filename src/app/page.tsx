@@ -3,8 +3,11 @@ import ScrollProgressBar from "@/components/ScrollProgressBar";
 import ScrollObserver from "@/components/ScrollObserver";
 import HomeHero from "@/components/HomeHero";
 import StatsBar from "@/components/StatsBar";
+import SkillsSection from "@/components/SkillsSection";
 import GameMenu from "@/components/GameMenu";
+import ExperienceProjectsSection from "@/components/ExperienceProjectsSection";
 import ContactSection from "@/components/ContactSection";
+import ScrollToTop from "@/components/ScrollToTop";
 
 export default function Home() {
   return (
@@ -27,12 +30,21 @@ export default function Home() {
           <StatsBar />
         </div>
 
-        {/* Sector Navigation Grid */}
+        {/* Skills Matrix */}
+        <SkillsSection />
+
+        {/* Sector Navigation & Visual Gallery */}
         <GameMenu />
+
+        {/* Engineering Projects, Industry Experience & Awards */}
+        <ExperienceProjectsSection />
 
         {/* Contact & Footer */}
         <ContactSection />
       </main>
+
+      {/* Back to top floating button */}
+      <ScrollToTop />
     </div>
   );
 }

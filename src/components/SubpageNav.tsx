@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface SubpageNavProps {
-  currentPath: string;
+  currentPath?: string;
   currentPageName: string;
 }
 
@@ -14,7 +14,7 @@ const SECTIONS = [
   { name: "PUBLICATIONS", path: "/publications", icon: "📄" },
 ];
 
-export default function SubpageNav({ currentPath, currentPageName }: SubpageNavProps) {
+export default function SubpageNav({ currentPageName }: SubpageNavProps) {
   return (
     <div className="w-full mb-10">
       <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-zinc-800">

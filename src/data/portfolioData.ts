@@ -157,3 +157,185 @@ export const PUBLICATIONS: Publication[] = [
     tags: ["Research Report", "VNU-UET NCKH", "UWB-IPS Monograph", "Full Monograph"],
   },
 ];
+
+// 6. Professional Experience
+export interface Experience {
+  id: string;
+  role: string;
+  organization: string;
+  period: string;
+  location: string;
+  badge: string;
+  highlights: string[];
+  tags: string[];
+}
+
+export const EXPERIENCES: Experience[] = [
+  {
+    id: "viettel-high-tech",
+    role: "Embedded Software Engineering Intern",
+    organization: "Viettel High Tech",
+    period: "Jul 2026 – Aug 2026",
+    location: "Hanoi, Vietnam",
+    badge: "INDUSTRY INTERNSHIP",
+    highlights: [
+      "Benchmarked and evaluated FreeRTOS and ZephyrOS real-time operating systems on STM32 microcontrollers.",
+      "Engineered a PetaLinux project integrated with an existing Xilinx Vivado hardware design.",
+      "Configured dual-core heterogeneous architecture running PetaLinux and RTOS on Xilinx SoC, establishing inter-core communication via RPMsg for low-latency data exchange.",
+    ],
+    tags: ["FreeRTOS", "ZephyrOS", "STM32", "PetaLinux", "Xilinx SoC", "RPMsg", "Vivado"],
+  },
+  {
+    id: "telecom-lab-coordinator",
+    role: "Researcher & Project Coordinator",
+    organization: "Department of Telecommunication Systems, VNU-UET",
+    period: "Jul 2024 – Present",
+    location: "Hanoi, Vietnam",
+    badge: "ACADEMIC LAB",
+    highlights: [
+      "Conducted core research on Ultra-Wideband (UWB) indoor positioning systems, algorithm engineering, and experimental performance analysis.",
+      "Organized academic seminars and technical training sessions in embedded systems and IoT for lab members.",
+      "Managed testing hardware platforms, DWM1001 transceivers, and sensor fusion validation testbeds.",
+    ],
+    tags: ["UWB-IPS", "Sensor Fusion", "Embedded Systems", "Academic Mentorship", "VNU-UET"],
+  },
+  {
+    id: "vedc-system-developer",
+    role: "Autonomous Vehicle System Developer",
+    organization: "Vietnam Electronic Design Competition (VEDC 2025)",
+    period: "Aug 2025 – Nov 2025",
+    location: "Hanoi, Vietnam",
+    badge: "NATIONAL COMPETITION",
+    highlights: [
+      "Engineered intelligent positioning and navigation systems for autonomous mobile robots operating in simulated factory environments.",
+      "Designed embedded motor control routines and real-time obstacle avoidance algorithms on STM32 microcontrollers.",
+      "Advanced to Semi-Finalist rank in national competition track.",
+    ],
+    tags: ["VEDC 2025", "STM32", "AMR Navigation", "Obstacle Avoidance", "AIoT"],
+  },
+];
+
+// 7. Featured Engineering & TinyML Projects
+export interface EngineeringProject {
+  id: string;
+  title: string;
+  subtitle: string;
+  badge: string;
+  description: string;
+  metrics: string[];
+  tags: string[];
+}
+
+export const ENGINEERING_PROJECTS: EngineeringProject[] = [
+  {
+    id: "tinyml-uwb-nlos",
+    title: "Lightweight UWB NLOS Identification on Edge MCU",
+    subtitle: "Channel Impulse Response (CIR) classification with INT8 TinyML deployment",
+    badge: "TINYML & EDGE AI",
+    description:
+      "Engineered a lightweight Non-Line-of-Sight (NLOS) classifier using CIR data. Deployed full-integer INT8 quantized neural network on an STM32F401RE Cortex-M4 MCU running at 84 MHz via X-CUBE-AI and CMSIS-NN.",
+    metrics: [
+      "93.76% INT8 Accuracy on eWINE dataset (beating LightMamba 92.03% & TinySA 92.99%)",
+      "0.56 ms inference latency on STM32F401RE Cortex-M4 @ 84 MHz",
+      "10.45 KB weights, 3.6 KB RAM footprint, ~10.4K MACs per inference",
+      "3.8× memory reduction with 0.03% accuracy delta vs FP32 baseline",
+    ],
+    tags: ["TinyML", "STM32F401RE", "CMSIS-NN", "X-CUBE-AI", "UWB CIR", "INT8 Quantization", "TensorFlow"],
+  },
+  {
+    id: "amr-cargo-transport",
+    title: "Autonomous Mobile Robot (AMR) for Light Cargo Transport",
+    subtitle: "Dual-layer cargo verification with multi-sensor odometry fusion",
+    badge: "ROBOTICS & EMBEDDED",
+    description:
+      "Engineered a functional AMR utilizing Raspberry Pi 5 as high-level compute engine and STM32 Bluepill for real-time motor control and sensor acquisition. Integrated dual-layer security verification to reject mismatched or tampered goods.",
+    metrics: [
+      "Sensor fusion: BNO055 IMU + GA25-370 wheel encoders via STM32 HAL",
+      "Dual cargo verification: Pi Camera V2 barcode scanner + high-precision load cell",
+      "Autonomous dispatch rejection upon weight deviation or barcode mismatch",
+    ],
+    tags: ["Raspberry Pi 5", "STM32 Bluepill", "BNO055 IMU", "Load Cell", "Pi Camera V2", "Python", "STM32 HAL"],
+  },
+  {
+    id: "smart-parking-system",
+    title: "AIoT Smart Parking & Vehicle Tracking System",
+    subtitle: "Vehicle-to-Slot Association (VSA) with RFID, YOLOv8 & MQTT",
+    badge: "AIOT ARCHITECTURE",
+    description:
+      "Designed full system architecture and component interaction pipeline linking RFID gate access, YOLOv8 + BotSORT visual tracking, IR slot sensing, and MQTT cloud messaging across ESP8266 and Arduino Nano 33 IoT edge nodes.",
+    metrics: [
+      "Real-time violation detection: double-parking, excessive roaming, reserved-slot theft",
+      "End-to-end telemetry via HiveMQ MQTT broker and MongoDB backend",
+    ],
+    tags: ["YOLOv8", "BotSORT", "MQTT", "ESP8266", "Arduino Nano 33 IoT", "RFID", "MongoDB"],
+  },
+];
+
+// 8. Honors & Awards
+export interface Award {
+  id: string;
+  title: string;
+  rank: string;
+  date: string;
+  organization: string;
+  badge: string;
+}
+
+export const HONORS_AWARDS: Award[] = [
+  {
+    id: "nckh-second-prize-2026",
+    title: "Student Scientific Research Competition (NCKH)",
+    rank: "Second Prize (Giải Nhì)",
+    date: "April 2026",
+    organization: "Faculty of Electronics and Telecommunications (FET), VNU-UET",
+    badge: "RESEARCH EXCELLENCE",
+  },
+  {
+    id: "vedc-semifinalist-2025",
+    title: "Vietnam Electronic Design Competition (VEDC 2025)",
+    rank: "National Semi-finalist",
+    date: "October 2025",
+    organization: "VEDC National Committee",
+    badge: "NATIONAL COMPETITION",
+  },
+  {
+    id: "nckh-encouragement-2025",
+    title: "Student Scientific Research Competition (NCKH)",
+    rank: "Encouragement Award (Giải Khuyến khích)",
+    date: "March 2025",
+    organization: "Faculty of Electronics and Telecommunications (FET), VNU-UET",
+    badge: "RESEARCH AWARD",
+  },
+  {
+    id: "academic-scholarship",
+    title: "Academic Encouragement Scholarship (Học bổng Khuyến khích học tập)",
+    rank: "Merit Scholar",
+    date: "Semester 2 (2024–2025) & Semester 1 (2025–2026)",
+    organization: "VNU University of Engineering and Technology (VNU-UET)",
+    badge: "ACADEMIC SCHOLARSHIP",
+  },
+];
+
+// 9. Structured Skills Matrix
+export const TECHNICAL_SKILLS = [
+  {
+    category: "Languages & Scripting",
+    skills: ["C", "C++", "Python", "Bash", "MATLAB"],
+  },
+  {
+    category: "Embedded & RTOS",
+    skills: ["STM32 (CubeMX / HAL)", "FreeRTOS", "ZephyrOS", "PetaLinux", "Raspberry Pi", "Arduino"],
+  },
+  {
+    category: "Robotics & State Estimation",
+    skills: ["UWB (DWM1001)", "EKF / UKF / Particle Filter", "ROS 2", "Nav2", "2D LiDAR SLAM", "Sensor Fusion"],
+  },
+  {
+    category: "AI & TinyML",
+    skills: ["TensorFlow", "Keras", "X-CUBE-AI", "CMSIS-NN", "INT8 Quantization", "Scikit-learn", "YOLOv8"],
+  },
+  {
+    category: "Hardware & EDA Tools",
+    skills: ["KiCad", "EasyEDA", "Xilinx Vivado", "PCB Design", "Docker", "Git / GitHub"],
+  },
+];
