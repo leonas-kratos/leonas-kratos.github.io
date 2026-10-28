@@ -12,7 +12,7 @@ export const metadata = {
 
 export default function ResearchPage() {
   return (
-    <div className="min-h-screen bg-transparent text-[#b4b4be]">
+    <div className="min-h-screen bg-[#06090f] text-slate-300">
       <ScrollProgressBar />
       <ScrollObserver />
       <Navbar />
@@ -24,7 +24,7 @@ export default function ResearchPage() {
         <div className="section-title !mb-2">
           Student Scientific Research (NCKH)
         </div>
-        <p className="text-sm sm:text-base text-[#b0b0ba] max-w-2xl mb-8">
+        <p className="text-sm sm:text-base text-slate-300 max-w-2xl mb-8">
           Student Scientific Research — UWB-based indoor positioning with state estimation filters for GPS-denied environments applied to autonomous mobile robots.
         </p>
 
@@ -33,35 +33,36 @@ export default function ResearchPage() {
           {RESEARCH_PRESENTATION_DATA.map((item, idx) => (
             <div
               key={item.id}
-              className={`reveal reveal-delay-${idx + 1} img-card p-5 flex flex-col justify-between`}
+              className={`reveal reveal-delay-${idx + 1} glass-card p-5 flex flex-col justify-between`}
             >
               <div>
-                <div className="person-img-wrapper">
+                <div className="academic-img-wrapper">
                   <img
                     src={item.image}
                     alt={item.title}
                     loading="eager"
+                    className="object-cover object-center"
                   />
                 </div>
 
-                <div className="mt-5">
-                  <div className="text-[11px] font-mono font-bold text-[#FF4444] uppercase mb-1">
+                <div className="mt-4">
+                  <div className="text-[11px] font-mono font-bold text-cyan-400 uppercase mb-1">
                     {item.badge}
                   </div>
                   <h2 className="text-lg font-bold text-white mb-2">
                     {item.title}
                   </h2>
-                  <p className="text-sm text-[#b0b0ba] leading-relaxed">
+                  <p className="text-sm text-slate-300 leading-relaxed">
                     {item.description}
                   </p>
                 </div>
               </div>
 
-              <div className="flex flex-wrap gap-1.5 pt-4 mt-4 border-t border-white/10">
+              <div className="flex flex-wrap gap-1.5 pt-4 mt-4 border-t border-slate-800">
                 {item.tags.map((t) => (
                   <span
                     key={t}
-                    className="text-xs px-2.5 py-0.5 rounded bg-[#1A0505] border border-[#CC0000]/40 text-[#FF6666] font-mono"
+                    className="text-xs px-2.5 py-0.5 rounded bg-[#091120] border border-cyan-500/20 text-slate-300 font-mono"
                   >
                     #{t}
                   </span>

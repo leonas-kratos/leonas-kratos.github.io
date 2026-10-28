@@ -32,9 +32,9 @@ export default function ScrollToTop() {
       type="button"
       onClick={scrollToTop}
       aria-label="Scroll to top"
-      className="fixed bottom-6 right-6 z-50 p-2.5 rounded-full bg-[#120505]/90 hover:bg-[#CC0000] border border-[#CC0000]/70 text-white shadow-[0_4px_20px_rgba(204,0,0,0.35)] hover:shadow-[0_4px_25px_rgba(204,0,0,0.6)] backdrop-blur-md transition-all duration-300 transform hover:scale-110 cursor-pointer flex items-center justify-center group"
+      className="fixed bottom-6 right-6 z-50 p-2.5 rounded-full bg-[#0a1220]/90 hover:bg-[#00f0ff] border border-cyan-500/50 text-white hover:text-slate-950 shadow-[0_4px_20px_rgba(0,240,255,0.25)] hover:shadow-[0_4px_25px_rgba(0,240,255,0.55)] backdrop-blur-md transition-all duration-300 transform hover:scale-110 cursor-pointer flex items-center justify-center group"
     >
-      <ArrowUp className="w-4 h-4 text-[#FF4444] group-hover:text-white transition-colors" />
+      <ArrowUp className="w-4 h-4 text-cyan-400 group-hover:text-slate-950 transition-colors" />
       <span className="sr-only">Scroll to top ({Math.round(scrollProgress)}%)</span>
     </button>
   );

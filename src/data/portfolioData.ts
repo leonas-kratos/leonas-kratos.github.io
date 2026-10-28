@@ -2,10 +2,14 @@ export interface Publication {
   id: string;
   title: string;
   authors: string;
+  authorRank?: string;
   venue: string;
   type: "International Conference" | "National Conference" | "National Journal" | "Research Report";
   year: string;
   pdfUrl: string;
+  doi?: string;
+  bibtex: string;
+  abstract?: string;
   tags: string[];
 }
 
@@ -110,51 +114,95 @@ export const PUBLICATIONS: Publication[] = [
     id: "atc-mcc-ukf",
     title: "Robust Indoor Mobile Robot Localization Using Maximum Correntropy Criterion UKF",
     authors: "Vu Nhat Quang, Dang Minh Duc, Ngo Gia Long, Nguyen Huu Chuyen, Le Duc Binh, Nguyen Tan-Phong, Dinh Thi Thai Mai*",
+    authorRank: "Co-Author (2nd Author)",
     venue: "IEEE International Conference on Advanced Technologies for Communications (ATC)",
     type: "International Conference",
-    year: "2024 / 2025",
+    year: "2025 / 2026",
     pdfUrl: "/Research/Paper/ATC_Final_manuscript.pdf",
-    tags: ["International Conference", "IEEE ATC", "MCC-UKF", "UWB Localization"],
+    abstract: "Addresses non-Gaussian multi-path and NLOS disturbances in UWB-based AMR indoor positioning by integrating the Maximum Correntropy Criterion into an Unscented Kalman Filter (MCC-UKF) framework.",
+    tags: ["IEEE ATC", "MCC-UKF", "Non-Gaussian Noise", "UWB Positioning", "AMR Localization"],
+    bibtex: `@inproceedings{quang2026robust,
+  title={Robust Indoor Mobile Robot Localization Using Maximum Correntropy Criterion UKF},
+  author={Quang, Vu Nhat and Duc, Dang Minh and Long, Ngo Gia and Chuyen, Nguyen Huu and Binh, Le Duc and Tan-Phong, Nguyen and Mai, Dinh Thi Thai},
+  booktitle={IEEE International Conference on Advanced Technologies for Communications (ATC)},
+  year={2026},
+  organization={IEEE}
+}`,
   },
   {
     id: "nn-kalman-indoor-pos",
     title: "Neural Network-Aided Kalman Filtering for Indoor Positioning Autonomous Vehicle System",
     authors: "Nguyen Minh Duc, Ngo Gia Long, Dang Minh Duc, Nguyen Tan Phong, Dinh Thi Thai Mai*",
-    venue: "International Conference on Advanced Robotics and Intelligent Control",
+    authorRank: "Co-Author (3rd Author)",
+    venue: "International Conference on Advanced Robotics and Intelligent Control (ICARIC)",
     type: "International Conference",
-    year: "2024 / 2025",
+    year: "2025 / 2026",
     pdfUrl: "/Research/Paper/Neural_Network_Kalman_Filter_Indoor_Positioning.pdf",
-    tags: ["International Conference", "Neural Network-aided KF", "UWB", "Autonomous Vehicle"],
+    abstract: "Proposes an end-to-end hybrid architecture coupling a deep neural network with a Kalman filter to adaptively compensate for kinematic modeling uncertainties and UWB measurement biases.",
+    tags: ["ICARIC", "Neural-Aided KF", "Deep Learning Hybrid", "Autonomous Vehicles", "UWB"],
+    bibtex: `@inproceedings{duc2026neural,
+  title={Neural Network-Aided Kalman Filtering for Indoor Positioning Autonomous Vehicle System},
+  author={Duc, Nguyen Minh and Long, Ngo Gia and Duc, Dang Minh and Phong, Nguyen Tan and Mai, Dinh Thi Thai},
+  booktitle={International Conference on Advanced Robotics and Intelligent Control (ICARIC)},
+  year={2026}
+}`,
   },
   {
     id: "jec-journal-paper",
     title: "Evaluation of the applicability of state estimation filters for indoor robot positioning",
     authors: "Dang Minh Duc, Nguyen Tan Phong, Nguyen Minh Duc, Nguyen Duc Binh, Nguyen Gia Quang, Dinh Thi Thai Mai*",
+    authorRank: "First Author (1st Author)",
     venue: "REV Journal on Electronics and Communications (JEC)",
     type: "National Journal",
-    year: "2024",
+    year: "2025 / 2026",
     pdfUrl: "/Research/Paper/JEC_remake_round_1_no_marking.pdf",
-    tags: ["National Journal", "REV JEC", "EKF / UKF / PF", "UWB Benchmarking"],
+    abstract: "Rigorous comparative benchmarking of Extended Kalman Filter (EKF), Unscented Kalman Filter (UKF), and Particle Filter (PF) on physical AMR platforms in multi-room GPS-denied environments.",
+    tags: ["REV JEC Journal", "EKF vs UKF vs PF", "State Estimation Benchmark", "AMR Robotics"],
+    bibtex: `@article{duc2026evaluation,
+  title={Evaluation of the applicability of state estimation filters for indoor robot positioning},
+  author={Duc, Dang Minh and Phong, Nguyen Tan and Duc, Nguyen Minh and Binh, Nguyen Duc and Quang, Nguyen Gia and Mai, Dinh Thi Thai},
+  journal={REV Journal on Electronics and Communications},
+  volume={15},
+  number={1},
+  year={2026}
+}`,
   },
   {
     id: "rev-ecit-conference",
     title: "Đánh giá khả năng ứng dụng các bộ lọc ước lượng trạng thái EKF, UKF, PF sử dụng cho định vị robot trong nhà",
     authors: "Đặng Minh Đức, Nguyễn Tấn Phong, Nguyễn Minh Đức, Nguyễn Đức Bính, Nguyễn Gia Quang, Đinh Thị Thái Mai*",
+    authorRank: "First Author (Báo cáo Oral)",
     venue: "Hội nghị Quốc gia về Điện tử, Truyền thông và Công nghệ Thông tin (REV-ECIT)",
     type: "National Conference",
-    year: "2024 / 2025",
+    year: "2025",
     pdfUrl: "/Research/Paper/REV_2025_the_last.pdf",
-    tags: ["National Conference", "REV-ECIT", "Định vị UWB", "Bộ lọc ước lượng trạng thái"],
+    abstract: "Báo cáo Oral tại hội nghị REV-ECIT về việc triển khai và kiểm chứng thực nghiệm các bộ lọc phi tuyến EKF, UKF và PF kết hợp công nghệ định vị sóng siêu rộng UWB trên robot di động.",
+    tags: ["REV-ECIT 2025", "Báo cáo Oral", "Định vị Robot UWB", "Bộ lọc trạng thái", "VNU-UET"],
+    bibtex: `@inproceedings{duc2025danhgia,
+  title={Đánh giá khả năng ứng dụng các bộ lọc ước lượng trạng thái EKF, UKF, PF sử dụng cho định vị robot trong nhà},
+  author={Đức, Đặng Minh and Phong, Nguyễn Tấn and Đức, Nguyễn Minh and Bính, Nguyễn Đức and Quang, Nguyễn Gia and Mai, Đinh Thị Thái},
+  booktitle={Hội nghị Quốc gia về Điện tử, Truyền thông và CNTT (REV-ECIT)},
+  year={2025}
+}`,
   },
   {
     id: "nckh-report-2026",
     title: "Báo cáo Nghiên cứu Khoa học Sinh viên: Hệ thống Robot Tự hành & Định vị Trong nhà sử dụng UWB",
     authors: "Đặng Minh Đức và Nhóm NCKH (GVHD: TS. Đinh Thị Thái Mai)",
+    authorRank: "Trưởng nhóm Đề tài (Giải Nhì NCKH)",
     venue: "Trường Đại học Công nghệ - ĐHQGHN (VNU-UET)",
     type: "Research Report",
     year: "2026",
     pdfUrl: "/Research/NCKH_2026.pdf",
-    tags: ["Research Report", "VNU-UET NCKH", "UWB-IPS Monograph", "Full Monograph"],
+    abstract: "Chuyên khảo hoàn chỉnh về thiết kế phần cứng, thuật toán ước lượng vị trí UWB thời gian thực, tích hợp ROS 2 Nav2 và kết quả nghiệm thu đạt Giải Nhì NCKH cấp Khoa ĐTVT - ĐH Công nghệ.",
+    tags: ["Báo cáo NCKH", "Giải Nhì NCKH 2026", "VNU-UET", "Toàn văn Chuyên khảo", "ROS 2"],
+    bibtex: `@techreport{duc2026nckh,
+  title={Hệ thống Robot Tự hành và Định vị Trong nhà sử dụng UWB},
+  author={Đức, Đặng Minh and Mai, Đinh Thị Thái},
+  institution={Trường Đại học Công nghệ, Đại học Quốc gia Hà Nội},
+  year={2026},
+  type={Báo cáo Nghiên cứu Khoa học Sinh viên}
+}`,
   },
 ];
 
@@ -337,5 +385,109 @@ export const TECHNICAL_SKILLS = [
   {
     category: "Hardware & EDA Tools",
     skills: ["KiCad", "EasyEDA", "Xilinx Vivado", "PCB Design", "Docker", "Git / GitHub"],
+  },
+];
+
+// 10. Distinct Hardware & Research Gallery Items (NO DUPLICATES)
+export interface GalleryItem {
+  id: string;
+  title: string;
+  subtitle: string;
+  category: "AMR Platform" | "Competition" | "Scientific Defense" | "Laboratory" | "Honors";
+  badge: string;
+  image: string;
+  imageFit?: "contain" | "cover";
+  description: string;
+  techSpecs: string[];
+}
+
+export const RESEARCH_GALLERY_ITEMS: GalleryItem[] = [
+  {
+    id: "amr-car-v2",
+    title: "AMR Platform Car V2",
+    subtitle: "Custom UWB-IPS Robotic Testbed",
+    category: "AMR Platform",
+    badge: "RESEARCH VEHICLE",
+    image: "/images/Car_V2.png",
+    imageFit: "contain",
+    description: "Custom four-wheel differential autonomous mobile robot platform engineered for indoor positioning experiments. Integrates STM32 real-time motor actuation, Decawave DWM1001 UWB transceivers, 2D LiDAR, and ROS 2 Nav2 stack.",
+    techSpecs: ["STM32 Real-Time Control", "Decawave DWM1001 UWB", "2D LiDAR SLAM", "ROS 2 Humble / Nav2"],
+  },
+  {
+    id: "vedc-competition-car",
+    title: "VEDC Autonomous Electric Vehicle",
+    subtitle: "National Competition Platform",
+    category: "Competition",
+    badge: "COMPETITION CAR",
+    image: "/images/VEDC_CAR.png",
+    imageFit: "contain",
+    description: "High-speed autonomous vehicle designed for the Vietnam Electronic Design Competition. Features low-latency vision lane tracking, ultrasonic obstacle avoidance, and responsive motor drive running FreeRTOS on STM32.",
+    techSpecs: ["STM32 Microcontroller", "FreeRTOS Real-Time Kernel", "Lane Tracking", "Obstacle Avoidance"],
+  },
+  {
+    id: "vedc-team",
+    title: "VEDC 2025 Engineering Team",
+    subtitle: "Hardware & Firmware Developers",
+    category: "Competition",
+    badge: "ENGINEERING CREW",
+    image: "/images/VEDC2025_Teamate.png",
+    imageFit: "cover",
+    description: "FET VNU-UET student robotics team collaborating on mechanical chassis assembly, motor drive circuit design, embedded C++ firmware implementation, and real-track competitive testing.",
+    techSpecs: ["Semi-finalist Award", "Chassis & Driver Circuit", "Track Validation", "VNU-UET"],
+  },
+  {
+    id: "nckh-presentation-defense",
+    title: "Scientific Research (NCKH) Defense",
+    subtitle: "Faculty Evaluation Council",
+    category: "Scientific Defense",
+    badge: "ORAL DEFENSE",
+    image: "/images/NCKH_present.png",
+    imageFit: "cover",
+    description: "Defending the research monograph 'Autonomous Mobile Robot & Indoor Localization Using Ultra-Wideband' in front of the Faculty Evaluation Council at VNU-UET, achieving Second Prize (Giải Nhì).",
+    techSpecs: ["Second Prize Honor", "UWB-IPS State Estimation", "Experimental Verification", "VNU-UET Council"],
+  },
+  {
+    id: "nckh-research-team",
+    title: "UWB Research Group & Advisor",
+    subtitle: "Department of Telecommunication Systems",
+    category: "Scientific Defense",
+    badge: "RESEARCH GROUP",
+    image: "/images/NCKH_teamate.png",
+    imageFit: "cover",
+    description: "Student researchers and faculty advisor (Dr. Dinh Thi Thai Mai) at the Department of Telecommunication Systems, VNU-UET, collaborating on nonlinear state estimation algorithms and indoor localization testbeds.",
+    techSpecs: ["Faculty of Electronics & Telecom", "Academic Advisors", "Multi-Room Testbed", "Research Publications"],
+  },
+  {
+    id: "rev-2025-conference",
+    title: "REV-ECIT 2025 National Conference",
+    subtitle: "Oral Presentation & Peer Review",
+    category: "Scientific Defense",
+    badge: "NATIONAL CONFERENCE",
+    image: "/images/REV2025.png",
+    imageFit: "cover",
+    description: "Oral presentation on 'Evaluation of the applicability of state estimation filters (EKF, UKF, PF) for indoor robot positioning' at the National Conference on Electronics, Communications and IT (REV-ECIT).",
+    techSpecs: ["REV-ECIT 2025", "Oral Presentation", "EKF / UKF / PF Benchmarks", "Peer-Reviewed"],
+  },
+  {
+    id: "telecom-lab",
+    title: "Telecommunication Systems Laboratory",
+    subtitle: "Advanced Wireless & Robotics Lab",
+    category: "Laboratory",
+    badge: "RESEARCH LAB",
+    image: "/images/Lab.png",
+    imageFit: "cover",
+    description: "Department research laboratory and development environment at VNU University of Engineering and Technology, focusing on wireless communication systems, edge computing, UWB localization, and robotic state estimation.",
+    techSpecs: ["VNU-UET Campus", "RF Measurement Equipment", "Robotics Test Track", "Embedded Workbenches"],
+  },
+  {
+    id: "nckh-prize-cert",
+    title: "Scientific Research Excellence Award",
+    subtitle: "Second Prize (Giải Nhì NCKH FET)",
+    category: "Honors",
+    badge: "FACULTY AWARD",
+    image: "/images/prize.png",
+    imageFit: "contain",
+    description: "Official Second Prize Certificate awarded by the Faculty of Electronics and Telecommunications (FET), VNU-UET in recognition of high-impact research on UWB indoor robot localization and nonlinear filtering.",
+    techSpecs: ["Second Prize (Giải Nhì)", "Faculty-Level Award", "VNU-UET Recognition", "April 2026"],
   },
 ];
