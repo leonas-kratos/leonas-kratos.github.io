@@ -34,12 +34,11 @@ export default function VEDCPage() {
           {/* Card 1: VEDC Autonomous Car */}
           <div className="reveal reveal-delay-1 glass-card p-5 flex flex-col justify-between">
             <div>
-              <div className="academic-img-wrapper">
+              <div className="vehicle-frame">
                 <img
                   src={VEDC_DATA.car.image}
                   alt={VEDC_DATA.car.title}
                   loading="eager"
-                  className="object-contain p-3"
                 />
               </div>
 
@@ -50,9 +49,9 @@ export default function VEDCPage() {
                 <h2 className="text-lg font-bold text-white mb-2">
                   {VEDC_DATA.car.title}
                 </h2>
-                <p className="text-sm text-slate-300 leading-relaxed">
+                <div className="info-subbox text-sm text-slate-300 leading-relaxed">
                   {VEDC_DATA.car.description}
-                </p>
+                </div>
               </div>
             </div>
 
@@ -60,7 +59,7 @@ export default function VEDCPage() {
               {VEDC_DATA.car.tags.map((t) => (
                 <span
                   key={t}
-                  className="text-xs px-2.5 py-0.5 rounded bg-[#091120] border border-cyan-500/20 text-slate-300 font-mono"
+                  className="spec-pill"
                 >
                   #{t}
                 </span>
@@ -71,12 +70,11 @@ export default function VEDCPage() {
           {/* Card 2: VEDC Teammate */}
           <div className="reveal reveal-delay-2 glass-card p-5 flex flex-col justify-between">
             <div>
-              <div className="academic-img-wrapper">
+              <div className="landscape-frame">
                 <img
                   src={VEDC_DATA.teammates.image}
                   alt={VEDC_DATA.teammates.title}
                   loading="eager"
-                  className="object-cover object-center"
                 />
               </div>
 
@@ -87,9 +85,9 @@ export default function VEDCPage() {
                 <h2 className="text-lg font-bold text-white mb-2">
                   {VEDC_DATA.teammates.title}
                 </h2>
-                <p className="text-sm text-slate-300 leading-relaxed">
+                <div className="info-subbox text-sm text-slate-300 leading-relaxed">
                   {VEDC_DATA.teammates.description}
-                </p>
+                </div>
               </div>
             </div>
 
@@ -97,7 +95,7 @@ export default function VEDCPage() {
               {VEDC_DATA.teammates.tags.map((t) => (
                 <span
                   key={t}
-                  className="text-xs px-2.5 py-0.5 rounded bg-[#091120] border border-cyan-500/20 text-slate-300 font-mono"
+                  className="spec-pill"
                 >
                   #{t}
                 </span>
@@ -107,12 +105,11 @@ export default function VEDCPage() {
 
           {/* Card 3: AMR CAR V2 */}
           <div className="reveal reveal-delay-3 glass-card p-5 md:col-span-2 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
-            <div className="md:col-span-5 academic-img-wrapper">
+            <div className="md:col-span-5 vehicle-frame">
               <img
                 src={VEDC_DATA.currentResearchCar.image}
                 alt={VEDC_DATA.currentResearchCar.title}
                 loading="lazy"
-                className="object-contain p-3"
               />
             </div>
 
@@ -124,16 +121,16 @@ export default function VEDCPage() {
                 <h2 className="text-lg sm:text-xl font-bold text-white mb-2">
                   {VEDC_DATA.currentResearchCar.title}
                 </h2>
-                <p className="text-sm text-slate-300 leading-relaxed">
+                <div className="info-subbox text-sm text-slate-300 leading-relaxed">
                   {VEDC_DATA.currentResearchCar.description}
-                </p>
+                </div>
               </div>
 
               <div className="flex flex-wrap gap-1.5 pt-4 mt-4 border-t border-slate-800">
                 {VEDC_DATA.currentResearchCar.tags.map((t) => (
                   <span
                     key={t}
-                    className="text-xs px-2.5 py-0.5 rounded bg-[#091120] border border-cyan-500/20 text-slate-300 font-mono"
+                    className="spec-pill"
                   >
                     #{t}
                   </span>

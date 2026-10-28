@@ -36,12 +36,11 @@ export default function ResearchPage() {
               className={`reveal reveal-delay-${idx + 1} glass-card p-5 flex flex-col justify-between`}
             >
               <div>
-                <div className="academic-img-wrapper">
+                <div className="landscape-frame">
                   <img
                     src={item.image}
                     alt={item.title}
                     loading="eager"
-                    className="object-cover object-center"
                   />
                 </div>
 
@@ -52,9 +51,9 @@ export default function ResearchPage() {
                   <h2 className="text-lg font-bold text-white mb-2">
                     {item.title}
                   </h2>
-                  <p className="text-sm text-slate-300 leading-relaxed">
+                  <div className="info-subbox text-sm text-slate-300 leading-relaxed">
                     {item.description}
-                  </p>
+                  </div>
                 </div>
               </div>
 
@@ -62,7 +61,7 @@ export default function ResearchPage() {
                 {item.tags.map((t) => (
                   <span
                     key={t}
-                    className="text-xs px-2.5 py-0.5 rounded bg-[#091120] border border-cyan-500/20 text-slate-300 font-mono"
+                    className="spec-pill"
                   >
                     #{t}
                   </span>

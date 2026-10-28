@@ -32,12 +32,11 @@ export default function ConferencePage() {
         <div className="reveal glass-card p-5 sm:p-6 max-w-4xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center">
             
-            <div className="md:col-span-6 academic-img-wrapper">
+            <div className="md:col-span-6 landscape-frame">
               <img
                 src={CONFERENCE_DATA.image}
                 alt={CONFERENCE_DATA.title}
                 loading="eager"
-                className="object-cover object-center"
               />
             </div>
 
@@ -49,16 +48,16 @@ export default function ConferencePage() {
                 <h2 className="text-xl font-bold text-white mb-3">
                   {CONFERENCE_DATA.title}
                 </h2>
-                <p className="text-sm text-slate-300 leading-relaxed mb-6">
+                <div className="info-subbox text-sm text-slate-300 leading-relaxed mb-4">
                   {CONFERENCE_DATA.description}
-                </p>
+                </div>
               </div>
 
               <div className="flex flex-wrap gap-2 pt-4 border-t border-slate-800">
                 {CONFERENCE_DATA.tags.map((t) => (
                   <span
                     key={t}
-                    className="text-xs px-2.5 py-1 rounded bg-[#091120] border border-cyan-500/20 text-slate-300 font-mono"
+                    className="spec-pill"
                   >
                     #{t}
                   </span>

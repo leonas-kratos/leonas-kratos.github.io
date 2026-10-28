@@ -1,4 +1,4 @@
-import { Trophy, Award as AwardIcon, Sparkles } from "lucide-react";
+import { Trophy, Award as AwardIcon, Sparkles, School, Calendar, CheckCircle2, Medal } from "lucide-react";
 import { HONORS_AWARDS, PERSONAL_INFO } from "@/data/portfolioData";
 
 export default function ModernAwards() {
@@ -23,12 +23,12 @@ export default function ModernAwards() {
         </div>
 
         {/* Featured Award Showcase with Certificate Image */}
-        <div className="glass-card p-6 sm:p-8 border border-amber-500/30 mb-8 bg-gradient-to-br from-[#12140a]/50 via-[#0a0f1d] to-[#070b14]">
+        <div className="glass-card p-6 sm:p-8 border border-amber-500/35 mb-8 bg-gradient-to-br from-[#14120a]/60 via-[#0a0f1d] to-[#070b14]">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center">
             
-            {/* Left: Certificate Picture `prize.png` */}
+            {/* Left: Certificate Picture `prize.png` (Proportionally Scaled Square, Never Blurry/Oversized) */}
             <div className="md:col-span-4 flex justify-center">
-              <div className="relative w-48 sm:w-56 aspect-square rounded-2xl overflow-hidden bg-[#0a0a10] border-2 border-amber-400/40 shadow-[0_0_35px_rgba(245,158,11,0.25)] p-3 group">
+              <div className="relative w-40 sm:w-48 aspect-square rounded-2xl overflow-hidden bg-[#060912] border-2 border-amber-400/40 shadow-[0_0_30px_rgba(245,158,11,0.2)] p-2.5 group">
                 <img
                   src={PERSONAL_INFO.prizeImage}
                   alt="NCKH Second Prize Certificate - Dang Minh Duc"
@@ -48,23 +48,24 @@ export default function ModernAwards() {
                 Second Prize (Giải Nhì) — Student Scientific Research Competition
               </h3>
 
-              <div className="text-sm font-semibold text-cyan-400">
-                Faculty of Electronics and Telecommunications (FET) · VNU University of Engineering and Technology
+              <div className="text-xs sm:text-sm font-semibold text-cyan-400 flex items-center gap-2">
+                <School className="w-4 h-4 text-cyan-400 shrink-0" />
+                <span>Faculty of Electronics and Telecommunications (FET) · VNU-UET</span>
               </div>
 
-              <p className="text-sm text-slate-300 leading-relaxed">
-                Awarded in recognition of the scientific research monograph: <strong className="text-white">“Hệ thống Robot Tự hành &amp; Định vị Trong nhà sử dụng UWB”</strong>, demonstrating breakthrough accuracy in multi-path NLOS GPS-denied environments through nonlinear state estimation and deterministic embedded control.
-              </p>
+              <div className="info-subbox text-xs sm:text-sm text-slate-300 leading-relaxed">
+                Awarded in recognition of the research monograph: <strong className="text-white">“Hệ thống Robot Tự hành &amp; Định vị Trong nhà sử dụng UWB”</strong>, demonstrating state-of-the-art accuracy in multi-path NLOS environments through nonlinear state estimation and deterministic embedded control.
+              </div>
 
-              <div className="flex flex-wrap gap-2 pt-2 text-xs font-mono text-slate-300">
-                <span className="px-2.5 py-1 rounded bg-[#091120] border border-cyan-500/20">
-                  UWB Indoor Positioning
+              <div className="flex flex-wrap gap-2 pt-1">
+                <span className="spec-pill">
+                  <CheckCircle2 className="w-3 h-3 text-amber-400" /> Second Prize (Giải Nhì)
                 </span>
-                <span className="px-2.5 py-1 rounded bg-[#091120] border border-cyan-500/20">
-                  Nonlinear State Estimation
+                <span className="spec-pill">
+                  <Calendar className="w-3 h-3 text-cyan-400" /> April 2026
                 </span>
-                <span className="px-2.5 py-1 rounded bg-[#091120] border border-cyan-500/20">
-                  AMR Platform V2
+                <span className="spec-pill">
+                  <Medal className="w-3 h-3 text-emerald-400" /> Monograph Evaluated
                 </span>
               </div>
             </div>
@@ -102,8 +103,9 @@ export default function ModernAwards() {
                 </p>
               </div>
 
-              <div className="pt-2.5 border-t border-slate-800 text-[11px] font-mono text-slate-400">
-                {aw.date}
+              <div className="pt-2.5 border-t border-slate-800 text-[11px] font-mono text-slate-400 flex items-center justify-between">
+                <span>{aw.date}</span>
+                <Calendar className="w-3.5 h-3.5 text-slate-500" />
               </div>
             </div>
           ))}

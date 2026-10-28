@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { FileText, Copy, Check, ExternalLink, Quote, Sparkles, X } from "lucide-react";
+import { FileText, Copy, Check, ExternalLink, Quote, Sparkles, X, BookOpen, Star, Calendar } from "lucide-react";
 import { PUBLICATIONS, Publication } from "@/data/portfolioData";
 
 export default function ModernPublications() {
@@ -48,22 +48,22 @@ export default function ModernPublications() {
   const badgeTheme: Record<string, { bg: string; text: string; border: string }> = {
     "International Conference": {
       bg: "bg-blue-500/10",
-      text: "text-blue-400",
+      text: "text-blue-300",
       border: "border-blue-500/30",
     },
     "National Journal": {
       bg: "bg-cyan-500/10",
-      text: "text-cyan-400",
+      text: "text-cyan-300",
       border: "border-cyan-500/30",
     },
     "National Conference": {
       bg: "bg-indigo-500/10",
-      text: "text-indigo-400",
+      text: "text-indigo-300",
       border: "border-indigo-500/30",
     },
     "Research Report": {
       bg: "bg-emerald-500/10",
-      text: "text-emerald-400",
+      text: "text-emerald-300",
       border: "border-emerald-500/30",
     },
   };
@@ -130,23 +130,26 @@ export default function ModernPublications() {
                 key={pub.id}
                 className={`reveal reveal-delay-${(idx % 3) + 1} glass-card p-5 sm:p-6 transition-all duration-300`}
               >
-                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
+                <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-5">
                   
                   {/* Left: Metadata & Titles */}
-                  <div className="space-y-2.5 flex-1">
-                    <div className="flex flex-wrap items-center gap-2.5">
-                      <span className={`text-[10px] font-mono font-bold uppercase tracking-wider px-2.5 py-0.5 rounded border ${theme.bg} ${theme.text} ${theme.border}`}>
+                  <div className="space-y-3 flex-1">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className={`text-[10px] font-mono font-bold uppercase tracking-wider px-2.5 py-0.5 rounded border ${theme.bg} ${theme.text} ${theme.border} flex items-center gap-1`}>
+                        <BookOpen className="w-3 h-3" />
                         {pub.type}
                       </span>
-                      <span className="text-xs font-mono font-bold text-slate-300">
+                      <span className="text-xs font-mono font-bold text-slate-300 flex items-center gap-1">
+                        <Calendar className="w-3 h-3 text-cyan-400" />
                         {pub.year}
                       </span>
                       <span className="text-xs font-semibold text-cyan-300">
                         · {pub.venue}
                       </span>
                       {pub.authorRank && (
-                        <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-semibold">
-                          ★ {pub.authorRank}
+                        <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-semibold flex items-center gap-1">
+                          <Star className="w-3 h-3 text-emerald-400" />
+                          {pub.authorRank}
                         </span>
                       )}
                     </div>
@@ -171,17 +174,14 @@ export default function ModernPublications() {
                     </div>
 
                     {pub.abstract && (
-                      <p className="text-xs text-slate-300 leading-relaxed max-w-3xl pt-1">
+                      <div className="info-subbox text-xs text-slate-300 leading-relaxed max-w-3xl">
                         {pub.abstract}
-                      </p>
+                      </div>
                     )}
 
                     <div className="flex flex-wrap gap-1.5 pt-1">
                       {pub.tags.map((t) => (
-                        <span
-                          key={t}
-                          className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#091120] border border-cyan-500/20 text-slate-300"
-                        >
+                        <span key={t} className="spec-pill !text-[10px] !py-0.5">
                           #{t}
                         </span>
                       ))}
@@ -189,7 +189,7 @@ export default function ModernPublications() {
                   </div>
 
                   {/* Right: Actions */}
-                  <div className="flex items-center gap-2.5 shrink-0 self-start lg:self-center">
+                  <div className="flex items-center gap-2.5 shrink-0 self-start lg:self-center mt-2 lg:mt-0">
                     <a
                       href={pub.pdfUrl}
                       target="_blank"

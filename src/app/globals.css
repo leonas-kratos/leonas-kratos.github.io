@@ -3,7 +3,7 @@
 :root {
   --bg-primary: #06090f;
   --bg-secondary: #0a0f1d;
-  --bg-card: #0e1726;
+  --bg-card: #0d1527;
   --cyan-primary: #00f0ff;
   --cyan-glow: rgba(0, 240, 255, 0.35);
   --blue-primary: #3b82f6;
@@ -17,9 +17,9 @@ html {
 body {
   background-color: #06090f;
   background-image: 
-    radial-gradient(circle at 50% 0%, rgba(14, 30, 58, 0.65) 0%, rgba(6, 9, 15, 0.95) 45%, #05070c 100%),
-    radial-gradient(circle at 100% 40%, rgba(6, 182, 212, 0.05) 0%, transparent 40%),
-    radial-gradient(circle at 0% 70%, rgba(59, 130, 246, 0.05) 0%, transparent 40%);
+    radial-gradient(circle at 50% 0%, rgba(14, 30, 58, 0.7) 0%, rgba(6, 9, 15, 0.98) 50%, #04060a 100%),
+    radial-gradient(circle at 90% 30%, rgba(6, 182, 212, 0.06) 0%, transparent 45%),
+    radial-gradient(circle at 10% 70%, rgba(59, 130, 246, 0.06) 0%, transparent 45%);
   background-attachment: fixed;
   color: #cbd5e1;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
@@ -30,7 +30,7 @@ body {
 
 /* Custom modern scrollbar */
 ::-webkit-scrollbar {
-  width: 7px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
   background: #06090f;
@@ -49,20 +49,20 @@ body {
 
 .page-container {
   width: 100%;
-  max-width: 1220px;
+  max-width: 1240px;
   margin: 0 auto;
-  padding: 0 clamp(16px, 4vw, 44px);
+  padding: 0 clamp(16px, 3.5vw, 40px);
 }
 
 section {
-  padding: clamp(48px, 6vw, 84px) 0;
+  padding: clamp(40px, 5.5vw, 76px) 0;
   width: 100%;
   position: relative;
 }
 
 /* Section Title Style: Sleek Cyber-Academic Cyan Accent */
 .section-title {
-  font-size: clamp(1.35rem, 2.5vw, 1.95rem);
+  font-size: clamp(1.35rem, 2.3vw, 1.85rem);
   font-weight: 800;
   color: #ffffff;
   display: flex;
@@ -75,97 +75,171 @@ section {
   content: "";
   display: inline-block;
   width: 4px;
-  height: 24px;
+  height: 22px;
   background: linear-gradient(180deg, #00f0ff 0%, #3b82f6 100%);
   border-radius: 2px;
-  box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.6);
 }
 
 /* ===================================================
-   HIGH-END GLASSMORPHIC CARDS
+   EDITORIAL TECH CARDS & STRUCTURED BOXES
+   (Inspired by Stuff & Nonsense & Jessica Goldman Design)
    =================================================== */
 
 .glass-card {
-  background: linear-gradient(155deg, rgba(15, 23, 42, 0.85) 0%, rgba(10, 16, 28, 0.95) 100%);
-  border: 1px solid rgba(56, 189, 248, 0.12);
-  border-radius: 14px;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  background: linear-gradient(160deg, rgba(14, 23, 42, 0.82) 0%, rgba(9, 15, 28, 0.94) 100%);
+  border: 1px solid rgba(56, 189, 248, 0.14);
+  border-radius: 16px;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.06);
   transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
               border-color 0.35s ease,
               box-shadow 0.35s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .glass-card:hover {
-  border-color: rgba(0, 240, 255, 0.45);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55), 0 0 20px rgba(0, 240, 255, 0.15);
-  transform: translateY(-4px);
-}
-
-/* Glowing Border Accent Card */
-.glow-card {
-  position: relative;
-  border-radius: 14px;
-  background: linear-gradient(160deg, #0f1828 0%, #090e18 100%);
-  border: 1px solid rgba(56, 189, 248, 0.16);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
-  transition: all 0.3s ease;
-}
-
-.glow-card:hover {
-  border-color: #00f0ff;
-  box-shadow: 0 12px 36px rgba(0, 240, 255, 0.2), 0 0 1px #00f0ff;
+  border-color: rgba(0, 240, 255, 0.48);
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.6), 0 0 24px rgba(0, 240, 255, 0.16);
   transform: translateY(-3px);
 }
 
+/* Sub-box container inside cards */
+.info-subbox {
+  background: rgba(7, 12, 22, 0.7);
+  border: 1px solid rgba(56, 189, 248, 0.1);
+  border-radius: 12px;
+  padding: 14px 16px;
+  transition: border-color 0.25s ease;
+}
+
+.info-subbox:hover {
+  border-color: rgba(0, 240, 255, 0.25);
+}
+
+/* Micro-spec Pill with Icon */
+.spec-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.72rem;
+  padding: 5px 10px;
+  border-radius: 7px;
+  background: rgba(11, 20, 36, 0.9);
+  border: 1px solid rgba(56, 189, 248, 0.18);
+  color: #cbd5e1;
+  transition: all 0.2s ease;
+}
+
+.spec-pill:hover {
+  border-color: #00f0ff;
+  color: #00f0ff;
+  background: rgba(0, 240, 255, 0.08);
+}
+
 /* ===================================================
-   MODERN IMAGE DISPLAY WRAPPERS (NO BLUR CROP, PROPORTIONAL)
+   PROPORTIONAL IMAGE FRAMES (NO STRETCH, NO CROP)
    =================================================== */
 
-.academic-img-wrapper {
+/* 1. Vehicle / Portrait Product Display Frame
+      For Car_V2.png (439x587) and VEDC_CAR.png (350x424) */
+.vehicle-frame {
   width: 100%;
-  aspect-ratio: 16 / 10;
-  background: radial-gradient(circle at center, #0e172a 0%, #06090f 100%);
-  border-radius: 10px;
+  height: 250px;
+  background: radial-gradient(circle at center, #111e33 0%, #060a12 100%);
+  border-radius: 12px;
   overflow: hidden;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.15);
+  padding: 12px;
 }
 
-.academic-img-wrapper img {
+.vehicle-frame img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.65));
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.glass-card:hover .vehicle-frame img {
+  transform: scale(1.05);
+}
+
+/* 2. Group / Landscape Photo Frame
+      For NCKH_present.png, NCKH_teamate.png, VEDC2025_Teamate.png, REV2025.png, Lab.png */
+.landscape-frame {
+  width: 100%;
+  aspect-ratio: 16 / 10.5;
+  background: radial-gradient(circle at center, #0c1527 0%, #050810 100%);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(56, 189, 248, 0.15);
+}
+
+.landscape-frame img {
   width: 100%;
   height: 100%;
-  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  object-fit: cover;
+  object-position: center 25%;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.glass-card:hover .academic-img-wrapper img {
+.glass-card:hover .landscape-frame img {
   transform: scale(1.035);
 }
 
 /* ===================================================
-   HERO AVATAR FRAME (PREMIUM CYBER-ACADEMIC)
+   REFINED HERO AVATAR (PROPORTIONAL, EDITORIAL SIZED)
    =================================================== */
 
-.hero-avatar-frame {
+.hero-avatar-card {
   width: 100%;
-  max-width: 320px;
-  aspect-ratio: 4 / 4.9;
-  border-radius: 20px;
-  border: 2px solid rgba(0, 240, 255, 0.4);
-  background: radial-gradient(circle at 50% 20%, #112036 0%, #070c16 100%);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 240, 255, 0.25);
+  max-width: 255px;
+  border-radius: 18px;
+  border: 1.5px solid rgba(0, 240, 255, 0.4);
+  background: linear-gradient(165deg, #101c30 0%, #080d19 100%);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(0, 240, 255, 0.2);
   overflow: hidden;
   position: relative;
-  transition: all 0.4s ease;
+  transition: all 0.35s ease;
 }
 
-.hero-avatar-frame:hover {
+.hero-avatar-card:hover {
   border-color: #00f0ff;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 45px rgba(0, 240, 255, 0.4);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 35px rgba(0, 240, 255, 0.35);
+}
+
+.hero-avatar-card .img-box {
+  width: 100%;
+  aspect-ratio: 3.2 / 4;
+  overflow: hidden;
+  position: relative;
+  background: #090f1d;
+}
+
+.hero-avatar-card .img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 0.5s ease;
+}
+
+.hero-avatar-card:hover .img-box img {
+  transform: scale(1.04);
 }
 
 /* ===================================================
@@ -177,13 +251,13 @@ section {
   align-items: center;
   justify-content: center;
   font-weight: 600;
-  font-size: 0.875rem;
-  padding: 10px 22px;
+  font-size: 0.85rem;
+  padding: 10px 20px;
   background: linear-gradient(135deg, #00f0ff 0%, #0284c7 100%);
   color: #040914;
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 4px 20px rgba(0, 240, 255, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 4px 18px rgba(0, 240, 255, 0.35);
   transition: all 0.25s ease;
   text-decoration: none;
   cursor: pointer;
@@ -191,7 +265,7 @@ section {
 
 .btn-cyan-primary:hover {
   background: linear-gradient(135deg, #38bdf8 0%, #00f0ff 100%);
-  box-shadow: 0 6px 28px rgba(0, 240, 255, 0.55);
+  box-shadow: 0 6px 26px rgba(0, 240, 255, 0.55);
   transform: translateY(-2px);
   color: #020617;
 }
@@ -201,12 +275,12 @@ section {
   align-items: center;
   justify-content: center;
   font-weight: 600;
-  font-size: 0.875rem;
-  padding: 10px 20px;
-  background: rgba(15, 23, 42, 0.75);
+  font-size: 0.85rem;
+  padding: 10px 18px;
+  background: rgba(15, 23, 42, 0.7);
   color: #e2e8f0;
   border-radius: 8px;
-  border: 1px solid rgba(56, 189, 248, 0.28);
+  border: 1px solid rgba(56, 189, 248, 0.25);
   backdrop-filter: blur(12px);
   transition: all 0.25s ease;
   text-decoration: none;
@@ -214,10 +288,10 @@ section {
 }
 
 .btn-glass-secondary:hover {
-  background: rgba(0, 240, 255, 0.12);
+  background: rgba(0, 240, 255, 0.1);
   border-color: #00f0ff;
   color: #00f0ff;
-  box-shadow: 0 4px 18px rgba(0, 240, 255, 0.25);
+  box-shadow: 0 4px 16px rgba(0, 240, 255, 0.22);
   transform: translateY(-2px);
 }
 
@@ -227,9 +301,9 @@ section {
 
 .reveal {
   opacity: 0;
-  transform: translateY(22px);
-  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(20px);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
@@ -245,7 +319,7 @@ section {
 
 /* Navigation Top Bar */
 .site-navbar {
-  background: rgba(6, 9, 15, 0.85);
+  background: rgba(6, 9, 15, 0.88);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(56, 189, 248, 0.15);
