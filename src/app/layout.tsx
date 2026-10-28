@@ -1,18 +1,32 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
-  subsets: ["latin"],
+  subsets: ["latin", "vietnamese"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
   variable: "--font-inter",
   display: "swap",
 });
 
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin", "vietnamese"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-jetbrains-mono",
+  display: "swap",
+});
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://leonas-kratos.github.io"),
-  title: "Đặng Minh Đức (Dang Minh Duc) | AMR Robotics & Embedded AI Researcher",
+  title: "Đặng Minh Đức — UWB Indoor Positioning Researcher",
   description:
-    "Portfolio of Đặng Minh Đức - Final-year researcher at VNU-UET. Specializing in UWB Indoor Positioning, State Estimation (EKF, UKF, PF), TinyML Edge AI, and Autonomous Mobile Robots (AMR).",
+    "Final-year student at VNU-UET researching GPS-denied indoor localization using Ultra-Wideband technology and nonlinear state estimation algorithms applied to Autonomous Mobile Robots.",
   keywords: [
     "Đặng Minh Đức",
     "Dang Minh Duc",
@@ -23,18 +37,16 @@ export const metadata: Metadata = {
     "UKF",
     "Particle Filter",
     "VNU-UET",
-    "Viettel High Tech",
-    "TinyML",
     "STM32",
     "ROS 2",
   ],
   authors: [{ name: "Đặng Minh Đức", url: "https://github.com/leonas-kratos" }],
   openGraph: {
-    title: "Đặng Minh Đức | UWB-IPS & AMR Robotics Researcher",
+    title: "Đặng Minh Đức — UWB Indoor Positioning Researcher",
     description:
       "Research in UWB Indoor Localization, State Estimation Algorithms, and Embedded AI Systems at VNU University of Engineering and Technology (VNU-UET).",
     url: "https://leonas-kratos.github.io",
-    siteName: "Dang Minh Duc Portfolio",
+    siteName: "Đặng Minh Đức Portfolio",
     images: [
       {
         url: "/images/DangMinhDuc.png",
@@ -48,9 +60,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Đặng Minh Đức | UWB-IPS & AMR Robotics Researcher",
+    title: "Đặng Minh Đức — UWB Indoor Positioning Researcher",
     description:
-      "Portfolio of Đặng Minh Đức - UWB Localization, State Estimation (EKF/UKF/PF), TinyML, and AMR Platform at VNU-UET.",
+      "Final-year student at VNU-UET researching GPS-denied indoor localization using Ultra-Wideband technology and nonlinear state estimation algorithms.",
     images: ["/images/DangMinhDuc.png"],
   },
 };
@@ -61,12 +73,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body
-        className={`${inter.variable} antialiased bg-[#06090F] text-[#CBD5E1] selection:bg-[#00F0FF] selection:text-[#06090F] min-h-screen`}
-      >
-        {children}
-      </body>
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+      <body>{children}</body>
     </html>
   );
 }
