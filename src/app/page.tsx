@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Script from "next/script";
 
 interface PdfRenderTask {
@@ -41,6 +41,15 @@ declare global {
 }
 
 export default function Home() {
+  const [heroSlide, setHeroSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setHeroSlide((prev) => (prev === 0 ? 1 : 0));
+    }, 5000);
+    return () => window.clearInterval(timer);
+  }, [heroSlide]);
+
   const renderPdfThumbnails = useCallback(() => {
     if (typeof window === "undefined" || !window.pdfjsLib) return;
 
@@ -223,9 +232,22 @@ export default function Home() {
               <a href="#contact">Contact</a>
             </li>
           </ul>
-          <a href="/images/my_cv.pdf" className="nav-cv" target="_blank" rel="noopener noreferrer">
-            CV PDF
-          </a>
+          <div className="nav-actions">
+            <a
+              href="https://github.com/leonas-kratos"
+              className="nav-gh"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
+              </svg>
+              GitHub
+            </a>
+            <a href="/images/my_cv.pdf" className="nav-cv" target="_blank" rel="noopener noreferrer">
+              CV PDF
+            </a>
+          </div>
         </div>
       </nav>
 
@@ -286,21 +308,55 @@ export default function Home() {
                   </svg>
                   Download CV
                 </a>
+                <a
+                  href="https://github.com/leonas-kratos"
+                  className="btn btn-ghost"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
+                  </svg>
+                  GitHub
+                </a>
               </div>
             </div>
             <div className="hero-right reveal d1">
-              <div className="avatar-pair">
-                <div className="av-card">
-                  <div className="av-img">
-                    <img src="/images/DangMinhDuc.png" alt="Đặng Minh Đức" loading="eager" />
-                  </div>
-                  <div className="av-label">ĐẶNG MINH ĐỨC</div>
+              <div
+                className="av-card"
+                onClick={() => setHeroSlide((prev) => (prev === 0 ? 1 : 0))}
+                title="Click to switch photo"
+              >
+                <div className="av-img">
+                  <img
+                    className={`av-slide ${heroSlide === 0 ? "active" : ""}`}
+                    src="/images/DangMinhDuc.png"
+                    alt="Đặng Minh Đức"
+                    loading="eager"
+                  />
+                  <img
+                    className={`av-slide ${heroSlide === 1 ? "active" : ""}`}
+                    src="/images/prize.png"
+                    alt="NCKH Award"
+                    loading="eager"
+                  />
                 </div>
-                <div className="av-card">
-                  <div className="av-img">
-                    <img src="/images/prize.png" alt="NCKH Award" loading="eager" />
-                  </div>
-                  <div className="av-label">NCKH AWARD</div>
+                <div className="av-label">
+                  <span>{heroSlide === 0 ? "ĐẶNG MINH ĐỨC" : "NCKH AWARD"}</span>
+                  <span className="av-dots" onClick={(e) => e.stopPropagation()}>
+                    <button
+                      type="button"
+                      className={`av-dot ${heroSlide === 0 ? "active" : ""}`}
+                      onClick={() => setHeroSlide(0)}
+                      aria-label="Show Đặng Minh Đức photo"
+                    />
+                    <button
+                      type="button"
+                      className={`av-dot ${heroSlide === 1 ? "active" : ""}`}
+                      onClick={() => setHeroSlide(1)}
+                      aria-label="Show NCKH Award photo"
+                    />
+                  </span>
                 </div>
               </div>
               <div className="hero-meta">
