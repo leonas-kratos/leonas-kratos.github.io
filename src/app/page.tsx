@@ -132,42 +132,138 @@ export default function Home() {
     );
     document.querySelectorAll(".stat-n[data-target]").forEach((el) => countObs.observe(el));
 
-    /* ── PARTICLE HERO ───────────────────────── */
-    const canvas = document.getElementById("hero-canvas") as HTMLCanvasElement | null;
+    /* ── FULL-PORTFOLIO CONSTELLATION & UWB RANGING MESH ── */
+    const canvas = document.getElementById("bg-canvas") as HTMLCanvasElement | null;
     const ctx = canvas?.getContext("2d");
     let animFrame = 0;
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    const mouse = { x: -9999, y: -9999 };
+
+    const onMouseMove = (e: MouseEvent) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    };
+    const onMouseLeave = () => {
+      mouse.x = -9999;
+      mouse.y = -9999;
+    };
 
     const resize = () => {
-      if (!canvas) return;
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
+      if (!canvas || !ctx) return;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
 
     if (canvas && ctx) {
       resize();
       window.addEventListener("resize", resize);
+      window.addEventListener("mousemove", onMouseMove, { passive: true });
+      window.addEventListener("mouseleave", onMouseLeave);
 
-      const particles = Array.from({ length: 60 }, () => ({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        r: Math.random() * 1.5 + 0.4,
-        vy: -(Math.random() * 0.35 + 0.08),
-        o: Math.random() * 0.25 + 0.05,
+      // Ambient twinkling deep-space micro-stars
+      const starCount = Math.min(Math.floor((width * height) / 22000), 70);
+      const stars = Array.from({ length: starCount }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        r: Math.random() * 1.1 + 0.35,
+        phase: Math.random() * Math.PI * 2,
+        speed: Math.random() * 0.02 + 0.008,
+      }));
+
+      // Drifting UWB anchor/constellation nodes
+      const nodeCount = Math.min(Math.floor((width * height) / 38000), 34);
+      const nodes = Array.from({ length: nodeCount }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.42,
+        vy: (Math.random() - 0.5) * 0.42,
+        radius: Math.random() * 1.6 + 1.4,
+        pulse: Math.random() * Math.PI * 2,
       }));
 
       const draw = () => {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particles.forEach((p) => {
+        ctx.clearRect(0, 0, width, height);
+
+        // 1. Twinkling background stars
+        for (const s of stars) {
+          s.phase += s.speed;
+          const alpha = 0.12 + (Math.sin(s.phase) + 1) * 0.16;
+          ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
           ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(200,0,26,${p.o})`;
+          ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
           ctx.fill();
-          p.y += p.vy;
-          if (p.y < -4) {
-            p.y = canvas.height + 4;
-            p.x = Math.random() * canvas.width;
+        }
+
+        // 2. Constellation / UWB mesh ranging links between nodes
+        for (let i = 0; i < nodes.length; i++) {
+          for (let j = i + 1; j < nodes.length; j++) {
+            const dx = nodes[i].x - nodes[j].x;
+            const dy = nodes[i].y - nodes[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist < 185) {
+              const alpha = (1 - dist / 185) * 0.24;
+              ctx.strokeStyle = `rgba(215, 20, 45, ${alpha})`;
+              ctx.lineWidth = 0.85;
+              ctx.beginPath();
+              ctx.moveTo(nodes[i].x, nodes[i].y);
+              ctx.lineTo(nodes[j].x, nodes[j].y);
+              ctx.stroke();
+            }
           }
-        });
+
+          // Interactive cursor UWB tag ranging link
+          const mdx = nodes[i].x - mouse.x;
+          const mdy = nodes[i].y - mouse.y;
+          const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+          if (mdist < 210) {
+            const malpha = (1 - mdist / 210) * 0.35;
+            ctx.strokeStyle = `rgba(235, 45, 70, ${malpha})`;
+            ctx.lineWidth = 0.9;
+            ctx.beginPath();
+            ctx.moveTo(nodes[i].x, nodes[i].y);
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.stroke();
+          }
+        }
+
+        // 3. UWB anchor nodes & RF pulsing rings
+        for (const node of nodes) {
+          node.x += node.vx;
+          node.y += node.vy;
+
+          if (node.x < 0 || node.x > width) node.vx *= -1;
+          if (node.y < 0 || node.y > height) node.vy *= -1;
+
+          node.pulse += 0.028;
+          const pulseR = (Math.sin(node.pulse) + 1) * 6.5 + node.radius;
+          const pulseAlpha = (Math.cos(node.pulse) + 1) * 0.13;
+
+          // Expanding RF pulse ring
+          ctx.strokeStyle = `rgba(200, 0, 26, ${pulseAlpha})`;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.arc(node.x, node.y, pulseR, 0, Math.PI * 2);
+          ctx.stroke();
+
+          // Node glow core
+          ctx.fillStyle = "rgba(235, 55, 78, 0.8)";
+          ctx.beginPath();
+          ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+          ctx.fill();
+
+          // Crisp starlight center
+          ctx.fillStyle = "rgba(255, 225, 230, 0.85)";
+          ctx.beginPath();
+          ctx.arc(node.x, node.y, node.radius * 0.45, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
         animFrame = requestAnimationFrame(draw);
       };
       draw();
@@ -196,6 +292,8 @@ export default function Home() {
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", resize);
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("mouseleave", onMouseLeave);
       cancelAnimationFrame(animFrame);
       obs.disconnect();
       countObs.disconnect();
@@ -206,6 +304,7 @@ export default function Home() {
 
   return (
     <>
+      <canvas id="bg-canvas" aria-hidden="true" />
       <div id="progress" />
 
       {/* NAVBAR */}
@@ -253,7 +352,6 @@ export default function Home() {
 
       {/* HERO */}
       <section id="hero">
-        <canvas id="hero-canvas" />
         <div className="wrap">
           <div className="hero-inner">
             <div className="hero-left reveal">
@@ -743,7 +841,8 @@ export default function Home() {
                   <span className="pub-year">2024</span>
                 </div>
                 <div className="pub-title">
-                  State Estimation Filters for UWB Indoor Robot Positioning — IEEE ATC
+                  Robust Indoor Mobile Robot Localization Using Maximum Correntropy Criterion UKF —
+                  IEEE ATC
                 </div>
                 <div className="pub-venue">
                   IEEE International Conference on Advanced Technologies for Communications (ATC)
@@ -770,7 +869,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* ICARIC */}
+            {/* ATC - Neural Network */}
             <div className="pub-card reveal d1">
               <div className="pub-thumb">
                 <canvas
@@ -802,10 +901,11 @@ export default function Home() {
                   <span className="pub-year">2025</span>
                 </div>
                 <div className="pub-title">
-                  Neural Network-Aided Kalman Filter for Indoor Positioning — ICARIC
+                  Neural Network-Aided Kalman Filtering for Indoor Positioning Autonomous Vehicle
+                  System — IEEE ATC
                 </div>
                 <div className="pub-venue">
-                  International Conference on Advanced Robotics and Intelligent Control (ICARIC)
+                  IEEE International Conference on Advanced Technologies for Communications (ATC)
                 </div>
                 <a
                   className="pub-link"
