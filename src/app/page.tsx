@@ -511,7 +511,7 @@ export default function Home() {
         <div className="wrap">
           <div className="stats-grid">
             <div className="stat reveal">
-              <div className="stat-n" data-target="5">
+              <div className="stat-n" data-target="4">
                 0
               </div>
               <div className="stat-l">Publications</div>
@@ -804,8 +804,7 @@ export default function Home() {
             <p className="sec-tag">{"// SCIENTIFIC OUTPUT"}</p>
             <h2 className="sec-title">Publications</h2>
             <p className="sec-sub">
-              2 International Conferences · 1 National Journal · 1 National Conference · 1 Research
-              Report
+              2 International Conferences · 1 National Journal · 1 National Conference
             </p>
           </div>
           <div className="pub-grid">
@@ -838,7 +837,7 @@ export default function Home() {
               <div className="pub-body">
                 <div className="pub-top">
                   <span className="pub-type">INTL CONFERENCE</span>
-                  <span className="pub-year">2024</span>
+                  <span className="pub-year">2026</span>
                 </div>
                 <div className="pub-title">
                   Robust Indoor Mobile Robot Localization Using Maximum Correntropy Criterion UKF —
@@ -898,7 +897,7 @@ export default function Home() {
               <div className="pub-body">
                 <div className="pub-top">
                   <span className="pub-type">INTL CONFERENCE</span>
-                  <span className="pub-year">2025</span>
+                  <span className="pub-year">2026</span>
                 </div>
                 <div className="pub-title">
                   Neural Network-Aided Kalman Filtering for Indoor Positioning Autonomous Vehicle
@@ -958,10 +957,11 @@ export default function Home() {
               <div className="pub-body">
                 <div className="pub-top">
                   <span className="pub-type">NATIONAL JOURNAL</span>
-                  <span className="pub-year">2024</span>
+                  <span className="pub-year">2026</span>
                 </div>
                 <div className="pub-title">
-                  UWB-based Indoor Localization using Nonlinear Filters — REV JEC
+                  Evaluation of the Applicability of State Estimation Filters for Indoor Robot
+                  Positioning — REV JEC
                 </div>
                 <div className="pub-venue">
                   REV Journal on Electronics and Communications (JEC)
@@ -1028,65 +1028,6 @@ export default function Home() {
                 <a
                   className="pub-link"
                   href="/Research/Paper/REV_2025_the_last.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                    <polyline points="14 2 14 8 20 8" />
-                  </svg>
-                  Read PDF
-                </a>
-              </div>
-            </div>
-
-            {/* NCKH Report */}
-            <div className="pub-card reveal d4">
-              <div className="pub-thumb">
-                <canvas
-                  className="pdf-canvas"
-                  data-pdf="/Research/NCKH_2026.pdf"
-                  width={100}
-                  height={130}
-                  style={{ display: "none" }}
-                />
-                <div className="thumb-fallback">
-                  <svg
-                    className="thumb-icon"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.75"
-                  >
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                    <polyline points="14 2 14 8 20 8" />
-                  </svg>
-                  <span className="thumb-text">PDF</span>
-                </div>
-              </div>
-              <div className="pub-body">
-                <div className="pub-top">
-                  <span className="pub-type">RESEARCH REPORT</span>
-                  <span className="pub-year">2026</span>
-                </div>
-                <div className="pub-title">
-                  AMR Indoor Localization via UWB — Student Research Report (NCKH Full Monograph)
-                </div>
-                <div className="pub-venue">
-                  VNU University of Engineering and Technology (VNU-UET)
-                </div>
-                <a
-                  className="pub-link"
-                  href="/Research/NCKH_2026.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
