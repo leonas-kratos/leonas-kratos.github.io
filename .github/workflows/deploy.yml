@@ -9,10 +9,11 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  actions: write
 
 concurrency:
   group: "pages"
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -66,3 +67,16 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Clean up old workflow runs
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh api --paginate "/repos/${{ github.repository }}/actions/runs" \
+            --jq '.workflow_runs[] | select(.id != ${{ github.run_id }} and .status == "completed") | .id' | \
+          while read -r run_id; do
+            if [ -n "$run_id" ]; then
+              echo "Deleting old workflow run: $run_id"
+              gh api -X DELETE "/repos/${{ github.repository }}/actions/runs/$run_id" || true
+            fi
+          done
