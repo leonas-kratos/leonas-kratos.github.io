@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Script from "next/script";
 
 interface PdfRenderTask {
@@ -40,8 +40,138 @@ declare global {
   }
 }
 
+interface ThemePreset {
+  id: string;
+  name: string;
+  bg: string;
+  accent: string;
+}
+
+const THEME_PRESETS: ThemePreset[] = [
+  { id: "crimson", name: "Crimson Dark", bg: "#080808", accent: "#c8001a" },
+  { id: "uwb-cyan", name: "UWB Cyan", bg: "#060b16", accent: "#00d4ff" },
+  { id: "mit-navy", name: "MIT Navy", bg: "#0a1122", accent: "#3b82f6" },
+  { id: "nordic-slate", name: "Nordic Slate", bg: "#121824", accent: "#38bdf8" },
+  { id: "emerald", name: "PCB Emerald", bg: "#07100d", accent: "#10b981" },
+  { id: "indigo", name: "Quantum Indigo", bg: "#0c0918", accent: "#8b5cf6" },
+  { id: "amber", name: "Graphite Amber", bg: "#100e0b", accent: "#f59e0b" },
+  { id: "titanium", name: "Titanium Pro", bg: "#161618", accent: "#ef4444" },
+  { id: "ocean", name: "Ocean Teal", bg: "#071318", accent: "#14b8a6" },
+  { id: "paper", name: "Paper Light", bg: "#f5f6f8", accent: "#b91c1c" },
+];
+
+function hexToRgb(hex: string): [number, number, number] {
+  const clean = hex.replace("#", "");
+  const full =
+    clean.length === 3
+      ? clean
+          .split("")
+          .map((c) => c + c)
+          .join("")
+      : clean.padEnd(6, "0");
+  const num = parseInt(full.slice(0, 6), 16);
+  return [(num >> 16) & 255, (num >> 8) & 255, num & 255];
+}
+
+function relLuminance(r: number, g: number, b: number): number {
+  const lin = [r, g, b].map((v) => {
+    const s = v / 255;
+    return s <= 0.03928 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4);
+  });
+  return 0.2126 * lin[0] + 0.7152 * lin[1] + 0.0722 * lin[2];
+}
+
 export default function Home() {
   const [heroSlide, setHeroSlide] = useState(0);
+  const [themeOpen, setThemeOpen] = useState(false);
+  const [bgHex, setBgHex] = useState("#080808");
+  const [accentHex, setAccentHex] = useState("#c8001a");
+  const [copiedHex, setCopiedHex] = useState(false);
+
+  const canvasThemeRef = useRef({ ar: 200, ag: 0, ab: 26, isLight: false });
+
+  // Restore saved theme from localStorage asynchronously on client mount
+  useEffect(() => {
+    const frameId = requestAnimationFrame(() => {
+      try {
+        const raw = localStorage.getItem("dmd-portfolio-theme");
+        if (!raw) return;
+        const parsed = JSON.parse(raw) as { bg?: string; accent?: string };
+        if (parsed.bg && /^#[0-9a-fA-F]{6}$/.test(parsed.bg)) setBgHex(parsed.bg);
+        if (parsed.accent && /^#[0-9a-fA-F]{6}$/.test(parsed.accent)) setAccentHex(parsed.accent);
+      } catch {
+        // ignore storage errors
+      }
+    });
+    return () => cancelAnimationFrame(frameId);
+  }, []);
+
+  // Apply dynamic CSS custom properties & update canvas color ref whenever theme changes
+  useEffect(() => {
+    const [br, bg, bb] = hexToRgb(bgHex);
+    const [ar, ag, ab] = hexToRgb(accentHex);
+    const bgLum = relLuminance(br, bg, bb);
+    const accLum = relLuminance(ar, ag, ab);
+    const isLight = bgLum > 0.45;
+
+    canvasThemeRef.current = { ar, ag, ab, isLight };
+
+    const root = document.documentElement.style;
+    root.setProperty("--bg", bgHex);
+    root.setProperty("--nav-bg", `rgba(${br}, ${bg}, ${bb}, 0.88)`);
+    root.setProperty("--red", accentHex);
+    root.setProperty(
+      "--red-hover",
+      `rgb(${Math.min(255, ar + 24)}, ${Math.min(255, ag + 24)}, ${Math.min(255, ab + 24)})`
+    );
+    root.setProperty("--red-fg", accLum > 0.46 ? "#06090f" : "#ffffff");
+    root.setProperty("--red-dim", `rgba(${ar}, ${ag}, ${ab}, 0.18)`);
+    root.setProperty("--red-glow", `rgba(${ar}, ${ag}, ${ab}, 0.35)`);
+    root.setProperty("--border-hover", accentHex);
+    root.setProperty("--glow-top", `rgba(${ar}, ${ag}, ${ab}, ${isLight ? 0.07 : 0.1})`);
+    root.setProperty("--glow-side", `rgba(${ar}, ${ag}, ${ab}, ${isLight ? 0.035 : 0.05})`);
+
+    if (isLight) {
+      root.setProperty(
+        "--bg-inset",
+        `rgb(${Math.max(0, br - 12)}, ${Math.max(0, bg - 12)}, ${Math.max(0, bb - 10)})`
+      );
+      root.setProperty("--surface", "rgba(255, 255, 255, 0.86)");
+      root.setProperty("--surface-2", "rgba(255, 255, 255, 0.96)");
+      root.setProperty("--border", "rgba(15, 23, 42, 0.12)");
+      root.setProperty("--text", "#334155");
+      root.setProperty("--text-muted", "#64748b");
+      root.setProperty("--text-bright", "#0f172a");
+      root.setProperty("--hover-tint", "rgba(15, 23, 42, 0.05)");
+    } else {
+      root.setProperty(
+        "--bg-inset",
+        `rgb(${Math.round(br * 0.62)}, ${Math.round(bg * 0.62)}, ${Math.round(bb * 0.62)})`
+      );
+      root.setProperty(
+        "--surface",
+        `rgba(${Math.min(255, br + 9)}, ${Math.min(255, bg + 10)}, ${Math.min(255, bb + 13)}, 0.84)`
+      );
+      root.setProperty(
+        "--surface-2",
+        `rgba(${Math.min(255, br + 14)}, ${Math.min(255, bg + 16)}, ${Math.min(255, bb + 20)}, 0.94)`
+      );
+      root.setProperty(
+        "--border",
+        `rgb(${Math.min(255, br + 22)}, ${Math.min(255, bg + 24)}, ${Math.min(255, bb + 28)})`
+      );
+      root.setProperty("--text", "#cbd5e1");
+      root.setProperty("--text-muted", "#7a8596");
+      root.setProperty("--text-bright", "#ffffff");
+      root.setProperty("--hover-tint", "rgba(255, 255, 255, 0.05)");
+    }
+
+    try {
+      localStorage.setItem("dmd-portfolio-theme", JSON.stringify({ bg: bgHex, accent: accentHex }));
+    } catch {
+      // ignore storage errors
+    }
+  }, [bgHex, accentHex]);
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -188,12 +318,15 @@ export default function Home() {
 
       const draw = () => {
         ctx.clearRect(0, 0, width, height);
+        const { ar, ag, ab, isLight } = canvasThemeRef.current;
 
         // 1. Twinkling background stars
         for (const s of stars) {
           s.phase += s.speed;
           const alpha = 0.12 + (Math.sin(s.phase) + 1) * 0.16;
-          ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+          ctx.fillStyle = isLight
+            ? `rgba(15, 23, 42, ${alpha * 0.42})`
+            : `rgba(255, 255, 255, ${alpha})`;
           ctx.beginPath();
           ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
           ctx.fill();
@@ -207,8 +340,8 @@ export default function Home() {
             const dist = Math.sqrt(dx * dx + dy * dy);
 
             if (dist < 185) {
-              const alpha = (1 - dist / 185) * 0.24;
-              ctx.strokeStyle = `rgba(215, 20, 45, ${alpha})`;
+              const alpha = (1 - dist / 185) * (isLight ? 0.2 : 0.24);
+              ctx.strokeStyle = `rgba(${ar}, ${ag}, ${ab}, ${alpha})`;
               ctx.lineWidth = 0.85;
               ctx.beginPath();
               ctx.moveTo(nodes[i].x, nodes[i].y);
@@ -223,7 +356,7 @@ export default function Home() {
           const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
           if (mdist < 210) {
             const malpha = (1 - mdist / 210) * 0.35;
-            ctx.strokeStyle = `rgba(235, 45, 70, ${malpha})`;
+            ctx.strokeStyle = `rgba(${ar}, ${ag}, ${ab}, ${malpha})`;
             ctx.lineWidth = 0.9;
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
@@ -245,20 +378,20 @@ export default function Home() {
           const pulseAlpha = (Math.cos(node.pulse) + 1) * 0.13;
 
           // Expanding RF pulse ring
-          ctx.strokeStyle = `rgba(200, 0, 26, ${pulseAlpha})`;
+          ctx.strokeStyle = `rgba(${ar}, ${ag}, ${ab}, ${pulseAlpha})`;
           ctx.lineWidth = 1;
           ctx.beginPath();
           ctx.arc(node.x, node.y, pulseR, 0, Math.PI * 2);
           ctx.stroke();
 
           // Node glow core
-          ctx.fillStyle = "rgba(235, 55, 78, 0.8)";
+          ctx.fillStyle = `rgba(${ar}, ${ag}, ${ab}, 0.82)`;
           ctx.beginPath();
           ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
           ctx.fill();
 
           // Crisp starlight center
-          ctx.fillStyle = "rgba(255, 225, 230, 0.85)";
+          ctx.fillStyle = isLight ? "rgba(255, 255, 255, 0.95)" : "rgba(255, 240, 245, 0.88)";
           ctx.beginPath();
           ctx.arc(node.x, node.y, node.radius * 0.45, 0, Math.PI * 2);
           ctx.fill();
@@ -332,6 +465,15 @@ export default function Home() {
             </li>
           </ul>
           <div className="nav-actions">
+            <button
+              type="button"
+              className={`nav-theme-btn ${themeOpen ? "open" : ""}`}
+              onClick={() => setThemeOpen((prev) => !prev)}
+              aria-label="Toggle Theme Switcher"
+            >
+              <span className="nav-theme-dot" />
+              <span className="nav-theme-lbl">Theme</span>
+            </button>
             <a
               href="https://github.com/leonas-kratos"
               className="nav-gh"
@@ -341,7 +483,7 @@ export default function Home() {
               <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
               </svg>
-              GitHub
+              <span className="nav-gh-lbl">GitHub</span>
             </a>
             <a href="/images/my_cv.pdf" className="nav-cv" target="_blank" rel="noopener noreferrer">
               CV PDF
@@ -1339,6 +1481,117 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* FLOATING THEME STUDIO SWITCHER */}
+      <button
+        type="button"
+        className={`theme-fab ${themeOpen ? "open" : ""}`}
+        onClick={() => setThemeOpen((prev) => !prev)}
+        aria-label="Open Theme Switcher"
+      >
+        <span className="nav-theme-dot" />
+        <span>Theme</span>
+      </button>
+
+      {themeOpen && (
+        <div className="theme-panel" role="dialog" aria-label="Theme Studio">
+          <div className="theme-head">
+            <span className="theme-head-title">{"// THEME STUDIO"}</span>
+            <div className="theme-head-actions">
+              <button
+                type="button"
+                className="theme-mini-btn"
+                onClick={() => {
+                  setBgHex("#080808");
+                  setAccentHex("#c8001a");
+                }}
+              >
+                Reset
+              </button>
+              <button
+                type="button"
+                className="theme-mini-btn"
+                onClick={() => setThemeOpen(false)}
+                aria-label="Close Theme Studio"
+              >
+                ✕
+              </button>
+            </div>
+          </div>
+
+          <div className="theme-grid">
+            {THEME_PRESETS.map((preset) => {
+              const isActive =
+                bgHex.toLowerCase() === preset.bg.toLowerCase() &&
+                accentHex.toLowerCase() === preset.accent.toLowerCase();
+              return (
+                <button
+                  key={preset.id}
+                  type="button"
+                  className={`theme-item ${isActive ? "active" : ""}`}
+                  onClick={() => {
+                    setBgHex(preset.bg);
+                    setAccentHex(preset.accent);
+                  }}
+                >
+                  <span className="theme-swatch" style={{ backgroundColor: preset.bg }}>
+                    <span
+                      className="theme-swatch-dot"
+                      style={{ backgroundColor: preset.accent }}
+                    />
+                  </span>
+                  <span>{preset.name}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="theme-custom">
+            <span className="theme-custom-label">CUSTOM COLORS</span>
+            <div className="theme-pickers">
+              <label className="theme-picker-box">
+                <input
+                  type="color"
+                  value={bgHex}
+                  onChange={(e) => setBgHex(e.target.value)}
+                  aria-label="Custom background color"
+                />
+                <span className="theme-picker-meta">
+                  <span>Background</span>
+                  <code>{bgHex}</code>
+                </span>
+              </label>
+
+              <label className="theme-picker-box">
+                <input
+                  type="color"
+                  value={accentHex}
+                  onChange={(e) => setAccentHex(e.target.value)}
+                  aria-label="Custom accent color"
+                />
+                <span className="theme-picker-meta">
+                  <span>Accent</span>
+                  <code>{accentHex}</code>
+                </span>
+              </label>
+            </div>
+
+            <button
+              type="button"
+              className="theme-copy-btn"
+              onClick={() => {
+                navigator.clipboard?.writeText(`BG: ${bgHex} | Accent: ${accentHex}`);
+                setCopiedHex(true);
+                window.setTimeout(() => setCopiedHex(false), 1800);
+              }}
+            >
+              {copiedHex
+                ? "✓ Copied Hex Codes!"
+                : `Copy: BG ${bgHex.toUpperCase()} · ACCENT ${accentHex.toUpperCase()}`}
+            </button>
+          </div>
+        </div>
+      )}
 
       <Script
         src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"
